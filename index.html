@@ -35,6 +35,58 @@ format used by computer protocols and processes.  The syntax of JCR
 is not JSON but is "JSON-like", possessing the conciseness and
 utility that has made JSON popular.</p>
 
+<p>As an example, the following JSON taken from RFC 4627:</p>
+
+<pre>
+       {
+         "Image": {
+             "Width":  800,
+             "Height": 600,
+             "Title":  "View from 15th Floor",
+             "Thumbnail": {
+                 "Url":    "http://www.example.com/image/481989943",
+                 "Height": 125,
+                 "Width":  "100"
+             },
+             "IDs": [116, 943, 234, 38793]
+          }
+       }
+</pre>
+
+<p>can be described using JCR as:</p>
+<pre>
+       {
+           "Image" {
+               "Width" : 0..1280,
+               "Height" : 0..1024,
+               "Title" : string,
+               "Thumbnail" {
+                   "Url" : uri
+                   "Width" : 0..1280,
+                   "Height" : 0..1024,
+               },
+               "IDs" [ *:integer ]
+           }
+       }
+</pre>
+<p>or alternatively, using named rules to avoid some of the type repetition, as:</p>
+<pre>
+       {
+           "Image" {
+               width, height,
+               "Title" : string,
+               "Thumbnail" {
+                   "Url" : uri,
+                   width, height
+               },
+               "IDs" [ *:integer ]
+           }
+       }
+
+       width "Width" : 0..1280
+       height "Height" : 0..1024
+</pre>
+
 <h3>
 <a id="specification" class="anchor" href="#specification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Specification</h3>
 
