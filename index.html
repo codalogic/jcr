@@ -7,10 +7,11 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+    <script src='js/js.js' />
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>JCR by codalogic</title>
+    <title>JCR by example</title>
   </head>
 
   <body>
@@ -60,12 +61,12 @@ utility that has made JSON popular.</p>
                "Width" : 0..1280,
                "Height" : 0..1024,
                "Title" : string,
-               "Thumbnail" {
+               "Thumbnail" : {
                    "Url" : uri
                    "Width" : 0..1280,
                    "Height" : 0..1024,
                },
-               "IDs" [ *:integer ]
+               "IDs" : [ *:integer ]
            }
        }
 </pre>
@@ -75,11 +76,11 @@ utility that has made JSON popular.</p>
            "Image" {
                width, height,
                "Title" : string,
-               "Thumbnail" {
+               "Thumbnail" : {
                    "Url" : uri,
                    width, height
                },
-               "IDs" [ *:integer ]
+               "IDs" : [ *:integer ]
            }
        }
 
@@ -99,6 +100,12 @@ utility that has made JSON popular.</p>
 
 <p><a href="https://github.com/arineng/jcrvalidator">Ruby jcrvalidator (Work in Progress)</a><br>
 <a href="https://github.com/codalogic/cl-jcr-parser">C++ cl-jcr-parser (Work in Progress)</a></p>
+
+<h3>
+<a id="implementations" class="anchor" href="#implementations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get Involved</h3>
+<p>Like JCR and want to know more?  Know of an implementation we can list?  Need help making JCR work for you?  Contact us at 
+<script>mk_e_link('org', 'json-content-rules', 'contact', 'Enter JCR subject:')</script>.</p>
+
         </section>
 
         <footer>
