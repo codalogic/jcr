@@ -36,28 +36,29 @@ format used by computer protocols and processes.  The syntax of JCR
 is not JSON but is "JSON-like", possessing the conciseness and
 utility that has made JSON popular.</p>
 
-<p>As an example, the following JSON taken from RFC 4627:</p>
+<p>As an example, the following JSON taken from RFC 7159:</p>
 
 <pre>
-       {
-         "Image": {
-             "Width":  800,
-             "Height": 600,
-             "Title":  "View from 15th Floor",
-             "Thumbnail": {
-                 "Url":    "http://www.example.com/image/481989943",
-                 "Height": 125,
-                 "Width":  "100"
-             },
-             "IDs": [116, 943, 234, 38793]
+      {
+        "Image": {
+            "Width":  800,
+            "Height": 600,
+            "Title":  "View from 15th Floor",
+            "Thumbnail": {
+                "Url":    "http://www.example.com/image/481989943",
+                "Height": 125,
+                "Width":  100
+            },
+            "Animated" : false,
+            "IDs": [116, 943, 234, 38793]
           }
-       }
+      }
 </pre>
 
 <p>can be described using JCR as:</p>
 <pre>
        {
-           "Image" {
+           "Image" : {
                "Width" : 0..1280,
                "Height" : 0..1024,
                "Title" : string,
@@ -66,6 +67,7 @@ utility that has made JSON popular.</p>
                    "Width" : 0..1280,
                    "Height" : 0..1024,
                },
+               "Animated" : boolean,
                "IDs" : [ *:integer ]
            }
        }
@@ -73,25 +75,30 @@ utility that has made JSON popular.</p>
 <p>or alternatively, using named rules to avoid some of the type repetition, as:</p>
 <pre>
        {
-           "Image" {
+           "Image" : {
                width, height,
                "Title" : string,
                "Thumbnail" : {
                    "Url" : uri,
                    width, height
                },
+               "Animated" : boolean,
                "IDs" : [ *:integer ]
            }
        }
 
-       width "Width" : 0..1280
-       height "Height" : 0..1024
+       width = "Width" : 0..1280
+       height = "Height" : 0..1024
 </pre>
 
 <h3>
 <a id="specification" class="anchor" href="#specification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Specification</h3>
 
-<p>For more details read the latest specification at <a href="https://www.ietf.org/internet-drafts/draft-newton-json-content-rules-05.txt">draft-newton-json-content-rules-05.txt</a></p>
+<p>For more details read the latest specification at
+<a href="https://www.ietf.org/internet-drafts/draft-newton-json-content-rules-06.txt">draft-newton-json-content-rules-06.txt</a>.</p>
+
+<p>JCR can also have co-constraints added to it via directives and annotations.  These are described in
+<a href="https://www.ietf.org/internet-drafts/draft-cordell-jcr-co-constraints-00.txt">draft-cordell-jcr-co-constraints-00.txt</a>.</p>
 
 <h3>
 <a id="implementations" class="anchor" href="#implementations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Implementations</h3>
