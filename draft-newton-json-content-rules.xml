@@ -212,11 +212,11 @@
                 Finally, group rules designate a collection of rules.
             </t>
             <t>
-                Putting it all together, <xref target="rfc4627-example-1-rules"></xref>
-                describes the JSON in <xref target="rfc4627-example-1"></xref>.
+                Putting it all together, <xref target="rfc7159-example-1-rules"></xref>
+                describes the JSON in <xref target="rfc7159-example-1"></xref>.
             </t>
-            <figure anchor="rfc4627-example-1">
-                <preamble>Example JSON shamelessly lifted from RFC 4627</preamble>
+            <figure anchor="rfc7159-example-1">
+                <preamble>Example JSON shamelessly lifted from RFC 7159</preamble>
                 <artwork xml:space="preserve">
     {
       "Image": {
@@ -226,58 +226,61 @@
           "Thumbnail": {
               "Url":    "http://www.example.com/image/481989943",
               "Height": 125,
-              "Width":  "100"
+              "Width":  100
           },
+          "Animated" : false,
           "IDs": [116, 943, 234, 38793]
-       }
-    }                    
+        }
+    }
                 </artwork>
             </figure>
-            <figure anchor="rfc4627-example-1-rules">
-                <preamble>Rules describing <xref target="rfc4627-example-1"></xref></preamble>
+            <figure anchor="rfc7159-example-1-rules">
+                <preamble>Rules describing <xref target="rfc7159-example-1"></xref></preamble>
                 <artwork xml:space="preserve">
     { image }
     
-    image "Image" {
+    image = "Image" : {
         width, 
         height, 
         "Title" : string,
         thumbnail, 
-        "IDs" [ *: integer ] 
+        "Animated" : boolean,
+        "IDs" : [ *: integer ] 
     }
     
-    width "Width" width_v
-    height "Height" height_v
+    width = "Width" width_v
+    height = "Height" height_v
     
-    width_v : 0..1280
-    height_v : 0..1024
+    width_v = : 0..1280
+    height_v = : 0..1024
     
-    thumbnail "Thumbnail" {
+    thumbnail = "Thumbnail" : {
         width, height, "Url" : uri 
     }
                 </artwork>
             </figure>
             <t>
-                The rules from <xref target="rfc4627-example-1-rules"></xref> can be
-                written more compactly (see <xref target="rfc4627-example-1-compact-rules"></xref>).
+                The rules from <xref target="rfc7159-example-1-rules"></xref> can be
+                written more compactly (see <xref target="rfc7159-example-1-compact-rules"></xref>).
             </t>
-            <figure anchor="rfc4627-example-1-compact-rules">
-                <preamble>Compact rules describing <xref target="rfc4627-example-1"></xref></preamble>
+            <figure anchor="rfc7159-example-1-compact-rules">
+                <preamble>Compact rules describing <xref target="rfc7159-example-1"></xref></preamble>
                 <artwork xml:space="preserve">
     { 
-        "Image" {
+        "Image" : {
             width, 
             height, 
             "Title" :string,
-            "Thumbnail" { 
+            "Thumbnail" : { 
                 width, height, "Url" :uri 
             }, 
-            "IDs" [ *:integer ] 
+            "Animated" :boolean,
+            "IDs" : [ *:integer ] 
         }
     }
     
-    width "Width" : 0..1280
-    height "Height" : 0..1024
+    width = "Width" : 0..1280
+    height = "Height" : 0..1024
                 </artwork>
             </figure>            
         </section> 
