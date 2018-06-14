@@ -657,6 +657,13 @@
                 <t>
                     Like JSON, JCR rulesets MUST be encoded using UTF-8 <xref target="RFC3629">RFC 3629</xref>
                     unless used entirely within a private, closed ecosystem.
+                    <list>
+                        <t>
+                            Note: JCR contained in computer programs or in documentation primarily intended for human
+                            consumption is considered to be in a private, closed ecosystem, and so not subject to the
+                            UTF-8 encoding requirement.
+                        </t>
+                    </list>
                 </t>
                 <t>
                     This document assumes that both JCR rulesets, and JSON instances being validated
