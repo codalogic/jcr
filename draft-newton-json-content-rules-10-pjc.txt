@@ -853,7 +853,7 @@ Internet-Draft             JSON Content Rules                  June 2018
       encoding requirement.
 
    This document assumes that both JCR rulesets, and JSON instances
-   being validated are encoded using UTF-8.  Issues related to handling
+   being processed are encoded using UTF-8.  Issues related to handling
    JCR rulesets or JSON instances that are not encoded using UTF-8 are
    outside the scope of this document.
 
@@ -1392,8 +1392,8 @@ Internet-Draft             JSON Content Rules                  June 2018
 
                                  Figure 33
 
-   A JSON instance value specified to be null must have the null value
-   to be valid.
+   A value specified to be null must be represented in a JSON instance
+   by the JSON 'null' value.
 
 
 
@@ -1412,10 +1412,10 @@ Internet-Draft             JSON Content Rules                  June 2018
 
                                  Figure 34
 
-   A JSON instance value specified to be true must have the true value
-   to be valid.  If specified to be false, it must have the false value.
-   If specified to be boolean, it must have either the true or false
-   values.
+   A value specified to be true must be represented in a JSON instance
+   with the 'true' JSON value.  If specified to be false, it must be
+   represented with the 'false' JSON value.  If specified to be boolean,
+   it must be represented with either the 'true' or 'false' JSON values.
 
    No casting or type coercion of non-Boolean types to Boolean types is
    permitted.
@@ -1546,19 +1546,19 @@ Internet-Draft             JSON Content Rules                  June 2018
    exponential part (as specified by exp in the ABNF).  The following
    are invalid representations of integer instance values:
 
-                         50.0    ; Invalid integer
-                         5e1     ; Invalid integer
-                         "50"    ; Invalid integer
+                           50.0    ; Bad integer
+                           5e1     ; Bad integer
+                           "50"    ; Bad integer
 
                                  Figure 41
 
 6.11.4.  Plain Strings
 
-   Generically, a string may be specified using the keyword 'string'.
+   An unconstrained string may be specified using the keyword 'string'.
    String literals may be specified using a double quote character
    followed by the literal content followed by another double quote.
-   Regular expressions can be specified by enclosing a regular
-   expression within the forward slash ('/') character.
+   Regular expressions can specify constrained strings by enclosing a
+   regular expression within forward slash ('/') characters.
 
 
 
@@ -1589,8 +1589,8 @@ Internet-Draft             JSON Content Rules                  June 2018
    expression dialects, and any regular expression thus defined should
    be usable in any mainstream regular expression engine.
 
-   To be valid against a string specification, the JSON instance value
-   MUST be a string.
+   A value specified to be a string MUST be represented in a JSON
+   instance as a JSON string value.
 
    To validate a literal string specification, escape sequences in both
    the JCR string specification and the JSON instance value are
@@ -1702,10 +1702,10 @@ Internet-Draft             JSON Content Rules                  June 2018
 
                                  Figure 45
 
-   For a JSON instance value to be valid against a semantic string
-   specification, once escape sequences are converted to UTF-8, it MUST
-   satisfy all the constraints specified by the relevant standard(s) for
-   the semantic type.
+   A value specified to be a semantic string MUST be represented in a
+   JSON instance as a JSON string value, and MUST satisfy all the
+   constraints specified by the relevant standard(s) for the semantic
+   type.
 
 6.12.  Member Specifications
 
@@ -1896,8 +1896,8 @@ Internet-Draft             JSON Content Rules                  June 2018
       grouping, which are in-turn evaluated as either a sequence or a
       choice.
 
-   o  {{{Do we need this clause?  Time will tell}}} If the outer-most
-      group yields a true result, each instance member associated with a
+   o  If the outer-most group yields a true result, each instance member
+      associated with a member name specification MUST be checked to
 
 
 
@@ -1906,9 +1906,8 @@ Newton & Cordell        Expires December 16, 2018              [Page 34]
 Internet-Draft             JSON Content Rules                  June 2018
 
 
-      member name specification MUST be checked to confirm it has
-      contributed positively to the validation result.  If not, the
-      instance is deemed invalid.
+      confirm it has contributed positively to the validation result.
+      If not, the instance is deemed invalid.
 
       NOTE: A future specification will clarify the choice ('|')
       operation as Inclusive OR ("IOR"), Exclusive OR ("XOR") or
@@ -1954,6 +1953,7 @@ Internet-Draft             JSON Content Rules                  June 2018
       match the array specification.
 
    Take for example the following ruleset:
+
 
 
 
