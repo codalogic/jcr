@@ -914,9 +914,9 @@
                 </t>
                 <figure anchor="rule_name_ruleset_id.jcr">
                     <preamble>
-                        In Figure <xref target="rule_name_ruleset_id.jcr"/> below,
+                        In <xref target="rule_name_ruleset_id.jcr"/> below,
                         "http://ietf.org/rfcYYYY.JCR" and "http://ietf.org/rfcXXXX.JCR" are ruleset 
-                        identifiers and "rfcXXXX" is a ruleset identifier alias.  See Section
+                        identifiers and "rfcXXXX" is a ruleset identifier alias.  See
                         <xref target="import"/> for details on defining and using ruleset identifier aliases.
                     </preamble>
                     <artwork align="center" xml:space="preserve">&rule_name_ruleset_id.jcr;</artwork>
