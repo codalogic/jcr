@@ -546,35 +546,35 @@
                     JCR also has directives, which have a more ruleset-wide effect.
                 </t>
                 <t>
-                    Currently defined directives include jcr-version, ruleset-id and import.
-                    jcr-version specifies the version of JCR used by a ruleset, and allows
+                    Currently defined directives include "jcr-version", "ruleset-id", and "import".
+                    jcr-version specifies the version of JCR used by a ruleset and allows
                     future versions of JCR.  ruleset-id and import support combining rules
                     from multiple rulesets.
                 </t>
                 <t>
                     Extending the previous example, it might be decided that the unsigned integer type associated
                     with the $lc and $wc is so useful that it should be extracted into a ruleset of
-                    common utility types so that it can be used in other rulesets.  Such a ruleset may
+                    common utility types so that it can be used in other rulesets.  Such a ruleset might
                     look like:
                 </t>
-                <figure anchor="thrid_example2.jcr">
+                <figure anchor="third_example2.jcr">
                     <artwork xml:space="preserve" align="center">&third_example2.jcr;</artwork>
                 </figure>
                 <t>
-                    As this may be a long-lived ruleset, the jcr-version directive make it clear
+                    As this may be a long-lived ruleset, the jcr-version directive makes it clear
                     that JCR version 1.0 is being used.  The ruleset is given the
                     identity 'com.example.common-types' using the ruleset-id directive.  The rule
                     for the type is assigned the rule name 'count'.
                 </t>
                 <t>
-                    A ruleset that makes use of the count type, may look as follows:
+                    A ruleset that makes use of the count type may look as follows:
                 </t>
-                <figure anchor="thrid_example1.jcr">
+                <figure anchor="third_example1.jcr">
                     <artwork xml:space="preserve" align="center">&third_example1.jcr;</artwork>
                 </figure>
                 <t>
-                    To make use of the count type, it is first necessary to import the
-                    'com.example.common-types' ruleset, using the import directive.  As part of the
+                    To make use of the count type it is first necessary to import the
+                    'com.example.common-types' ruleset using the import directive.  As part of the
                     import, the 'com.example.common-types' ruleset is given an alias, 'ct', with which
                     to refer to it.  It is then possible to use the imported count type as '$ct.count'.
                 </t>
