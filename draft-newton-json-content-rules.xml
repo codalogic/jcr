@@ -309,7 +309,7 @@
                 </t>
                 <t>
                     This approach often creates difficult protocol messages in the destination format (i.e. JSON in
-                    the case of XML to JSON) which are hard to implement towards or debug. Additionally, while it be
+                    the case of XML to JSON) which are hard to implement towards or debug. Additionally, while it maybe
                     fashionable to have multiple formats, most software implementations of protocols work best with
                     one format and often not well with others, if at all.
                 </t>
