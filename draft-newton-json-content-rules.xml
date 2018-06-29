@@ -275,10 +275,10 @@
                 It would be theoretically possible to express the valid set of a protocol’s JSON messages using ABNF.
                 However, ABNF is difficult to get right at the best of times, and defining an ABNF that simultaneously
                 interwove the constraints of JSON and the constraints of the protocol into a single ABNF definition
-                would be a task few could, or would want to, achieve. Even if such were possible, much of what was
-                intended to describe the protocol, would be obscured by the aspects describing the JSON
-                constraints. Such an approach is likely to end up being only comprehendible by a machine, and be
-                impenetrable to humans. As such, arguably, such a definition would not satisfy it primary target
+                would be a task few could, or would want to, achieve. Even if it were possible, much of what was
+                intended to describe the protocol would be obscured by the aspects describing the JSON
+                constraints. Such an approach is likely to end up being only comprehendible by a machine and be
+                impenetrable to humans. Therefore, arguably, such a definition would not satisfy it primary target
                 audience.
             </t>
             <t>
