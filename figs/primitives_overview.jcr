@@ -1,19 +1,27 @@
-; primitive types can be string
-; or number literals
-; or number ranges
-"foo"
-2
-1..10
-    
-; primitive types can also be more generalized types
-string
+; primitive types include literals
+null         ; null literal
+true         ; boolean literal
+2            ; integer literal
+2.0          ; float literal
+"foo"        ; string literal
+
+; primitive types include ranges
+1..10        ; integer range
+1.0..10.00   ; float range
+/^[a-z]{4}$/ ; string 'range'
+
+; primitive types can be unconstrained types
+boolean
 integer
+float
+double
+string
 
 ; primitive type rules may be named 
-$my_int = 12
+$my_int = 2
 
 ; member specifications consist of a member name 
-; followed by a colon and then followed by another 
+; followed by a colon and followed by a
 ; type specification or a rule name
 ; (example shown with a rule name assignment)
 $mem1 = "bar" : "baz" 
@@ -32,10 +40,10 @@ $mem3 = /^dev[0-9]$/ : 0..4096
     
 ; array specifications start and end with square brackets
 ; array specifications contain zero 
-; or more non-member type specifications
+; or more type specifications
 [ 1, 2, 3, $my_int ] 
 
 ; finally, group specifications start and end with parenthesis
-; groups contain other type specifications
+; groups contain member or type specifications
 ( [ integer, integer], $rule1 ) 
 $rule1 = [ string, string ]

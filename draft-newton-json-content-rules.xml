@@ -583,7 +583,7 @@
         <section title="Overview of the Language">
             <t>
                 JCR is composed of rules (as the name suggests). A collection of rules that is processed
-                together is a ruleset. Rulesets may also contain comments, blank lines, and directives
+                together is a ruleset. Rulesets may also contain blank lines, comments, and directives
                 that apply to the processing of a ruleset.
             </t>
             <t>
