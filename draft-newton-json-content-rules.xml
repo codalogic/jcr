@@ -682,19 +682,19 @@
             <section title="Names and Identifiers" anchor="names-and-identifiers">
                 <t>
                     JCR uses names and identifiers to enable cross-referencing one part of a ruleset with
-                    another, or from one ruleset to another.  There are different types of names and different
-                    type of identifiers.  For example, a local rule name is a name, and a ruleset-id is an
+                    another or from one ruleset to another.  There are different types of names and different
+                    types of identifiers.  For example, a local rule name is a name, and a ruleset-id is an
                     identifier.
                 </t>
                 <t>
                     A name must start with an ASCII alphabetic character (a-z,A-Z) and must contain only ASCII
-                    alphabetic characters, numeric characters, the hyphen character ('-') and the underscore
+                    alphabetic characters, numeric characters, the hyphen character ('-'), and the underscore
                     character ('_').  Names are case sensitive.
                 </t>
                 <t>
                     An identifier must start with an ASCII alphabetic character (a-z,A-Z) and can be followed
                     by any character other than whitespace and the closing brace ('}').  Identifiers are treated
-                    as opaque strings, and therefore case-sensitive.
+                    as opaque strings and therefore case-sensitive.
                 </t>
             </section>
             <section title="Directives">
