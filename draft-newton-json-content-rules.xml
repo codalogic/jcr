@@ -730,16 +730,16 @@
                 <section title="jcr-version">
                     <!-- We'll obviously have to revisit this section upon publication.-->
                     <t>
-                        This directive declares that the ruleset complies with a specific version of this
-                        standard. The version is expressed as a major integer followed by a period followed
-                        by a minor integer.
+                        The jcr-version directive declares that the ruleset complies with a specific version of this
+                        specification. The version follows the directive name and is expressed as a
+                        major integer followed by a period followed by a minor integer.
                     </t>
                     <figure anchor="jcr_version_current.jcr">
                         <artwork xml:space="preserve" align="center">&jcr_version_current.jcr;</artwork>
                     </figure>
                     <t>
-                        The major.minor number signifying compliance with this document is "0.9". Upon publication
-                        of this specification as an IETF proposed standard, it will be "1.0".
+                        The major.minor number signifying compliance with this document is "0.9".
+                        Upon publication of this specification it will be "1.0".
                         
                         <cref>
                             NOTE: This will be removed in the final version.
