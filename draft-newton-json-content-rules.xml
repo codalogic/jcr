@@ -438,18 +438,19 @@
                 <t>
                     Being a machine-readable format, the examples in a specification can be validated by the
                     specified JCR, and it can be verified that the JCR represents the examples.  This acts
-                    like unit testing in software development, and has been done in the authoring of this document.
+                    like unit testing in software development and has been done in the authoring of this document.
+                    (All figures used in this document are available at <xref target="FIGS"></xref>.)
                 </t>
                 <t>
                     JCR aids software developers to verify that their implementations conform to specifications
                     by validating any generated JSON against the specified JCR.  This can be used to highlight
-                    bugs in their code, or possibly identify where a specification has omissions and requires
+                    bugs in their code or possibly identify where a specification has omissions and requires
                     further work.
                 </t>
                 <t>
                     Specific examples of JCR and JSON can be included as part of conformance test vector sets to
                     give confidence that an implementation meets a specification.  JCR's ability to be specific
-                    in some locations, and loose in others, allows such tests to be run on a repeatable, automated
+                    in some locations and loose in others allows such tests to be run on a repeatable, automated
                     basis without requiring detailed human involvement to check the results.
                 </t>
                 <t>
@@ -537,9 +538,6 @@
                 <t>
                     This example shows how a protocol specification can describe a JSON object in general and
                     a test environment can override the rules for testing specific cases.
-                </t>
-                <t>
-                    All figures used in this specification are available <eref target="https://github.com/arineng/jcr/tree/master/figs">here</eref>.
                 </t>
             </section>
             <section title="A Third Example: Combining Rulesets">
