@@ -773,13 +773,14 @@
                 </section>
                 <section title="ruleset-id" anchor="ruleset-id">
                     <t>
-                        This directive identifies a ruleset to rule processors. It takes the form:
+                        The ruleset-id directive associates an identifier with a rulset. For example:
                     </t>
                     <figure anchor="ruleset_id.jcr">
                         <artwork xml:space="preserve" align="center">&ruleset_id.jcr;</artwork>
                     </figure>
                     <t>
-                        The ruleset identifier has the form of an identifier as described in <xref target="names-and-identifiers"></xref>.
+                        The identifier for the ruleset follows the directive name and
+                        has the form of an identifier as described in <xref target="names-and-identifiers"></xref>.
                         The identifier can be a URL (e.g. http://example.com/foo), an inverted domain name
                         (e.g. com.example.foo) or have any other internal structure that
                         a ruleset author deems appropriate.  To a JCR processor the identifier is treated as
