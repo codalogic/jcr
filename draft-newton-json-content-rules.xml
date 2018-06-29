@@ -324,7 +324,7 @@
                 <t>
                     Abstraction languages are nothing new to the schema and data definition language space, with ASN.1
                     being a classic example of specifying a data model in a higher-level syntax and defined algorithms
-                    for multiple data formats. ASN.1 supports many data formats, such as BER and DER and XER (XML Encoding Rules).
+                    for multiple data formats. ASN.1 supports many data formats, such as BER, DER, and XER (XML Encoding Rules).
                     Yang is a more modern and popular abstraction language.
                 </t>
                 <t>
