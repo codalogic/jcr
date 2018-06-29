@@ -810,23 +810,23 @@
                         </artwork>
                     </figure>
                     <t>
-                        The identifier after the import keyword is a ruleset identifier.
+                        The identifier after the directive name is a ruleset identifier.
                         As such, it is an identifier as described in <xref target="names-and-identifiers"/>.
                         The ruleset that is imported is identified by having the specified ruleset identifier
-                        assigned in its #ruleset-id directive (See <xref target="ruleset-id"/>).
+                        specified in its #ruleset-id directive (See <xref target="ruleset-id"/>).
                         How a JCR processor locates the imported ruleset is out of scope for this document.
                     </t>
                     <t>
-                        The string after the as keyword acts as an alias for the identifier. An alias has
+                        The ruleset identifier may optionally be followed by the 'as' keyword that is in turn
+                        followed by an alias for the identifier. An alias has
                         the form of a name as described in <xref target="names-and-identifiers"/>.
-                        Including the as keyword followed by an alias is optional.
                     </t>
                     <t>
-                        The rule names of the ruleset being imported may be referenced by prepending
+                        The rule names of the ruleset being imported may be referenced by combining
                         the alias followed by a period character ('.') followed by the local rule name
-                        (i.e. "alias.name"). To continue the example above, if the ruleset identified as http://example.com/rfc9999
+                        (i.e. "alias.name"). To continue the example above, if the ruleset identified as 'http://example.com/rfc9999'
                         were to have a rule named 'encoding', rules in the ruleset importing it can
-                        refer to that rule as 'rfc9999.encoding'.
+                        refer to it as 'rfc9999.encoding'.
                     </t>
                     <t>
                         If an import directive does not specify an alias with the 'as' keyword, the local
