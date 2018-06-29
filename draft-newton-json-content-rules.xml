@@ -704,7 +704,7 @@
                     Simpler rulesets need not include any directives.
                 </t>
                 <t>
-                    There are two forms of the directive, the 
+                    There are two forms of directive, the 
                     single line directive and the multi-line directive.
                 </t>
                 <t>
@@ -716,8 +716,8 @@
                     <artwork xml:space="preserve" align="center">&single_line_directive_example.jcr;</artwork>
                 </figure>      
                 <t>
-                    Multi-line directives also appear on their own lines, but may span multiple lines.
-                    They begin with the character sequence "#{" and end with "}". The take the
+                    Multi-line directives may span multiple lines.
+                    They begin with the character sequence "#{" and end with "}". They take the
                     following form:
                 </t>
                 <figure anchor="multi_line_directive_example.jcr">
