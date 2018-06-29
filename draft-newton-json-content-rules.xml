@@ -1912,7 +1912,7 @@ $age = 0..
                 </t>
                 <t>
                     Source code for this software is available on GitHub at
-                    <eref target="https://github.com/arineng/jcrvalidator"></eref>. This software is also easily
+                    <xref target="JCRVALIDATOR"></xref>. This software is also easily
                     obtained as a Ruby Gem through the Ruby Gem system.
                 </t>
             </section>
@@ -1927,7 +1927,7 @@ $age = 0..
                 </t>
                 <t>
                     Source code is available on GitHub at
-                    <eref target="https://github.com/codalogic/cl-jcr-parser"></eref>.
+                    <xref target="CLJCR"></xref>.
                 </t>
             </section>
             <section title="JCR Java" anchor="jcr_java">
@@ -1941,7 +1941,7 @@ $age = 0..
                 </t>
                 <t>
                     Source code is available on BitBucket at
-                    <eref target="https://bitbucket.org/anewton_1998/jcr_java"></eref>.
+                    <xref target="JCRJAVA"></xref>.
                 </t>
             </section>
         </section>
@@ -2032,6 +2032,34 @@ $age = 0..
             &I-D.cordell-jcr-co-constraints;
             &RFC7493;
             &RFC7942;
+
+        </references>
+        <references title="Resource References">
+
+            <reference anchor="FIGS" target="https://github.com/arineng/jcr/tree/master/figs">
+              <front>
+                <title>JCR Document Figures</title>
+                <author/><date/>
+              </front>
+            </reference>
+            <reference anchor="JCRVALIDATOR" target="https://github.com/arineng/jcrvalidator">
+              <front>
+                <title>JCR Validator</title>
+                <author/><date/>
+              </front>
+            </reference>
+            <reference anchor="CLJCR" target="https://github.com/codalogic/cl-jcr-parser">
+              <front>
+                <title>Codalogic JCR Parser</title>
+                <author/><date/>
+              </front>
+            </reference>
+            <reference anchor="JCRJAVA" target="https://bitbucket.org/anewton_1998/jcr_java">
+              <front>
+                <title>JCR Java</title>
+                <author/><date/>
+              </front>
+            </reference>
         </references>
         <section title="Experimental Features">
             <t>
