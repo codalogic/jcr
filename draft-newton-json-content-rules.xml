@@ -1547,7 +1547,7 @@
                     <artwork xml:space="preserve" align="center">&ordered_array_with_optional_field.json;</artwork>
                 </figure>
                 <t>
-                    When validating the above instance, a validator will initially associate "George"
+                    When validating the above instance, a validator may initially associate "George"
                     with $first_name and "Washington" with $middle_name.  It will then attempt to
                     validate 1732 against $last_name, which will fail.  At this point, recognizing that
                     $middle_name is optional, the validator must back-track and associate "Washington"
