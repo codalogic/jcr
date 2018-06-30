@@ -166,6 +166,10 @@
     'figs/ordered_array_with_optional_field.jcr'>
   <!ENTITY ordered_array_with_optional_field.json PUBLIC ''
     'figs/ordered_array_with_optional_field.json'>
+  <!ENTITY complex_order_array.jcr PUBLIC ''
+    'figs/complex_order_array.jcr'>
+  <!ENTITY complex_order_array.json PUBLIC ''
+    'figs/complex_order_array.json'>
   <!ENTITY lists_of_values.jcr PUBLIC ''
     'figs/lists_of_values.jcr'>
   <!ENTITY groups_in_arrays.jcr PUBLIC ''
@@ -1554,19 +1558,13 @@
                     Similarly, the following JCR:
                 </t>
                 <figure anchor="complex_order_array.jcr">
-                    <artwork xml:space="preserve" align="center">
-[ string, ( string | integer ) ?, string ]
-                    </artwork>
+                    <artwork xml:space="preserve" align="center">&complex_order_array.jcr;</artwork>
                 </figure>
                 <t>
                     should accept each of the following JSON instances:
                 </t>
                 <figure anchor="complex_order_array.json">
-                    <artwork xml:space="preserve" align="center">
-[ "A", "B", "C" ]
-[ "A", 1, "C" ]
-[ "A", "C" ]
-                    </artwork>
+                    <artwork xml:space="preserve" align="center">&complex_order_array.json;</artwork>
                 </figure>
             </section>
             <section title="Unordered Array Specifications" anchor="unordered_array_specifications">
