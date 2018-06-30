@@ -162,6 +162,10 @@
     'figs/restrict_objects2.json'>
   <!ENTITY unrestricted_arrays.jcr PUBLIC ''
     'figs/unrestricted_arrays.jcr'>
+  <!ENTITY ordered_array_with_optional_field.jcr PUBLIC ''
+    'figs/ordered_array_with_optional_field.jcr'>
+  <!ENTITY ordered_array_with_optional_field.json PUBLIC ''
+    'figs/ordered_array_with_optional_field.json'>
   <!ENTITY lists_of_values.jcr PUBLIC ''
     'figs/lists_of_values.jcr'>
   <!ENTITY groups_in_arrays.jcr PUBLIC ''
@@ -1529,29 +1533,21 @@
                     to be textual characters, whereas an ordered array specification specifies a pattern
                     of tokens that happen to be JSON values.  For example, the following JCR specification:
                 </t>
-                <figure anchor="order_array_with_optional_field.jcr">
-                    <artwork xml:space="preserve" align="center">
-[ $first_name, $middle_name ?, $last_name, $age ]
-$first_name = string
-$middle_name = string
-$last_name = string
-$age = 0..
-                    </artwork>
+                <figure anchor="ordered_array_with_optional_field.jcr">
+                    <artwork xml:space="preserve" align="center">&ordered_array_with_optional_field.jcr;</artwork>
                 </figure>
                 <t>
                     should accept the JSON instance:
                 </t>
-                <figure anchor="order_array_with_optional_field.json">
-                    <artwork xml:space="preserve" align="center">
-[ "George", "Washington", 67 ]
-                    </artwork>
+                <figure anchor="ordered_array_with_optional_field.json">
+                    <artwork xml:space="preserve" align="center">&ordered_array_with_optional_field.json;</artwork>
                 </figure>
                 <t>
                     When validating the above instance, a validator will initially associate "George"
-                    with $first_name, and "Washington" with $middle_name.  It will then attempt to
-                    validate 67 against $last_name, which will fail.  At this point, recognizing that
+                    with $first_name and "Washington" with $middle_name.  It will then attempt to
+                    validate 1732 against $last_name, which will fail.  At this point, recognizing that
                     $middle_name is optional, the validator must back-track and associate "Washington"
-                    with $last_name.  From there it can validate 67 with $age and yield that the
+                    with $last_name.  From there it can validate 1732 with $birth_year and yield that the
                     instance is valid.
                 </t>
                 <t>

@@ -1,0 +1,5 @@
+[ $first_name, $middle_name ?, $last_name, $birth_year ]
+$first_name = string
+$middle_name = string
+$last_name = string
+$birth_year = integer

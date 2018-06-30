@@ -56,6 +56,8 @@ assert_raises "jcr -r figs/any_member_any_type.jcr figs/any_member_any_type2.jso
 assert_raises "jcr -r figs/restrict_objects.jcr figs/restrict_objects1.json" 0
 assert_raises "jcr -r figs/restrict_objects.jcr figs/restrict_objects2.json" 3
 assert_raises "jcr -S "a3" -r figs/unrestricted_arrays.jcr figs/array_order_eval2.json" 0
+assert_raises "jcr --test-jcr -r figs/ordered_array_with_optional_field.jcr" 0
+assert_raises "jcr -r figs/ordered_array_with_optional_field.jcr figs/ordered_array_with_optional_field.json" 0
 assert_raises "jcr --test-jcr -r figs/lists_of_values.jcr" 0
 assert_raises "jcr --test-jcr -r figs/groups_in_arrays.jcr" 0
 assert_raises "jcr --test-jcr -r figs/groups_in_arrays2.jcr" 0
