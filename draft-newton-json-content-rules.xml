@@ -885,11 +885,11 @@
                     name assignment can be considered a root rule with the appropriate annotation (see <xref target="annotations"/>).
                 </t>
             </section>
-            <section title="Rule Names and Assignments" anchor="rule-names">
+            <section title="Rule Names, Assignments, and References" anchor="rule-names">
                 <t>
                     Rule names are used to represent rule specifications so they can be referenced elsewhere
-                    in a ruleset.  A rule name can be used in two contexts; rule specification assignment,
-                    and rule specification referencing.
+                    in a ruleset.  A rule name can be used in two contexts; rule name assignments
+                    and rule name references.
                 </t>
                 <t>
                     Rule names are signified with the dollar character ('$'), which is
@@ -899,7 +899,7 @@
                     identifier aliases and local rule names are types of name (see <xref target="names-and-identifiers"></xref>).
                 </t>
                 <t>
-                    When a rule name is used in the rule specification assignment context, only the local rule name part can be
+                    When a rule name is used in the rule name assignment context, only the local rule name part can be
                     present.  In this context, the local rule name must be unique within a ruleset
                     (that is, no two rule name assignments may use the same local rule
                     name in the same ruleset).
@@ -912,14 +912,14 @@
                     <artwork xml:space="preserve" align="center">&assignment_example.jcr;</artwork>
                 </figure>
                 <t>
-                    In the rule specification referencing context, a rule name, prefixed by the dollar character ('$'), is
+                    In the rule name reference context, a rule name, prefixed by the dollar character ('$'), is
                     used in place of a rule specification.
                 </t>
                 <figure anchor="assignment_example_2.jcr">
                     <artwork xml:space="preserve" align="center">&assignment_example_2.jcr;</artwork>
                 </figure>
                 <t>
-                    Ruleset identifier aliases may be included in a rule name that is used as a reference.
+                    Ruleset identifier aliases may be included in a rule name reference.
                     They enable referencing rules from another ruleset.  Simple use cases of JCR will
                     most likely not use ruleset identifiers.
                 </t>
@@ -933,8 +933,7 @@
                     <artwork align="center" xml:space="preserve">&rule_name_ruleset_id.jcr;</artwork>
                 </figure>
                 <t>
-                    The order of rule name references in a ruleset relative to their referenced rule name
-                    assignment is not significant.  Rule name references can be either before or after
+                    Rule name references within a ruleset can be used either before or after
                     their referenced rule name assignment.
                 </t>
             </section>

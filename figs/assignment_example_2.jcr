@@ -1,2 +1,2 @@
-;rule name referencing in an object
+;rule name references in an object
 { "bar" : $bar, "foo" : $foo }
