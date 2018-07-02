@@ -1561,7 +1561,7 @@
                     <artwork xml:space="preserve" align="center">&complex_order_array.jcr;</artwork>
                 </figure>
                 <t>
-                    should accept each of the following JSON instances:
+                    permits each of the following JSON instances:
                 </t>
                 <figure anchor="complex_order_array.json">
                     <artwork xml:space="preserve" align="center">&complex_order_array.json;</artwork>
