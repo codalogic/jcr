@@ -989,15 +989,6 @@
                     are 1.
                 </t>
                 <t>
-                    A minimum and maximum can be expressed by giving the minimum followed by two period characters
-                    ('..') followed by the maximum, with either the minimum or maximum being optional. When the
-                    minimum is not explicitly specified, it is assumed to be zero. When the maximum is not explicitly
-                    specified, it is assumed to be positive infinity.
-                </t>
-                <figure anchor="repetition_min_max.jcr">
-                    <artwork xml:space="preserve" align="center">&repetition_min_max.jcr;</artwork>
-                </figure>
-                <t>
                     The allowable Kleene operators are the question mark character ('?') which
                     specifies zero or one (i.e. optional), the plus character ('+') which specifies
                     one or more, and the asterisk character ('*') which specifies zero or more.
@@ -1006,8 +997,18 @@
                     <artwork xml:space="preserve" align="center">&repetition_kleene.jcr;</artwork>
                 </figure>
                 <t>
-                    A repetition step expression may follow a minimum to maximum expression or the
-                    zero or more Kleene operator or the one or more Kleene operator. 
+                    A minimum and maximum can be expressed by immediately following the '*' symbol by the minimum followed by two period characters
+                    ('..') followed by the maximum, with either the minimum or maximum being optional. When the
+                    minimum is not explicitly specified, it is assumed to be zero. When the maximum is not explicitly
+                    specified, it is assumed to be positive infinity. While the minimum is optional, it is RECOMMENDED to
+                    include it even when it has a value of zero.
+                </t>
+                <figure anchor="repetition_min_max.jcr">
+                    <artwork xml:space="preserve" align="center">&repetition_min_max.jcr;</artwork>
+                </figure>
+                <t>
+                    A repetition step expression may follow a minimum to maximum expression, the
+                    zero or more Kleene operator ('*'), or the one or more Kleene operator ('+'). 
                     <list style="symbols">
                         <t>
                             When the repetition step
@@ -1030,7 +1031,7 @@
                      
                 </t>
                 <figure anchor="repetition_step.jcr">
-                    <preamble>The following is an example for repetition steps in repetition expressions.</preamble>
+                    <preamble>The following is an example for repetition steps in repetition expressions:</preamble>
                     <artwork xml:space="preserve" align="center">&repetition_step.jcr;</artwork>
                 </figure>
             </section>

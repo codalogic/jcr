@@ -22,6 +22,6 @@ $octet = int8
 ; e.g. 0, 4, 8, 12 etc
 $error_set = ( string *%4 )
 
-; Throws of a pair of dice must be divisible by 2 
+; throws of a pair of dice must be divisible by 2 
 ; e.g. 2, 4, 6 etc
 $dice_throws = ( 1..6 +%2 )
