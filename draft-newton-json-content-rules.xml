@@ -853,35 +853,39 @@
                     Rules may be defined across line boundaries.
                 </t>
                 <t>
-                    A rule specification can be a type specification or a member specification.
+                    A rule specification can be a type specification, a member specification or a rule name reference (see <xref target="rule-names"/>).
                 </t>
                 <t>
-                    Type specifications define arrays, objects, etc... of JSON or may reference other rules
-                    using rule names. Most type specifications can be defined with repetitions for specifying
-                    the frequency of the type being defined. In addition to the type specifications describing
+                    Type specifications define JSON primitive types (such as boolean, numbers, and strings),
+                    arrays, and objects.  In addition to the type specifications describing
                     JSON types, there is an additional group specification for grouping specifications.
                 </t>
                 <t>
-                    Member specifications define members of JSON objects, and are composed of a member name specification
-                    and either a type specification or a rule name referencing a type specification.
+                    Member specifications define members of JSON objects and are composed of a member name specification
+                    followed by either a type specification or a rule name reference to a type specification.
                 </t>
                 <t>
-                    Rules may also contain annotations which may affect the evaluation of all or part of a rule.
+                    Rule specifications may also contain annotations which may affect the meaning of all or part of the specification.
+                </t>
+                <t>
+                    Type specifications, depending on their type, MAY contain zero or more other
+                    rule specifications. For example, an object specification might contain multiple
+                    member specifications or rule name references that resolve to other member specifications, or a mixture
+                    of member specifications and rule name references.
+                </t>
+                <t>
+                    For the purposes of this document, rule specifications composing other specifications are called subordinate components.
+                </t>
+                <t>
+                    Rule specifications within arrays, objects, and groups can be defined with repetitions for specifying
+                    how many instances corresponding to the specification can appear in a JSON instance.
+                </t>
+                <t>
                     Rules without a rule name assignment are considered root rules, though rules with a rule
-                    name assignment can be considered a root rule with the appropriate annotation.
-                </t>
-                <t>
-                    Type specifications, depending on their type, can contain zero or more other
-                    specifications or rule names. For example, an object specification might contain multiple
-                    member specifications or rule names that resolve to member specifications or a mixture
-                    of member specifications and rule names.
-                </t>
-                <t>
-                    For the purposes of this document, specifications
-                    and rule names composing other specifications are called subordinate components.
+                    name assignment can be considered a root rule with the appropriate annotation (see <xref target="annotations"/>).
                 </t>
             </section>
-            <section title="Rule Names and Assignments">
+            <section title="Rule Names and Assignments" anchor="rule-names">
                 <t>
                     Rule names are used to represent rule specifications so they can be referenced elsewhere
                     in a ruleset.  A rule name can be used in two contexts; rule specification assignment,
@@ -934,7 +938,7 @@
                     their referenced rule name assignment.
                 </t>
             </section>
-            <section title="Annotations">
+            <section title="Annotations" anchor="annotations">
                 <t>
                     Annotations may appear before a rule name assignment, before a type or member specification, or
                     before a rule name contained within a type specification. In each place, there may be
