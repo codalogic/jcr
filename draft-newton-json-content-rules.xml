@@ -940,11 +940,11 @@
             <section title="Annotations" anchor="annotations">
                 <t>
                     Annotations may appear before a rule name assignment, before a type or member specification, or
-                    before a rule name contained within a type specification. In each place, there may be
+                    before a rule name reference. In each place, there may be
                     zero or more annotations.
                     Each annotation begins with the
                     character sequence "@{" and ends with "}". The following is an example of a type specification
-                    with the not annotation:
+                    with the 'not' annotation:
                 </t>
                 <figure anchor="annotation_example.jcr">
                     <artwork xml:space="preserve" align="center">&annotation_example.jcr;</artwork>
