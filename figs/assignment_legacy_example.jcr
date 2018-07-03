@@ -1,4 +1,4 @@
 ;rule name assignments for primitive types
-;using the =: and = type syntax
+;using the legacy =: and = type syntax
 $foo          =: "foo"
 $other_string = type string
