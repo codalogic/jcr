@@ -1302,9 +1302,9 @@
         </section>
         <section title="Object Specifications" anchor="object-specifications">
             <t>
-                Object specifications define JSON objects and are composed of zero or more
+                Object specifications define the permitted contents of JSON objects and are composed of zero or more
                 subordinate components, each of which can be either a
-                rule name, member specification, or group specification. The subordinate components
+                rule name reference, member specification, or group specification. The subordinate components
                 are enclosed
                 at the start with a left curly brace character ('{') and at the end with a right curly
                 brace character ('}').
@@ -1314,12 +1314,13 @@
                 and MAY be combined into sequences and/or choices as described in <xref target="combiners"/>.
             </t>
             <t>
-                The following examples illustrate matching of JSON objects to JCR object specifications.
+                The following examples illustrate matching of JSON object instances to JCR object specifications.
             </t>
             <figure anchor="object_example.jcr">
                 <preamble>
-                    As order is not implied for the members of objects under evaluation,
-                    the following rule will match the JSON in <xref target="object_example1.json"></xref>
+                    The order of member specifications in a object specification does not
+                    dictate the order of member instances in a JSON object instance.
+                    The following object specification will match the object instances in both <xref target="object_example1.json"></xref>
                     and <xref target="object_example2.json"></xref>.
                 </preamble>
                 <artwork align="center" xml:space="preserve">&object_example.jcr;</artwork>
@@ -1331,34 +1332,31 @@
                 <artwork align="center" xml:space="preserve">&object_example2.json;</artwork>
             </figure>
             <t>
-                Because subordinate components of an object specification are evaluated in the order
-                in which they are specified (i.e. left to right, top to bottom)
-                <cref anchor="AOR2" source="PJC">Deleted text after 'and' as it's not the case if we go with AOR
-                (an instance needs to be associated with all sub-comps with the same name specification): and object members
-                can only match one subordinate component of an object specification,</cref> the rule o1 below
-                will not match against the JSON in <xref target="object_order_eval.json"></xref> but
-                the rule o2 below will match it.
+                Because JSON instance members are associated with member specifications in the order
+                in which they are specified in the JCR object specification, the specification o1 below
+                will not match against the JSON in <xref target="object_order_eval.json"></xref>, but
+                the specification o2 below will match it.
             </t>
             <figure anchor="object_order_eval.jcr">
                 <artwork align="center" xml:space="preserve">&object_order_eval.jcr;</artwork>
             </figure>
-            <t>
-                This is because the first subordinate of rule o1 specifies that an object can have zero or more members
-                (that is the meaning of "*", see <xref target="repetition"></xref>) where the member
-                name is the letter 'p' followed by a number (e.g. "p0", "p1", "p2"), and the second
-                rule specifies a member with the exact member name of "p1". Rule o2
-                has the exact same member specifications but in the opposite order. 
-                <xref target="object_order_eval.json"></xref> does not match rule o1 because all of the
-                members match the first subordinate rule leaving none to match the second subordinate rule.
-                However, rule o2 does match because the first subordinate rule matches only one member
-                of the JSON object allowing the second subordinate rule to match the other member of
-                the JSON object.
-            </t>
             <figure anchor="object_order_eval.json">
                 <artwork align="center" xml:space="preserve">&object_order_eval.json;</artwork>
             </figure>
             <t>
-                As stated above, members of instance objects which do not match a member name specification are ignored.
+                This is because the first object specification, o1, specifies that an object can have zero or more members
+                (that is the meaning of "*", see <xref target="repetition"></xref>) where the member
+                name is the letter 'p' followed by a number (e.g. "p0", "p1", "p2"), and the second
+                member specification specifies a member with the exact member name of "p1". Object specification o2
+                has the exact same member specifications but in the opposite order. 
+                <xref target="object_order_eval.json"></xref> does not match rule o1 because both of the
+                member instances are associated with the first member specification, leaving none to be associated with the second member specification.
+                However, rule o2 does match, because the first member instance does not associate with the first member specification but is associated
+                with the second member specification,
+                and the second instance is associated with the first specification, thus allowing both specifications to be satisfied.
+            </t>
+            <t>
+                As stated above, members of instance objects that are not associated with a member name specification are ignored.
                 The reason for this validation model is due to the nature of the typical
                 access model to JSON objects in many programming languages, where members
                 of the object are obtained by referencing the member name. Therefore
@@ -1366,8 +1364,8 @@
             </t>
             <t>
                 However, some specifications may need to restrict the members of a JSON
-                object to a known set. To construct a rule specifying that no
-                extra members are expected, the @{not} annotation (see <xref target="not_annotation"></xref>)
+                object to a known set. To construct a specification specifying that no
+                extra members are allowed, the @{not} annotation (see <xref target="not_annotation"></xref>)
                 may be used with
                 a "match-all" regular expression as the last subordinate component of the object specification.
             </t>
@@ -1385,14 +1383,12 @@
                 <artwork xml:space="preserve" align="center">&restrict_objects2.json;</artwork>
             </figure>
             <t>
-                This works because subordinate components are evaluated in the order they
-                appear in the object rule, and the last component accepts any member with
-                any type but fails to validate if one or more of those components are found
-                due to the @{not} annotation.
+                This works because the last specification is associated with any member instances that are not
+                associated with a prior specification.  As such, no member instance is ignored. But,
+                due to the @{not} annotation, the object fails to validate if one or more of those instances are present.
             </t>
             <t>
                 Validation of object instances against object specifications takes place as follows:
-                <cref anchor="AOR" source="PJC">This is a first attempt at this to see what it might look like. We can always go back if AOR doesn't work out.</cref>
                 <list style="symbols">
                     <t>
                         Each optional grouping is treated as a choice between itself and the empty group.
@@ -1405,22 +1401,20 @@
                         @{not} &lt;member name specification> : any +.
                     </t>
                     <t>
-                        No order is implied for the members of the object being evaluated.
-                    </t>
-                    <t>
-                        Instance member names are associated against member name specifications in
-                        the order the member name specifications are specified in the ruleset.
+                        Instance member names are associated with member name specifications in
+                        the order the member name specifications are specified in the object specification.
+                        (This process is called "specification association".)
                     </t>
                     <t>
                         When an instance member name matches a member name specification, the
-                        instance member is associated with each subordinate component that
+                        instance member is associated with each member specification that
                         has the same member name specification.
                     </t>
                     <t>
-                        Any instance member names not matched against a subordinate component are ignored.
+                        Any instance member names not matched against a member name specification are ignored.
                     </t>
                     <t>
-                        Each grouping is validated independently, starting with the most nested groups,
+                        Each sequence or choice grouping is validated independently, starting with the most nested groups,
                         and working out to the outer-most level.
                     </t>
                     <t>
@@ -1433,8 +1427,8 @@
                         validation result (rather than inferring that it was optional for the type to be valid).
                     </t>
                     <t>
-                        For a sequence to be valid, all of its members must be valid.  For a choice to be valid,
-                        one or more of its members must be valid.
+                        For a sequence to be valid, all of its member specifications must be valid.  For a choice to be valid,
+                        one or more of its member specifications must be valid.
                     </t>
                     <t>
                         A validated grouping yields a true or false result to its parent grouping, which are in-turn
@@ -1443,21 +1437,22 @@
                     <t>
                         <!--{{{Do we need this clause? Time will tell}}}-->
                         If the outer-most group yields a true result, each instance member associated with a member
-                        name specification MUST be checked to confirm
-                        it has contributed positively to the validation result.  If not, the instance is deemed invalid.
+                        specification MUST be checked to confirm
+                        it has been part of a grouping that has yielded a 'true' result that has led to the overall
+                        'true' result.  If not, the object instance is deemed invalid.
                     </t>
                 </list>
             </t>
             <t>
                 <list style="none">
                     <t>
-                        NOTE: A future specification will clarify the choice ('|') operation as Inclusive OR ("IOR"),
-                        Exclusive OR ("XOR") or "Augmented OR" ("AOR") (as described above). Previously the choice
-                        ('|') operator was an Inclusive OR. However, for objects arrays
+                        NOTE: A future specification may modify the choice ('|') operation to be Inclusive OR ("IOR"),
+                        Exclusive OR ("XOR"), or "Augmented OR" ("AOR") (as described above). Previously the choice
+                        ('|') operator was an Inclusive OR. However, for objects
                         that is not ideal, nor is XOR. We are in the process of defining an algorithm
-                        to "rewrite" choices of rules for use with inclusive or which is more suitable
+                        to "rewrite" choices of rules for use with inclusive-OR which is more suitable
                         for the data model of JSON.  The above is a first attempt, but subject to change.
-                        Future versions my revert to either pure inclusive OR or exclusive OR.
+                        Future versions may revert to either pure inclusive OR or exclusive OR.
                     </t>
                 </list>
             </t>
