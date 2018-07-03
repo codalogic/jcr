@@ -1,3 +1,3 @@
-50.0    ; Bad integer
-5e1     ; Bad integer
-"50"    ; Bad integer
+50.0    ; not an integer
+5e1     ; not an integer
+"50"    ; not an integer

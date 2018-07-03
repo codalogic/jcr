@@ -1,3 +1,8 @@
 integer
 float
 double
+10
+10.0
+0..10
+0.0..10.0
+uint32

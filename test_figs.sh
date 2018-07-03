@@ -15,7 +15,10 @@ assert_raises "jcr -r figs/rule_name_ruleset_id.jcr figs/first_example.json" 1
 assert_raises "jcr --test-jcr -r figs/primitives_overview.jcr" 0
 assert_raises "jcr --test-jcr -r figs/primitives_boolean_and_null.jcr" 0
 assert_raises "jcr --test-jcr -r figs/primitives_integer_and_float.jcr" 0
+assert_raises "jcr --test-jcr -r figs/specific_numbers.jcr" 0
+assert_raises "jcr --test-jcr -r figs/ranged_numbers.jcr" 0
 assert_raises "jcr --test-jcr -r figs/primitives_float_range.jcr" 0
+assert_raises "jcr --test-jcr -r figs/annotations-range-exclusive.jcr" 0
 assert_raises "jcr --test-jcr -r figs/primitives_bit_integers.jcr" 0
 assert_raises "jcr --test-jcr -r figs/primitives_strings.jcr" 0
 assert_raises "jcr --test-jcr -r figs/primitives_uris.jcr" 0

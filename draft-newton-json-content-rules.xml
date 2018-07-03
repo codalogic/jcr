@@ -76,6 +76,10 @@
     'figs/primitives_boolean.jcr'>
   <!ENTITY primitives_integer_and_float.jcr PUBLIC ''
     'figs/primitives_integer_and_float.jcr'>
+  <!ENTITY specific_numbers.jcr PUBLIC ''
+    'figs/specific_numbers.jcr'>
+  <!ENTITY ranged_numbers.jcr PUBLIC ''
+    'figs/ranged_numbers.jcr'>
   <!ENTITY primitives_float_range.jcr PUBLIC ''
     'figs/primitives_float_range.jcr'>
   <!ENTITY primitives_bit_integers.jcr PUBLIC ''
@@ -1104,29 +1108,29 @@
                 </section>
                 <section title="Numbers" anchor="numbers">
                     <t>
-                        Rules for numbers can specify a JSON instance value to be either an integer or floating point number:
+                        Type specifications for numbers can specify a JSON instance value to be either an integer or floating point number. For example:
                     </t>
                     <figure anchor="primitive_integer_and_float.jcr">
                         <artwork xml:space="preserve" align="center">&primitives_integer_and_float.jcr;</artwork>
                     </figure>
                     <t>
-                        The keyword 'float' represents a single precision IEEE-754 floating point number 
+                        The keyword 'integer' specifies a signed integer value of arbitrary size.
+                    </t>
+                    <t>
+                        The keyword 'float' represents a single precision IEEE-754 floating point number <xref target='IEEE754'/>
                         represented in decimal format. The keyword 'double' represents a double precision
                         IEEE-754 floating point number represented in decimal format.
                     </t>
                     <t>
-                        Numbers may also be specified as an absolute value or a range of possible values, where a range
+                        Numbers may also be specified as specific values or a range of possible values, where a range
                         may be specified using a minimum, maximum, or both.
                     </t>
                     <t>
-                        To specify an absolute value, the value itself is specified.  Note that floating point types
+                        To specify a specific value, the value itself is specified.  Note that floating point types
                         MUST include a fractional or exponent part, even if the fractional part is zero.
                     </t>
-                    <figure anchor="absolute_numbers">
-                        <artwork align="center" xml:space="preserve">
-10   ; Specifies the absolute integer value 10
-10.0 ; Specifies the absolute floating point value 10
-                        </artwork>
+                    <figure anchor="specific_numbers">
+                        <artwork xml:space="preserve" align="center">&specific_numbers.jcr;</artwork>
                     </figure>
                     <t>
                         To specify a range, the range token, consisting of two consecutive dot characters
@@ -1136,14 +1140,7 @@
                         If the maximum is absent, it specifies no upper bound.
                     </t>
                     <figure anchor="range_numbers">
-                        <artwork align="center" xml:space="preserve">
-  10..100
-    ..100
-  10..
-10.5..100.5
-    ..100.5
-10.5..
-                        </artwork>
+                        <artwork xml:space="preserve" align="center">&ranged_numbers.jcr;</artwork>
                     </figure>
                     <t>
                         When specifying a minimum and a maximum, both must either be an integer or a floating point number.
@@ -1155,17 +1152,18 @@
                     <t>
                         When a range is used to define a number, by default the minimum and
                         maximum values are included in the range.  The @{min-exclusive} annotation can be
-                        specified to exclude the minimum from the range and the @{max-exclusive} annotation
+                        specified to exclude the minimum from the range, and the @{max-exclusive} annotation
                         can be specified to exclude the maximum from the range.
                     </t>
                     <figure anchor="annotations-range-exclusive.jcr">
                         <artwork xml:space="preserve" align="center">&annotations-range-exclusive.jcr;</artwork>
                     </figure>
                     <t>
-                        The size of integers may also be specified using bit lengths. The type name is
+                        The range of integers may also be specified using bit lengths. The type specification is
                         constructed with a prefix followed by a number. The prefix 'int' specifies
-                        a signed integer and the prefix 'uint' specifies an unsigned integer. The number
+                        a signed integer, and the prefix 'uint' specifies an unsigned integer. The number
                         that follows is a positive integer that specifies the number of bits in the integer.
+                        For signed integers, the bit length is based on the two's complement integer format.
                     </t>
                     <figure anchor="primitive_bit_integers.jcr">
                         <artwork xml:space="preserve" align="center">&primitives_bit_integers.jcr;</artwork>
@@ -1175,12 +1173,12 @@
                         on numbers in <xref target="RFC7493"/>.
                     </t>
                     <t>
-                        A JSON instance value specified to be a number MUST be represented
-                        in the instance as a JSON number.  Strings containing character sequences representing
+                        A value specified to be a number MUST be represented
+                        in an instance as a JSON number.  Strings containing character sequences representing
                         numbers MUST NOT be treated as numbers.
                     </t>
                     <t>
-                        If a range is specified for a number, the JSON instance value MUST be within the
+                        If a range is specified for a number, the JSON instance value MUST satisfy the
                         specified range.
                     </t>
                     <t>
@@ -1984,9 +1982,7 @@
             &RFC5322;
             &RFC5952;
             &RFC8259;
-            
-            
-            
+
             <reference anchor="JCR_ABNF"
                 target="https://raw.githubusercontent.com/arineng/jcr/master/jcr-abnf.txt">
                 <front>
@@ -2022,7 +2018,18 @@
                     <date/>
                 </front>
             </reference>
-            
+
+            <reference anchor="IEEE754">
+                <front>
+                    <title>Standard for Floating-Point Arithmetic</title>
+                    <author>
+                        <organization>Institute of Electrical and Electronics Engineers</organization>
+                    </author>
+                    <date year="2008" month="August"/>
+                </front>
+                <seriesInfo name="IEEE Standard" value="754"/>
+            </reference>
+
         </references>
         <references title="Infomative References">
             
