@@ -1474,7 +1474,8 @@
             </t>
             <section title="Ordered Array Specifications">
                 <t>
-                    Unlike object specifications, order is implied in array specifications by default.
+                    In an ordered array specification, unlike object specifications, the order of type specifications dictates
+                    the permitted order of array instance values.
                 </t>
                 <t>
                     Evaluation of the subordinate components of ordered array specifications is as follows:
@@ -1484,11 +1485,11 @@
                             the order they appear.
                         </t>
                         <t>
-                            Each item of the array being evaluated can only match one
+                            Each item of the array instance being evaluated can only be associated with one
                             subordinate component of the array specification. 
                         </t>
                         <t>
-                            If any items of the array are not matched, then the array does not match
+                            If any items of the array are not matched, then the array instance does not match
                             the array specification.
                         </t>
                     </list>
