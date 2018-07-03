@@ -1207,7 +1207,8 @@
                     <t>
                         Regular expressions SHOULD use the ECMA 262 dialect used by JavaScript.  This is
                         mostly a sub-set of the common regular expression dialects, and any regular expression
-                        thus defined should be usable in any mainstream regular expression engine.
+                        thus defined, after converting escape sequences to UTF-8, should be usable in any
+                        mainstream regular expression engine.
                     </t>
                     <t>
                         A value specified to be a string MUST be represented in a JSON instance as a
@@ -1216,11 +1217,11 @@
                     <t>
                         To validate a literal string specification, escape sequences in both the JCR
                         string specification and the JSON instance value are converted to UTF-8.  The two
-                        strings are then compared as opaque sequences of bytes, and MUST be identical for the
+                        strings are then compared as opaque sequences of bytes and MUST be identical for the
                         JSON instance value to be considered valid.  They are thus treated as
                         case-sensitive. No whitespace processing or Unicode normalization is performed.
                         For the literal string specification "JCR Rules", both JSON instance values of
-                        "JCR Rules", and "\u004ACR Rules" are valid; while the JSON instance values
+                        "JCR Rules" and "\u004ACR Rules" are valid, while the JSON instance values
                         "jcr rules", "  JCR Rules  ", or "JCR  &nbsp; Rules" are invalid.
                     </t>
                     <t>
