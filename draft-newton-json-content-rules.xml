@@ -1077,14 +1077,14 @@
                 </t>
                 <section title="Null">
                     <t>
-                        The rule for a null type specification is the simplest and takes the following form:
+                        The null type specification is the simplest and takes the following form:
                     </t>
                     <figure anchor="primitive_null.jcr">
                         <artwork xml:space="preserve" align="center">&primitives_null.jcr;</artwork>
                     </figure>
                     <t>
-                        A value specified to be null must be represented in a JSON instance by the JSON 'null' value.
-                     </t>
+                        A value specified to be 'null' MUST be represented in a JSON instance by the JSON 'null' value.
+                    </t>
                 </section>
                 <section title="Booleans">
                     <t>
