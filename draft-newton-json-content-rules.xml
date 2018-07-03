@@ -1088,15 +1088,15 @@
                 </section>
                 <section title="Booleans">
                     <t>
-                        The rules for booleans take the following forms:
+                        Type specifications for booleans take the following forms:
                     </t>
                     <figure anchor="primitive_boolean.jcr">
                         <artwork xml:space="preserve" align="center">&primitives_boolean.jcr;</artwork>
                     </figure>
                     <t>
-                        A value specified to be true must be represented in a JSON instance with the 'true' JSON value.
-                        If specified to be false, it must be represented with the 'false' JSON value.  If
-                        specified to be boolean, it must be represented with either the 'true' or 'false' JSON values.
+                        A value specified to be 'true' MUST be represented in a JSON instance with the 'true' JSON value.
+                        If specified to be 'false', it MUST be represented with the 'false' JSON value.  If
+                        specified to be 'boolean', it MUST be represented with either the 'true' or 'false' JSON values.
                     </t>
                     <t>
                         No casting or type coercion of non-Boolean types to Boolean types is permitted.
