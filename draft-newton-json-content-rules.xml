@@ -1280,16 +1280,16 @@
             </section>
         <section title="Member Specifications">
             <t>
-                Member specifications define members of JSON objects. Unlike other type specifications,
+                Member specifications define members of JSON objects. Unlike type specifications,
                 member specifications cannot be root rules and must be part of an object specification,
                 a group specification, or preceded by a rule name assignment.
             </t>
             <t>
-                Member specifications consist of a member name specification followed by a colon character (':')
-                followed by either a subordinate component, which is either a
-                rule name or a type specification. Member name specifications
-                can be given either as a quoted string using double quotes or as a regular expression
-                using forward slash ('/') characters. Regular expressions are not implicitly anchored
+                Member specifications consist of a member name specification followed by optional whitespace
+                followed by a colon character (':') followed by optional whitespace
+                followed by either a rule name reference or a type specification. Member name specifications
+                can be given either as a quoted string delimited by double quotes or as a regular expression
+                delimited by forward slash ('/') characters. Regular expressions are not implicitly anchored
                 and therefore must have explicit anchors if needed.
             </t>
             <figure anchor="member_specifications.jcr">
