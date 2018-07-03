@@ -1404,7 +1404,7 @@ Internet-Draft             JSON Content Rules                  July 2018
 
 6.11.2.  Booleans
 
-   Type specifications for booleans take the following forms:
+   Type specifications for Booleans take the following forms:
 
                                   true
                                   false
