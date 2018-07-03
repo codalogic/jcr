@@ -1638,7 +1638,7 @@
                 to the allowable set of type specifications of the type specifications in which
                 they are referenced. For example, a group specification referenced
                 inside of an array specification may not contain a member specification since member specifications are not
-                allowed as direct subordinates of array specifications (arrays contain values, not object members in JSON). 
+                allowed as direct subordinate components of array specifications (arrays contain values, not object members in JSON). 
                 Likewise, a group specification referenced inside an object
                 specification must only contain member specifications (JSON objects may only contain object members).
                 A group specification may also represent a type choice (See <xref target="type_choices"/>).
@@ -1649,7 +1649,7 @@
                 choices as described in <xref target="combiners"/>.
             </t>
             <t>
-                The following is an example of a group specification:
+                The following is an example of two group specifications that are referenced by an array specification:
             </t>
             <figure anchor="group_example.jcr">
                 <artwork xml:space="preserve" align="center">&group_example.jcr;</artwork>
@@ -1658,7 +1658,7 @@
                 Group specifications are not validated against JSON instances by themselves.
                 During validation of objects, arrays or type choices, references to group specifications are
                 replaced with their referenced content.
-                For example, the $the_bradys rule in <xref target="group_example.jcr"/> is validated as if it were:
+                For example, the the_bradys rule in <xref target="group_example.jcr"/> is validated as if it were:
             </t>
             <figure anchor="group_example_for_validation.jcr">
                 <artwork xml:space="preserve" align="center">&group_example_for_validation.jcr;</artwork>

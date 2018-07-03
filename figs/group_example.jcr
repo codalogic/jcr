@@ -1,5 +1,5 @@
-$the_bradys = [ $parents, $children ]
+$parents = ( "Mike", "Carol" )
 
 $children = ( "Greg", "Marsha", "Bobby", "Jan" )
 
-$parents = ( "Mike", "Carol" )
+$the_bradys = [ $parents, $children ]
