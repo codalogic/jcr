@@ -96,6 +96,8 @@
     'figs/primitives_misc.jcr'>
   <!ENTITY primitives_binary.jcr PUBLIC ''
     'figs/primitives_binary.jcr'>
+  <!ENTITY spec_annotation.jcr PUBLIC ''
+    'figs/spec_annotation.jcr'>
   <!ENTITY type_choice.jcr PUBLIC ''
     'figs/type_choice.jcr'>
   <!ENTITY type_choice2.jcr PUBLIC ''
@@ -1275,6 +1277,38 @@
                         A value specified to be a semantic string MUST be represented in a JSON instance as
                         a JSON string value and MUST satisfy all the constraints specified by the relevant
                         standard(s) for the semantic type.
+                    </t>
+                </section>
+                <section title="Strings with External Specifications">
+                    <t>
+                        New types will likely be added as a form of JSON string. Some such formats may
+                        have structure that can't easily be represented using regular expressions and other such techniques.
+                    </t>
+                    <t>
+                        To address this a @{spec} annotation is used. This annotation contains a uri identifying the
+                        format of the string being defined.
+                    </t>
+                    <t>
+                        For example, a fictional JCR ruleset specifying a DNA fingerprint type might be:
+                    </t>
+                    <figure anchor="spec_annotation.jcr">
+                        <artwork align="center" xml:space="preserve">&spec_annotation.jcr;</artwork>
+                    </figure>
+                    <t>
+                        From a validators perspective, the above type could be considered to be a 'string with the format
+                        specified by http://bio.example.org/specs/dna#fingerprint'.
+                    </t>
+                    <t>
+                        The method used to define the structure of the string is beyond the scope of this document.
+                        It could use regular expressions, ABNF, narrative text or some other method.
+                    </t>
+                    <t>
+                        The uri is an abstract resource identifier. Whether it is resolvable to a descriptive document
+                        or not is beyond the scope of this document.
+                    </t>
+                    <t>
+                        Whether validators give errors, warnings or act silently when they encounter a spec uri they don't
+                        know is an implementation detail.
                     </t>
                 </section>
             </section>
