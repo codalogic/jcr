@@ -1,4 +1,4 @@
 # ruleset-id http://bio.example.org/specs/dna
 
 $fingerprint =
-    @{spec http://bio.example.org/specs/dna#fingerprint} string
+    @{format http://bio.example.org/specs/dna#fingerprint} string

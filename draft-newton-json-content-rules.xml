@@ -1285,7 +1285,7 @@
                         have structure that can't easily be represented using regular expressions and other such techniques.
                     </t>
                     <t>
-                        To address this a @{spec} annotation is used. This annotation contains a uri identifying the
+                        To address this a @{format} annotation is used. This annotation contains a uri identifying the
                         format of the string being defined.
                     </t>
                     <t>
