@@ -1493,7 +1493,8 @@
                 <t>
                     This works because the last specification is associated with any member instances that are not
                     associated with a prior specification.  As such, no member instance is ignored. But,
-                    due to the @{not} annotation, the object fails to validate if one or more of those instances are present.
+                    due to the *0 repetition specification, the object fails to validate if one or more of those
+                    instances are present.
                 </t>
             </section>
             <section title="Object Mixins">

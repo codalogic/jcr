@@ -1549,7 +1549,7 @@ $o2 = { "p1" : integer, /^p\d+$/ : integer * }
 <div id="rfc.figure.53"></div>
 <div id="restrict_objects.jcr"></div>
 <p>The following rule will match the JSON object in <a href="#restrict_objects1.json" class="xref">Figure 54</a> but will not match the JSON object in <a href="#restrict_objects2.json" class="xref">Figure 55</a>.  </p>
-<pre>{ "foo" : 1, "bar" : 2, @{not} // : any + }
+<pre>{ "foo" : 1, "bar" : 2, // : any *0 }
 </pre>
 <p class="figure">Figure 53</p>
 <div id="rfc.figure.54"></div>
@@ -1562,7 +1562,7 @@ $o2 = { "p1" : integer, /^p\d+$/ : integer * }
 <pre>{ "foo" : 1, "bar" : 2, "baz" : 3 }
 </pre>
 <p class="figure">Figure 55</p>
-<p id="rfc.section.6.13.3.p.3">This works because the last specification is associated with any member instances that are not associated with a prior specification.  As such, no member instance is ignored. But, due to the @{not} annotation, the object fails to validate if one or more of those instances are present.  </p>
+<p id="rfc.section.6.13.3.p.3">This works because the last specification is associated with any member instances that are not associated with a prior specification.  As such, no member instance is ignored. But, due to the *0 repetition specification, the object fails to validate if one or more of those instances are present.  </p>
 <h1 id="rfc.section.6.13.4">
 <a href="#rfc.section.6.13.4">6.13.4.</a> Object Mixins</h1>
 <p id="rfc.section.6.13.4.p.1">Object rule name references can be used to create object mixins, a pattern for writing data models similar in style to object derivation in some programming languages.  In the example in below, both obj1 and obj2 have members "foo" and "fob" with obj1 having the additional member "bar" and obj2 having the additional member "baz".  </p>
