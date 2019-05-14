@@ -1490,6 +1490,21 @@
                     </t>
                 </list>
             </t>
+            <section title="Object Mixins">
+                <t>
+                    Object rule name references can be used to create object mixins, a pattern for writing data
+                    models similar in style to object derivation in some programming languages.
+                    In the example in below,
+                    both obj1 and obj2 have members "foo" and "fob" with obj1 having the additional member "bar"
+                    and obj2 having the additional member "baz".
+                </t>
+                <figure anchor="object_mixin.jcr">
+                    <artwork xml:space="preserve" align="center">&object_mixin.jcr;</artwork>
+                </figure>
+                <t>
+                    Group rules may also be used to create object mixins (See <xref target="groups_in_objects"/>.)
+                </t>
+            </section>
         </section>
         <section title="Array Specifications">
             <t>
@@ -1712,7 +1727,7 @@
                     <artwork xml:space="preserve" align="center">&groups_in_arrays2.jcr;</artwork>
                 </figure>
             </section>
-            <section title="Groups in Objects">
+            <section title="Groups in Objects" anchor="groups_in_objects">
                 <t>
                     Groups may be a subordinate component of object specifications:
                     Subordinate group specifications in object specifications may have sequence
@@ -1849,18 +1864,6 @@
                 </t>
                 <figure anchor="lists_of_values.jcr">
                     <artwork xml:space="preserve" align="center">&lists_of_values.jcr;</artwork>
-                </figure>
-            </section>
-            <section title="Object Mixins">
-                <t>
-                    Group rules can be used to create object mixins, a pattern for writing data
-                    models similar in style to object derivation in some programming languages.
-                    In the example in below,
-                    both obj1 and obj2 have a members "foo" and "fob" with obj1 having the additional member "bar"
-                    and obj2 having the additional member "baz".
-                </t>
-                <figure anchor="object_mixin.jcr">
-                    <artwork xml:space="preserve" align="center">&object_mixin.jcr;</artwork>
                 </figure>
             </section>
             <section title="Subordinate Dependencies">

@@ -1,5 +1,5 @@
-$mixin_group = ( "foo" : integer, "fob" : uri )
+$mixin_object = { "foo" : integer, "fob" : uri }
 
-$obj1 = { $mixin_group, "bar" : string }
+$obj1 = { $mixin_object, "bar" : string }
 
-$obj2 = { $mixin_group, "baz" : string }
+$obj2 = { $mixin_object, "baz" : string }
