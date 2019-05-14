@@ -1,1 +1,1 @@
-$paragraphs = ( /p[0-9]*/ : string + )
+$paragraphs = ( /^p[0-9]*$/ : string + )

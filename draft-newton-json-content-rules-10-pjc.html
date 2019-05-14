@@ -1760,7 +1760,7 @@ $front_matter = ( $title, $date, $author )
 $title = "title" : string
 $date = "date" : date
 $author = "author" : [ string * ]
-$paragraph = /p[0-9]*/ : string
+$paragraph = /^p[0-9]*$/ : string
 </pre>
 <p class="figure">Figure 73</p>
 <h1 id="rfc.section.6.17.3">
@@ -1768,7 +1768,7 @@ $paragraph = /p[0-9]*/ : string
 <p id="rfc.section.6.17.3.p.1">The syntax for group specifications accommodates one or more subordinate components and a repetition expression for each. Other than grouping multiple rules, a group specification can be used as a macro definition for a single rule.  </p>
 <div id="rfc.figure.74"></div>
 <div id="macro.jcr"></div>
-<pre>$paragraphs = ( /p[0-9]*/ : string + )
+<pre>$paragraphs = ( /^p[0-9]*$/ : string + )
 </pre>
 <p class="figure">Figure 74</p>
 <p id="rfc.section.6.17.3.p.2">This differs from a member specification because it includes a repetition specification.  </p>

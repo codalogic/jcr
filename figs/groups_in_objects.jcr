@@ -8,4 +8,4 @@ $front_matter = ( $title, $date, $author )
 $title = "title" : string
 $date = "date" : date
 $author = "author" : [ string * ]
-$paragraph = /p[0-9]*/ : string
+$paragraph = /^p[0-9]*$/ : string

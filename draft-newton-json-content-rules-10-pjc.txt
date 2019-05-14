@@ -2364,7 +2364,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                $title = "title" : string
                $date = "date" : date
                $author = "author" : [ string * ]
-               $paragraph = /p[0-9]*/ : string
+               $paragraph = /^p[0-9]*$/ : string
 
                                  Figure 73
 
@@ -2375,7 +2375,7 @@ Internet-Draft             JSON Content Rules                   May 2019
    than grouping multiple rules, a group specification can be used as a
    macro definition for a single rule.
 
-                  $paragraphs = ( /p[0-9]*/ : string + )
+                 $paragraphs = ( /^p[0-9]*$/ : string + )
 
                                  Figure 74
 
