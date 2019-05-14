@@ -1375,7 +1375,7 @@
                 </t>
                 <t>
                     All name specifications within an object specification are divided into these three groups (q-string spec, regex spec, and wildcard spec).
-                    (Note that the same name specification may appear multiple times within the object specification, typically in different groups.)
+                    (Note that the same name specification may appear multiple times within an object specification, typically in different groups.)
                 </t>
                 <t>
                     Each instance member name is first tested for a match against the q-string spec name specifications.  If the instance name is matched,
@@ -1396,7 +1396,8 @@
                     present, then the instance name and its value is ignored.
                 </t>
                 <t>
-                    The above rules mean that any instance name can only be associated with one name specification. As a result, both of the object specifications
+                    The above rules mean that any instance name can only be associated with one name specification (although multiple instances of that name
+                    specification may appear with an object specification). As a result, both of the object specifications
                     below are equivalent:
                 </t>
                 <figure anchor="object_order_eval.jcr">
