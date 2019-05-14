@@ -101,7 +101,7 @@ Table of Contents
        6.13.3.  Closing Objects to Extension . . . . . . . . . . . .  36
        6.13.4.  Object Mixins  . . . . . . . . . . . . . . . . . . .  37
      6.14. Array Specifications  . . . . . . . . . . . . . . . . . .  37
-       6.14.1.  Ordered Array Specifications . . . . . . . . . . . .  38
+       6.14.1.  Ordered Array Specifications . . . . . . . . . . . .  37
        6.14.2.  Unordered Array Specifications . . . . . . . . . . .  40
      6.15. Type Choices  . . . . . . . . . . . . . . . . . . . . . .  40
      6.16. Any Type  . . . . . . . . . . . . . . . . . . . . . . . .  41
@@ -1863,8 +1863,7 @@ Internet-Draft             JSON Content Rules                   May 2019
    All name specifications within an object specification are divided
    into these three groups (q-string spec, regex spec, and wildcard
    spec).  (Note that the same name specification may appear multiple
-   times within the object specification, typically in different
-   groups.)
+   times within an object specification, typically in different groups.)
 
    Each instance member name is first tested for a match against the
    q-string spec name specifications.  If the instance name is matched,
@@ -1890,8 +1889,9 @@ Internet-Draft             JSON Content Rules                   May 2019
    ignored.
 
    The above rules mean that any instance name can only be associated
-   with one name specification.  As a result, both of the object
-   specifications below are equivalent:
+   with one name specification (although multiple instances of that name
+   specification may appear with an object specification).  As a result,
+   both of the object specifications below are equivalent:
 
                $o1 = { /^p\d+$/ : integer *, "p1" : string }
 
@@ -1972,16 +1972,6 @@ Internet-Draft             JSON Content Rules                   May 2019
       that has led to the overall 'true' result.  If not, the object
       instance is deemed invalid.
 
-      NOTE: A future specification may modify the choice ('|') operation
-      to be Inclusive OR ("IOR"), Exclusive OR ("XOR"), or "Augmented
-      OR" ("AOR") (as described above).  Previously the choice ('|')
-      operator was an Inclusive OR.  However, for objects that is not
-      ideal, nor is XOR.  We are in the process of defining an algorithm
-      to "rewrite" choices of rules for use with inclusive-OR which is
-      more suitable for the data model of JSON.  The above is a first
-      attempt, but subject to change.  Future versions may revert to
-      either pure inclusive OR or exclusive OR.
-
 6.13.3.  Closing Objects to Extension
 
    As stated above, members of instance objects that are not associated
@@ -2008,16 +1998,6 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                                  Figure 54
 
-
-
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 36]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
                     { "foo" : 1, "bar" : 2, "baz" : 3 }
 
                                  Figure 55
@@ -2028,12 +2008,22 @@ Internet-Draft             JSON Content Rules                   May 2019
    repetition specification, the object fails to validate if one or more
    of those instances are present.
 
+
+
+
+
+
+Newton & Cordell        Expires November 15, 2019              [Page 36]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
 6.13.4.  Object Mixins
 
    Object rule name references can be used to create object mixins, a
    pattern for writing data models similar in style to object derivation
-   in some programming languages.  In the example in below, both obj1
-   and obj2 have members "foo" and "fob" with obj1 having the additional
+   in some programming languages.  In the example below, both obj1 and
+   obj2 have members "foo" and "fob" with obj1 having the additional
    member "bar" and obj2 having the additional member "baz".
 
              $mixin_object = { "foo" : integer, "fob" : uri }
@@ -2063,17 +2053,6 @@ Internet-Draft             JSON Content Rules                   May 2019
    Arrays can be specified as either ordered or unordered.  Arrays are
    ordered by default.
 
-
-
-
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 37]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
 6.14.1.  Ordered Array Specifications
 
    In an ordered array specification, unlike object specifications, the
@@ -2085,6 +2064,15 @@ Internet-Draft             JSON Content Rules                   May 2019
 
    o  Subordinate components of the array specification are evaluated in
       the order they appear.
+
+
+
+
+
+Newton & Cordell        Expires November 15, 2019              [Page 37]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
 
    o  Each item of the array instance being evaluated can only be
       associated with one subordinate component of the array
@@ -2123,16 +2111,24 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                                  Figure 59
 
+   To allow an array to contain any value after guaranteeing that it
+   contains the necessary items, the last subordinate component of the
+   array specification should accept any item:
+
+
+
+
+
+
+
+
+
 
 
 Newton & Cordell        Expires November 15, 2019              [Page 38]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
-
-   To allow an array to contain any value after guaranteeing that it
-   contains the necessary items, the last subordinate component of the
-   array specification should accept any item:
 
            ; the first element of the array is to be an integer
            ; the second element of the array is to be a string
@@ -2179,14 +2175,16 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                                  Figure 63
 
+   permits each of the following JSON instances:
+
+
+
 
 
 Newton & Cordell        Expires November 15, 2019              [Page 39]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
-
-   permits each of the following JSON instances:
 
                              [ "A", "B", "C" ]
                              [ "A", 1, "C" ]
@@ -2233,6 +2231,8 @@ Internet-Draft             JSON Content Rules                   May 2019
    A type specification can be a type choice.  A type choice begins with
    an opening parenthesis ('(') and ends with a closing parenthesis
    (')').  Its subordinate components are type specifications or rule
+   name references combined using the choice combiner as described in
+   Section 6.9.
 
 
 
@@ -2241,9 +2241,6 @@ Newton & Cordell        Expires November 15, 2019              [Page 40]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
-
-   name references combined using the choice combiner as described in
-   Section 6.9.
 
                        { "age" : (0.. | "unknown") }
 
@@ -2289,6 +2286,9 @@ Internet-Draft             JSON Content Rules                   May 2019
    MAY have repetitions as described in Section 6.8 and MAY be combined
    into sequences and/or choices as described in Section 6.9.
 
+   The following is an example of two group specifications that are
+   referenced by an array specification:
+
 
 
 
@@ -2297,9 +2297,6 @@ Newton & Cordell        Expires November 15, 2019              [Page 41]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
-
-   The following is an example of two group specifications that are
-   referenced by an array specification:
 
              $parents = ( "Mike", "Carol" )
 
@@ -2344,6 +2341,9 @@ Internet-Draft             JSON Content Rules                   May 2019
            $age = 0..
 
                                  Figure 72
+
+
+
 
 
 

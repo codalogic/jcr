@@ -1504,7 +1504,7 @@
                 <t>
                     Object rule name references can be used to create object mixins, a pattern for writing data
                     models similar in style to object derivation in some programming languages.
-                    In the example in below,
+                    In the example below,
                     both obj1 and obj2 have members "foo" and "fob" with obj1 having the additional member "bar"
                     and obj2 having the additional member "baz".
                 </t>

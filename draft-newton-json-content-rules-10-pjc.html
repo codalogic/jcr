@@ -1503,12 +1503,12 @@ $iface_mappings = /^eth[0-9]$/ : ipv4
 </h1>
 <p id="rfc.section.6.13.1.p.1">Before a JSON instance can be validated, it is necessary to associate JSON object instance members with JCR member specifications. This is performed as follows: </p>
 <p id="rfc.section.6.13.1.p.2">There are 3 types of member name specification: q-string specs, (non-empty) regex specs, and the (empty regex) wildcard spec. (e.g. "foo", /^foo/ and //.) </p>
-<p id="rfc.section.6.13.1.p.3">All name specifications within an object specification are divided into these three groups (q-string spec, regex spec, and wildcard spec).  (Note that the same name specification may appear multiple times within the object specification, typically in different groups.) </p>
+<p id="rfc.section.6.13.1.p.3">All name specifications within an object specification are divided into these three groups (q-string spec, regex spec, and wildcard spec).  (Note that the same name specification may appear multiple times within an object specification, typically in different groups.) </p>
 <p id="rfc.section.6.13.1.p.4">Each instance member name is first tested for a match against the q-string spec name specifications.  If the instance name is matched, the instance name and its value is associated with every occurrence of that name specification and its type(s).  </p>
 <p id="rfc.section.6.13.1.p.5">If an instance name does not match a q-string spec name specifications, then it is tested for a match against the regex spec name specifications.  If the instance name matches a single regex spec, the instance name and its value is associated with every occurrence of that name specification and its type(s).  If the instance name matches more than one regex spec, the JSON instance is considered to be invalid.  </p>
 <p id="rfc.section.6.13.1.p.6">If an instance name does not match either a q-string spec or regex spec name specification and a wildcard spec name specification is present, then the instance name and its value is associated with every occurrence of the wildcard specification and its type(s).  </p>
 <p id="rfc.section.6.13.1.p.7">If an instance name does not match either a q-string spec or regex spec name specification and there is no wildcard spec name specification present, then the instance name and its value is ignored.  </p>
-<p id="rfc.section.6.13.1.p.8">The above rules mean that any instance name can only be associated with one name specification. As a result, both of the object specifications below are equivalent: </p>
+<p id="rfc.section.6.13.1.p.8">The above rules mean that any instance name can only be associated with one name specification (although multiple instances of that name specification may appear with an object specification). As a result, both of the object specifications below are equivalent: </p>
 <div id="rfc.figure.51"></div>
 <div id="object_order_eval.jcr"></div>
 <pre>$o1 = { /^p\d+$/ : integer *, "p1" : string }
@@ -1540,11 +1540,6 @@ $o2 = { "p1" : string, /^p\d+$/ : integer * }
 </ul>
 
 <p> </p>
-<p></p>
-
-<ul class="empty"><li>NOTE: A future specification may modify the choice ('|') operation to be Inclusive OR ("IOR"), Exclusive OR ("XOR"), or "Augmented OR" ("AOR") (as described above). Previously the choice ('|') operator was an Inclusive OR. However, for objects that is not ideal, nor is XOR. We are in the process of defining an algorithm to "rewrite" choices of rules for use with inclusive-OR which is more suitable for the data model of JSON.  The above is a first attempt, but subject to change.  Future versions may revert to either pure inclusive OR or exclusive OR.  </li></ul>
-
-<p> </p>
 <h1 id="rfc.section.6.13.3">
 <a href="#rfc.section.6.13.3">6.13.3.</a> Closing Objects to Extension</h1>
 <p id="rfc.section.6.13.3.p.1">As stated above, members of instance objects that are not associated with a member name specification are ignored.  The reason for this validation model is due to the nature of the typical access model to JSON objects in many programming languages, where members of the object are obtained by referencing the member name. Therefore extra members may exist without harm.  </p>
@@ -1568,7 +1563,7 @@ $o2 = { "p1" : string, /^p\d+$/ : integer * }
 <p id="rfc.section.6.13.3.p.3">This works because the last specification is associated with any member instances that are not associated with a prior specification.  As such, no member instance is ignored. But, due to the *0 repetition specification, the object fails to validate if one or more of those instances are present.  </p>
 <h1 id="rfc.section.6.13.4">
 <a href="#rfc.section.6.13.4">6.13.4.</a> Object Mixins</h1>
-<p id="rfc.section.6.13.4.p.1">Object rule name references can be used to create object mixins, a pattern for writing data models similar in style to object derivation in some programming languages.  In the example in below, both obj1 and obj2 have members "foo" and "fob" with obj1 having the additional member "bar" and obj2 having the additional member "baz".  </p>
+<p id="rfc.section.6.13.4.p.1">Object rule name references can be used to create object mixins, a pattern for writing data models similar in style to object derivation in some programming languages.  In the example below, both obj1 and obj2 have members "foo" and "fob" with obj1 having the additional member "bar" and obj2 having the additional member "baz".  </p>
 <div id="rfc.figure.56"></div>
 <div id="object_mixin.jcr"></div>
 <pre>$mixin_object = { "foo" : integer, "fob" : uri }
