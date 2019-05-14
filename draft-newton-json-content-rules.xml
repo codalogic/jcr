@@ -1463,19 +1463,6 @@
                         </t>
                     </list>
                 </t>
-                <t>
-                    <list style="none">
-                        <t>
-                            NOTE: A future specification may modify the choice ('|') operation to be Inclusive OR ("IOR"),
-                            Exclusive OR ("XOR"), or "Augmented OR" ("AOR") (as described above). Previously the choice
-                            ('|') operator was an Inclusive OR. However, for objects
-                            that is not ideal, nor is XOR. We are in the process of defining an algorithm
-                            to "rewrite" choices of rules for use with inclusive-OR which is more suitable
-                            for the data model of JSON.  The above is a first attempt, but subject to change.
-                            Future versions may revert to either pure inclusive OR or exclusive OR.
-                        </t>
-                    </list>
-                </t>
             </section>
             <section title="Closing Objects to Extension">
                 <t>
