@@ -1697,82 +1697,6 @@
             <figure anchor="group_example_for_validation.jcr">
                 <artwork xml:space="preserve" align="center">&group_example_for_validation.jcr;</artwork>
             </figure>
-        </section>
-            <section title="Starting Points and Root Rules" anchor="starting-points">
-                <t>
-                    Evaluation of a JSON instance or document against a ruleset begins with the evaluation of
-                    a root rule or set of root rules. If no root rule (or rules) is specified locally at
-                    runtime, the set of root rules specified in the ruleset are evaluated. The order of
-                    evaluation is undefined.
-                </t>
-                <t>
-                    The set of root rules specified in a ruleset is composed of all rules without a rule
-                    name assignment and all rules annotated with the "@{root}" annotation.
-                </t>
-                <t>
-                    The "@{root}" annotation may either appear before a rule name assignment or before
-                    a type definition. It is an error if present before referenced rule name inside of a
-                    type specification.
-                </t>
-                <figure anchor="root_annotations.jcr">
-                    <artwork xml:space="preserve" align="center">&root_annotations.jcr;</artwork>
-                </figure>
-            </section>
-        </section>
-        <section title="Tips and Tricks">
-            <section title="Any Member with Any Value">                
-                <t>
-                    Because member names may be specified with regular expressions, it is
-                    possible to construct a member rule that matches any member name.
-                    As an example, the following defines an object with a member with any name
-                    that has a value that is a string:
-                </t>
-                <figure anchor="any_member.jcr">
-                    <artwork xml:space="preserve" align="center">&any_member.jcr;</artwork>
-                </figure>
-                <t>
-                    The JSON below matches the above rule.
-                </t>
-                <figure anchor="any_member1.json">
-                    <artwork xml:space="preserve" align="center">&any_member1.json;</artwork>
-                </figure>
-                <t>
-                    Likewise, the JSON below also matches the same rule.
-                </t>
-                <figure anchor="any_member2.json">
-                    <artwork xml:space="preserve" align="center">&any_member2.json;</artwork>
-                </figure>
-                <t>
-                    Constructing an object with a member of any name with any type would therefore
-                    take the form:
-                </t>
-                <figure anchor="any_member_any_type.jcr">
-                    <artwork xml:space="preserve" align="center">&any_member_any_type.jcr;</artwork>
-                </figure>
-                <t>
-                    The above rule matches not only the two JSON objects above, but the JSON object below.
-                </t>
-                <figure anchor="any_member_any_type2.json">
-                    <artwork xml:space="preserve" align="center">&any_member_any_type2.json;</artwork>
-                </figure>
-            </section>
-            
-            
-            <section title="Lists of Values">
-                <t>
-                    Group specifications may be used to create enumerated lists of
-                    primitive data types, because primitive specifications may
-                    contain a group specification, which may have multiple primitive specifications.
-                    Because a primitive specification must resolve to a single data type,
-                    the group specification must only contain choice combinations.
-                </t>
-                <t>
-                    Consider the following examples:
-                </t>
-                <figure anchor="lists_of_values.jcr">
-                    <artwork xml:space="preserve" align="center">&lists_of_values.jcr;</artwork>
-                </figure>
-            </section>
             <section title="Groups in Arrays"> 
                 <t>
                     Groups may be a subordinate component of array specifications:
@@ -1850,6 +1774,82 @@
                 <t>
                     This differs from a member specification because it includes a repetition specification.
                 </t>
+            </section>
+        </section>
+            <section title="Starting Points and Root Rules" anchor="starting-points">
+                <t>
+                    Evaluation of a JSON instance or document against a ruleset begins with the evaluation of
+                    a root rule or set of root rules. If no root rule (or rules) is specified locally at
+                    runtime, the set of root rules specified in the ruleset are evaluated. The order of
+                    evaluation is undefined.
+                </t>
+                <t>
+                    The set of root rules specified in a ruleset is composed of all rules without a rule
+                    name assignment and all rules annotated with the "@{root}" annotation.
+                </t>
+                <t>
+                    The "@{root}" annotation may either appear before a rule name assignment or before
+                    a type definition. It is an error if present before referenced rule name inside of a
+                    type specification.
+                </t>
+                <figure anchor="root_annotations.jcr">
+                    <artwork xml:space="preserve" align="center">&root_annotations.jcr;</artwork>
+                </figure>
+            </section>
+        </section>
+        <section title="Tips and Tricks">
+            <section title="Any Member with Any Value">                
+                <t>
+                    Because member names may be specified with regular expressions, it is
+                    possible to construct a member rule that matches any member name.
+                    As an example, the following defines an object with a member with any name
+                    that has a value that is a string:
+                </t>
+                <figure anchor="any_member.jcr">
+                    <artwork xml:space="preserve" align="center">&any_member.jcr;</artwork>
+                </figure>
+                <t>
+                    The JSON below matches the above rule.
+                </t>
+                <figure anchor="any_member1.json">
+                    <artwork xml:space="preserve" align="center">&any_member1.json;</artwork>
+                </figure>
+                <t>
+                    Likewise, the JSON below also matches the same rule.
+                </t>
+                <figure anchor="any_member2.json">
+                    <artwork xml:space="preserve" align="center">&any_member2.json;</artwork>
+                </figure>
+                <t>
+                    Constructing an object with a member of any name with any type would therefore
+                    take the form:
+                </t>
+                <figure anchor="any_member_any_type.jcr">
+                    <artwork xml:space="preserve" align="center">&any_member_any_type.jcr;</artwork>
+                </figure>
+                <t>
+                    The above rule matches not only the two JSON objects above, but the JSON object below.
+                </t>
+                <figure anchor="any_member_any_type2.json">
+                    <artwork xml:space="preserve" align="center">&any_member_any_type2.json;</artwork>
+                </figure>
+            </section>
+            
+            
+            <section title="Lists of Values">
+                <t>
+                    Group specifications may be used to create enumerated lists of
+                    primitive data types, because primitive specifications may
+                    contain a group specification, which may have multiple primitive specifications.
+                    Because a primitive specification must resolve to a single data type,
+                    the group specification must only contain choice combinations.
+                </t>
+                <t>
+                    Consider the following examples:
+                </t>
+                <figure anchor="lists_of_values.jcr">
+                    <artwork xml:space="preserve" align="center">&lists_of_values.jcr;</artwork>
+                </figure>
             </section>
             <section title="Object Mixins">
                 <t>

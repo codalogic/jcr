@@ -416,15 +416,15 @@
 <link href="#rfc.section.6.15" rel="Chapter" title="6.15 Type Choices">
 <link href="#rfc.section.6.16" rel="Chapter" title="6.16 Any Type">
 <link href="#rfc.section.6.17" rel="Chapter" title="6.17 Group Specifications">
+<link href="#rfc.section.6.17.1" rel="Chapter" title="6.17.1 Groups in Arrays">
+<link href="#rfc.section.6.17.2" rel="Chapter" title="6.17.2 Groups in Objects">
+<link href="#rfc.section.6.17.3" rel="Chapter" title="6.17.3 Group Rules as Macros">
 <link href="#rfc.section.6.18" rel="Chapter" title="6.18 Starting Points and Root Rules">
 <link href="#rfc.section.7" rel="Chapter" title="7 Tips and Tricks">
 <link href="#rfc.section.7.1" rel="Chapter" title="7.1 Any Member with Any Value">
 <link href="#rfc.section.7.2" rel="Chapter" title="7.2 Lists of Values">
-<link href="#rfc.section.7.3" rel="Chapter" title="7.3 Groups in Arrays">
-<link href="#rfc.section.7.4" rel="Chapter" title="7.4 Groups in Objects">
-<link href="#rfc.section.7.5" rel="Chapter" title="7.5 Group Rules as Macros">
-<link href="#rfc.section.7.6" rel="Chapter" title="7.6 Object Mixins">
-<link href="#rfc.section.7.7" rel="Chapter" title="7.7 Subordinate Dependencies">
+<link href="#rfc.section.7.3" rel="Chapter" title="7.3 Object Mixins">
+<link href="#rfc.section.7.4" rel="Chapter" title="7.4 Subordinate Dependencies">
 <link href="#rfc.section.8" rel="Chapter" title="8 Legacy Features">
 <link href="#rfc.section.9" rel="Chapter" title="9 Implementation Status">
 <link href="#rfc.section.9.1" rel="Chapter" title="9.1 JCR Validator">
@@ -454,7 +454,7 @@
 
   <meta name="dct.creator" content="Newton, A. and P. Cordell" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-newton-json-content-rules-10" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-09" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-14" />
   <meta name="dct.abstract" content="This document describes a language for specifying and testing the expected content of JSON structures found in JSON-using protocols, software, and processes.  " />
   <meta name="description" content="This document describes a language for specifying and testing the expected content of JSON structures found in JSON-using protocols, software, and processes.  " />
 
@@ -478,12 +478,12 @@
 <td class="right">P. Cordell</td>
 </tr>
 <tr>
-<td class="left">Expires: November 10, 2019</td>
+<td class="left">Expires: November 15, 2019</td>
 <td class="right">Codalogic</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">May 9, 2019</td>
+<td class="right">May 14, 2019</td>
 </tr>
 
     	
@@ -499,7 +499,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 10, 2019.</p>
+<p>This Internet-Draft will expire on November 15, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -593,7 +593,13 @@
 </li>
 <li>6.17.   <a href="#rfc.section.6.17">Group Specifications</a>
 </li>
-<li>6.18.   <a href="#rfc.section.6.18">Starting Points and Root Rules</a>
+<ul><li>6.17.1.   <a href="#rfc.section.6.17.1">Groups in Arrays</a>
+</li>
+<li>6.17.2.   <a href="#rfc.section.6.17.2">Groups in Objects</a>
+</li>
+<li>6.17.3.   <a href="#rfc.section.6.17.3">Group Rules as Macros</a>
+</li>
+</ul><li>6.18.   <a href="#rfc.section.6.18">Starting Points and Root Rules</a>
 </li>
 </ul><li>7.   <a href="#rfc.section.7">Tips and Tricks</a>
 </li>
@@ -601,15 +607,9 @@
 </li>
 <li>7.2.   <a href="#rfc.section.7.2">Lists of Values</a>
 </li>
-<li>7.3.   <a href="#rfc.section.7.3">Groups in Arrays</a>
+<li>7.3.   <a href="#rfc.section.7.3">Object Mixins</a>
 </li>
-<li>7.4.   <a href="#rfc.section.7.4">Groups in Objects</a>
-</li>
-<li>7.5.   <a href="#rfc.section.7.5">Group Rules as Macros</a>
-</li>
-<li>7.6.   <a href="#rfc.section.7.6">Object Mixins</a>
-</li>
-<li>7.7.   <a href="#rfc.section.7.7">Subordinate Dependencies</a>
+<li>7.4.   <a href="#rfc.section.7.4">Subordinate Dependencies</a>
 </li>
 </ul><li>8.   <a href="#rfc.section.8">Legacy Features</a>
 </li>
@@ -1692,77 +1692,16 @@ $the_bradys = [ $parents, $children ]
 <pre>$the_bradys = [ "Mike", "Carol", "Greg", "Marsha", "Bobby", "Jan" ]
 </pre>
 <p class="figure">Figure 69</p>
-<h1 id="rfc.section.6.18">
-<a href="#rfc.section.6.18">6.18.</a> <a href="#starting-points" id="starting-points">Starting Points and Root Rules</a>
-</h1>
-<p id="rfc.section.6.18.p.1">Evaluation of a JSON instance or document against a ruleset begins with the evaluation of a root rule or set of root rules. If no root rule (or rules) is specified locally at runtime, the set of root rules specified in the ruleset are evaluated. The order of evaluation is undefined.  </p>
-<p id="rfc.section.6.18.p.2">The set of root rules specified in a ruleset is composed of all rules without a rule name assignment and all rules annotated with the "@{root}" annotation.  </p>
-<p id="rfc.section.6.18.p.3">The "@{root}" annotation may either appear before a rule name assignment or before a type definition. It is an error if present before referenced rule name inside of a type specification.  </p>
+<h1 id="rfc.section.6.17.1">
+<a href="#rfc.section.6.17.1">6.17.1.</a> Groups in Arrays</h1>
+<p id="rfc.section.6.17.1.p.1">Groups may be a subordinate component of array specifications: </p>
 <div id="rfc.figure.70"></div>
-<div id="root_annotations.jcr"></div>
-<pre>@{root} $request = { "cmd" : string }
-$response = @{root} { "reply" : string }
-@{root} { "status" : string }
-{ "error" : string }   ; An implicit root
-</pre>
-<p class="figure">Figure 70</p>
-<h1 id="rfc.section.7">
-<a href="#rfc.section.7">7.</a> Tips and Tricks</h1>
-<h1 id="rfc.section.7.1">
-<a href="#rfc.section.7.1">7.1.</a> Any Member with Any Value</h1>
-<p id="rfc.section.7.1.p.1">Because member names may be specified with regular expressions, it is possible to construct a member rule that matches any member name.  As an example, the following defines an object with a member with any name that has a value that is a string: </p>
-<div id="rfc.figure.71"></div>
-<div id="any_member.jcr"></div>
-<pre>{ // : string }
-</pre>
-<p class="figure">Figure 71</p>
-<p id="rfc.section.7.1.p.2">The JSON below matches the above rule.  </p>
-<div id="rfc.figure.72"></div>
-<div id="any_member1.json"></div>
-<pre>{ "foo" : "bar" }
-</pre>
-<p class="figure">Figure 72</p>
-<p id="rfc.section.7.1.p.3">Likewise, the JSON below also matches the same rule.  </p>
-<div id="rfc.figure.73"></div>
-<div id="any_member2.json"></div>
-<pre>{ "fuzz" : "bazz" }
-</pre>
-<p class="figure">Figure 73</p>
-<p id="rfc.section.7.1.p.4">Constructing an object with a member of any name with any type would therefore take the form: </p>
-<div id="rfc.figure.74"></div>
-<div id="any_member_any_type.jcr"></div>
-<pre>{ // : any }
-</pre>
-<p class="figure">Figure 74</p>
-<p id="rfc.section.7.1.p.5">The above rule matches not only the two JSON objects above, but the JSON object below.  </p>
-<div id="rfc.figure.75"></div>
-<div id="any_member_any_type2.json"></div>
-<pre>{ "fuzz" : 1234 }
-</pre>
-<p class="figure">Figure 75</p>
-<h1 id="rfc.section.7.2">
-<a href="#rfc.section.7.2">7.2.</a> Lists of Values</h1>
-<p id="rfc.section.7.2.p.1">Group specifications may be used to create enumerated lists of primitive data types, because primitive specifications may contain a group specification, which may have multiple primitive specifications.  Because a primitive specification must resolve to a single data type, the group specification must only contain choice combinations.  </p>
-<p id="rfc.section.7.2.p.2">Consider the following examples: </p>
-<div id="rfc.figure.76"></div>
-<div id="lists_of_values.jcr"></div>
-<pre>; either an IPv4 or IPv6 address
-$address = ( ipv4 | ipv6 )
-
-; allowable fruits
-$fruits = ( "apple" | "banana" | "pear" )
-</pre>
-<p class="figure">Figure 76</p>
-<h1 id="rfc.section.7.3">
-<a href="#rfc.section.7.3">7.3.</a> Groups in Arrays</h1>
-<p id="rfc.section.7.3.p.1">Groups may be a subordinate component of array specifications: </p>
-<div id="rfc.figure.77"></div>
 <div id="groups_in_arrays.jcr"></div>
 <pre>[ ( ipv4 | ipv6 ), integer ]
 </pre>
-<p class="figure">Figure 77</p>
-<p id="rfc.section.7.3.p.2">Unlike primitive specifications, subordinate group specifications in array specifications may have sequence combinations and contain any type specification.  </p>
-<div id="rfc.figure.78"></div>
+<p class="figure">Figure 70</p>
+<p id="rfc.section.6.17.1.p.2">Unlike primitive specifications, subordinate group specifications in array specifications may have sequence combinations and contain any type specification.  </p>
+<div id="rfc.figure.71"></div>
 <div id="groups_in_arrays2.jcr"></div>
 <pre>; a group in an array
 [ ( $first_name, $middle_name ?, $last_name ), $age ]
@@ -1776,11 +1715,11 @@ $middle_name = string
 $last_name = string
 $age = 0..
 </pre>
-<p class="figure">Figure 78</p>
-<h1 id="rfc.section.7.4">
-<a href="#rfc.section.7.4">7.4.</a> Groups in Objects</h1>
-<p id="rfc.section.7.4.p.1">Groups may be a subordinate component of object specifications: Subordinate group specifications in object specifications may have sequence combinations but must only contain member specifications.  </p>
-<div id="rfc.figure.79"></div>
+<p class="figure">Figure 71</p>
+<h1 id="rfc.section.6.17.2">
+<a href="#rfc.section.6.17.2">6.17.2.</a> Groups in Objects</h1>
+<p id="rfc.section.6.17.2.p.1">Groups may be a subordinate component of object specifications: Subordinate group specifications in object specifications may have sequence combinations but must only contain member specifications.  </p>
+<div id="rfc.figure.72"></div>
 <div id="groups_in_objects.jcr"></div>
 <pre>; a group in an object
 { ( $title, $date, $author ), $paragraph + }
@@ -1794,50 +1733,111 @@ $date = "date" : date
 $author = "author" : [ string * ]
 $paragraph = /p[0-9]*/ : string
 </pre>
-<p class="figure">Figure 79</p>
+<p class="figure">Figure 72</p>
 <p></p>
 
 <ul class="empty"><li>NOTE: A future specification will clarify the choice ('|') operation as inclusive or, exclusive or ("xor") or otherwise. At present readers should assume the choice ('|') operator is an inclusive or. We are in the process of defining an algorithm to "rewrite" choices of rules for use with inclusive or which is more suitable for the data model of JSON. Such a change will impact the guidance given below.  </li></ul>
 
 <p> </p>
-<p id="rfc.section.7.4.p.3">When using groups to use both sequences and choices of member specifications, consideration must be given to the processing of object specifications where by unmatched member specifications are ignored (see <a href="#member_specifications.jcr" class="xref">Figure 47</a>).  </p>
-<div id="rfc.figure.80"></div>
+<p id="rfc.section.6.17.2.p.3">When using groups to use both sequences and choices of member specifications, consideration must be given to the processing of object specifications where by unmatched member specifications are ignored (see <a href="#member_specifications.jcr" class="xref">Figure 47</a>).  </p>
+<div id="rfc.figure.73"></div>
 <div id="groups_in_objects_ignored1.jcr"></div>
-<p>A casual reading of this rule might lead a reader to believe that the JSON object in <a href="#groups_in_objects_ignored.json" class="xref">Figure 81</a> would not match, however it does because the extra member (either "foo" or "baz") is not matched but is ignored.  </p>
+<p>A casual reading of this rule might lead a reader to believe that the JSON object in <a href="#groups_in_objects_ignored.json" class="xref">Figure 74</a> would not match, however it does because the extra member (either "foo" or "baz") is not matched but is ignored.  </p>
 <pre>{ "bar":string, ( "foo":integer | "baz":string ) }
 </pre>
-<p class="figure">Figure 80</p>
-<div id="rfc.figure.81"></div>
+<p class="figure">Figure 73</p>
+<div id="rfc.figure.74"></div>
 <div id="groups_in_objects_ignored.json"></div>
 <pre>{ "bar":"thing", "foo":2, "baz": "thingy" }
 </pre>
-<p class="figure">Figure 81</p>
-<p id="rfc.section.7.4.p.4">The rule in <a href="#groups_in_objects_ignored1.jcr" class="xref">Figure 80</a> must be modified to either match all extra rules, as in <a href="#groups_in_objects_ignored2.jcr" class="xref">Figure 82</a>, or the logic of the rules must be rewritten to explicitly negate the presence of the unwanted members, as in <a href="#groups_in_objects_ignored3.jcr" class="xref">Figure 83</a>.  </p>
-<div id="rfc.figure.82"></div>
+<p class="figure">Figure 74</p>
+<p id="rfc.section.6.17.2.p.4">The rule in <a href="#groups_in_objects_ignored1.jcr" class="xref">Figure 73</a> must be modified to either match all extra rules, as in <a href="#groups_in_objects_ignored2.jcr" class="xref">Figure 75</a>, or the logic of the rules must be rewritten to explicitly negate the presence of the unwanted members, as in <a href="#groups_in_objects_ignored3.jcr" class="xref">Figure 76</a>.  </p>
+<div id="rfc.figure.75"></div>
 <div id="groups_in_objects_ignored2.jcr"></div>
 <pre>{ "bar":string, ( "foo":integer | "baz":string ), @{not} //:any + }
 </pre>
-<p class="figure">Figure 82</p>
-<div id="rfc.figure.83"></div>
+<p class="figure">Figure 75</p>
+<div id="rfc.figure.76"></div>
 <div id="groups_in_objects_ignored3.jcr"></div>
 <pre>{ "bar":string, 
   ( ( "foo":integer , @{not} "baz":any ) |
     ( "baz":string , @{not} "foo":any )
 ) }
 </pre>
-<p class="figure">Figure 83</p>
-<h1 id="rfc.section.7.5">
-<a href="#rfc.section.7.5">7.5.</a> Group Rules as Macros</h1>
-<p id="rfc.section.7.5.p.1">The syntax for group specifications accommodates one or more subordinate components and a repetition expression for each. Other than grouping multiple rules, a group specification can be used as a macro definition for a single rule.  </p>
-<div id="rfc.figure.84"></div>
+<p class="figure">Figure 76</p>
+<h1 id="rfc.section.6.17.3">
+<a href="#rfc.section.6.17.3">6.17.3.</a> Group Rules as Macros</h1>
+<p id="rfc.section.6.17.3.p.1">The syntax for group specifications accommodates one or more subordinate components and a repetition expression for each. Other than grouping multiple rules, a group specification can be used as a macro definition for a single rule.  </p>
+<div id="rfc.figure.77"></div>
 <div id="macro.jcr"></div>
 <pre>$paragraphs = ( /p[0-9]*/ : string + )
 </pre>
+<p class="figure">Figure 77</p>
+<p id="rfc.section.6.17.3.p.2">This differs from a member specification because it includes a repetition specification.  </p>
+<h1 id="rfc.section.6.18">
+<a href="#rfc.section.6.18">6.18.</a> <a href="#starting-points" id="starting-points">Starting Points and Root Rules</a>
+</h1>
+<p id="rfc.section.6.18.p.1">Evaluation of a JSON instance or document against a ruleset begins with the evaluation of a root rule or set of root rules. If no root rule (or rules) is specified locally at runtime, the set of root rules specified in the ruleset are evaluated. The order of evaluation is undefined.  </p>
+<p id="rfc.section.6.18.p.2">The set of root rules specified in a ruleset is composed of all rules without a rule name assignment and all rules annotated with the "@{root}" annotation.  </p>
+<p id="rfc.section.6.18.p.3">The "@{root}" annotation may either appear before a rule name assignment or before a type definition. It is an error if present before referenced rule name inside of a type specification.  </p>
+<div id="rfc.figure.78"></div>
+<div id="root_annotations.jcr"></div>
+<pre>@{root} $request = { "cmd" : string }
+$response = @{root} { "reply" : string }
+@{root} { "status" : string }
+{ "error" : string }   ; An implicit root
+</pre>
+<p class="figure">Figure 78</p>
+<h1 id="rfc.section.7">
+<a href="#rfc.section.7">7.</a> Tips and Tricks</h1>
+<h1 id="rfc.section.7.1">
+<a href="#rfc.section.7.1">7.1.</a> Any Member with Any Value</h1>
+<p id="rfc.section.7.1.p.1">Because member names may be specified with regular expressions, it is possible to construct a member rule that matches any member name.  As an example, the following defines an object with a member with any name that has a value that is a string: </p>
+<div id="rfc.figure.79"></div>
+<div id="any_member.jcr"></div>
+<pre>{ // : string }
+</pre>
+<p class="figure">Figure 79</p>
+<p id="rfc.section.7.1.p.2">The JSON below matches the above rule.  </p>
+<div id="rfc.figure.80"></div>
+<div id="any_member1.json"></div>
+<pre>{ "foo" : "bar" }
+</pre>
+<p class="figure">Figure 80</p>
+<p id="rfc.section.7.1.p.3">Likewise, the JSON below also matches the same rule.  </p>
+<div id="rfc.figure.81"></div>
+<div id="any_member2.json"></div>
+<pre>{ "fuzz" : "bazz" }
+</pre>
+<p class="figure">Figure 81</p>
+<p id="rfc.section.7.1.p.4">Constructing an object with a member of any name with any type would therefore take the form: </p>
+<div id="rfc.figure.82"></div>
+<div id="any_member_any_type.jcr"></div>
+<pre>{ // : any }
+</pre>
+<p class="figure">Figure 82</p>
+<p id="rfc.section.7.1.p.5">The above rule matches not only the two JSON objects above, but the JSON object below.  </p>
+<div id="rfc.figure.83"></div>
+<div id="any_member_any_type2.json"></div>
+<pre>{ "fuzz" : 1234 }
+</pre>
+<p class="figure">Figure 83</p>
+<h1 id="rfc.section.7.2">
+<a href="#rfc.section.7.2">7.2.</a> Lists of Values</h1>
+<p id="rfc.section.7.2.p.1">Group specifications may be used to create enumerated lists of primitive data types, because primitive specifications may contain a group specification, which may have multiple primitive specifications.  Because a primitive specification must resolve to a single data type, the group specification must only contain choice combinations.  </p>
+<p id="rfc.section.7.2.p.2">Consider the following examples: </p>
+<div id="rfc.figure.84"></div>
+<div id="lists_of_values.jcr"></div>
+<pre>; either an IPv4 or IPv6 address
+$address = ( ipv4 | ipv6 )
+
+; allowable fruits
+$fruits = ( "apple" | "banana" | "pear" )
+</pre>
 <p class="figure">Figure 84</p>
-<p id="rfc.section.7.5.p.2">This differs from a member specification because it includes a repetition specification.  </p>
-<h1 id="rfc.section.7.6">
-<a href="#rfc.section.7.6">7.6.</a> Object Mixins</h1>
-<p id="rfc.section.7.6.p.1">Group rules can be used to create object mixins, a pattern for writing data models similar in style to object derivation in some programming languages.  In the example in below, both obj1 and obj2 have a members "foo" and "fob" with obj1 having the additional member "bar" and obj2 having the additional member "baz".  </p>
+<h1 id="rfc.section.7.3">
+<a href="#rfc.section.7.3">7.3.</a> Object Mixins</h1>
+<p id="rfc.section.7.3.p.1">Group rules can be used to create object mixins, a pattern for writing data models similar in style to object derivation in some programming languages.  In the example in below, both obj1 and obj2 have a members "foo" and "fob" with obj1 having the additional member "bar" and obj2 having the additional member "baz".  </p>
 <div id="rfc.figure.85"></div>
 <div id="object_mixin.jcr"></div>
 <pre>$mixin_group = ( "foo" : integer, "fob" : uri )
@@ -1847,10 +1847,10 @@ $obj1 = { $mixin_group, "bar" : string }
 $obj2 = { $mixin_group, "baz" : string }
 </pre>
 <p class="figure">Figure 85</p>
-<h1 id="rfc.section.7.7">
-<a href="#rfc.section.7.7">7.7.</a> Subordinate Dependencies</h1>
-<p id="rfc.section.7.7.p.1">In object and array specifications, there may be situations in which it is necessary to condition the existence of a subordinate component on the existence of a sibling subordinate component. In other words, example_two should only be evaluated if example_one evaluates positively. Or put another way, a member of an object or an item of an array may be present only on the condition that another member or item is present.  </p>
-<p id="rfc.section.7.7.p.2">In the following example, the referrer_uri member can only be present if the location_uri member is present.  </p>
+<h1 id="rfc.section.7.4">
+<a href="#rfc.section.7.4">7.4.</a> Subordinate Dependencies</h1>
+<p id="rfc.section.7.4.p.1">In object and array specifications, there may be situations in which it is necessary to condition the existence of a subordinate component on the existence of a sibling subordinate component. In other words, example_two should only be evaluated if example_one evaluates positively. Or put another way, a member of an object or an item of an array may be present only on the condition that another member or item is present.  </p>
+<p id="rfc.section.7.4.p.2">In the following example, the referrer_uri member can only be present if the location_uri member is present.  </p>
 <div id="rfc.figure.86"></div>
 <div id="subordinate_dependents.jcr"></div>
 <pre>; $referrer_uri can only be present if
@@ -1861,7 +1861,7 @@ $location_uri = "locationURI" : uri
 $referrer_uri = "referrerURI" : uri
 </pre>
 <p class="figure">Figure 86</p>
-<p id="rfc.section.7.7.p.3">For validation, the above optional group is equivalent to: </p>
+<p id="rfc.section.7.4.p.3">For validation, the above optional group is equivalent to: </p>
 <div id="rfc.figure.87"></div>
 <div id="subordinate_dependents_equiv.jcr"></div>
 <pre>{ ( $location_uri, $referrer_uri? ) | () }
