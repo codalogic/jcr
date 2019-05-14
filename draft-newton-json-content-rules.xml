@@ -1740,46 +1740,6 @@
                 <figure anchor="groups_in_objects.jcr">
                     <artwork xml:space="preserve" align="center">&groups_in_objects.jcr;</artwork>
                 </figure>
-                <t>
-                    <list style="none">
-                        <t>
-                            NOTE: A future specification will clarify the choice ('|') operation as inclusive or,
-                            exclusive or ("xor") or otherwise. At present readers should assume the choice
-                            ('|') operator is an inclusive or. We are in the process of defining an algorithm
-                            to "rewrite" choices of rules for use with inclusive or which is more suitable
-                            for the data model of JSON. Such a change will impact the guidance given below.
-                        </t>
-                    </list>
-                </t>
-                
-                <t>
-                    When using groups to use both sequences and choices of member specifications,
-                    consideration must be given to the processing of object specifications where by
-                    unmatched member specifications are ignored (see <xref target="member_specifications.jcr"></xref>).
-                </t>
-                <figure anchor="groups_in_objects_ignored1.jcr">
-                    <preamble>
-                        A casual reading of this rule might lead a reader to believe that the JSON object in
-                        <xref target="groups_in_objects_ignored.json"></xref> would not match, however it does
-                        because the extra member (either "foo" or "baz") is not matched but is ignored.
-                    </preamble>
-                    <artwork xml:space="preserve" align="center">&groups_in_objects_ignored1.jcr;</artwork>
-                </figure>
-                <figure anchor="groups_in_objects_ignored.json">
-                    <artwork xml:space="preserve" align="center">&groups_in_objects_ignored.json;</artwork>
-                </figure>
-                <t>
-                    The rule in <xref target="groups_in_objects_ignored1.jcr"></xref> must be modified
-                    to either match all extra rules, as in <xref target="groups_in_objects_ignored2.jcr"></xref>,
-                    or the logic of the rules must be rewritten to explicitly negate the presence of the
-                    unwanted members, as in <xref target="groups_in_objects_ignored3.jcr"></xref>.
-                </t>
-                <figure anchor="groups_in_objects_ignored2.jcr">
-                    <artwork align="center" xml:space="preserve">&groups_in_objects_ignored2.jcr;</artwork>
-                </figure>
-                <figure anchor="groups_in_objects_ignored3.jcr">
-                    <artwork align="center" xml:space="preserve">&groups_in_objects_ignored3.jcr;</artwork>
-                </figure>
             </section>
             <section title="Group Rules as Macros">
                 <t>
