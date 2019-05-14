@@ -1367,29 +1367,47 @@
             </figure>
             <section title="Object Member Association" anchor="object_member_association">
                 <t>
-                    Because JSON instance members are associated with member specifications in the order
-                    in which they are specified in the JCR object specification, the specification o1 below
-                    will not match against the JSON in <xref target="object_order_eval.json"></xref>, but
-                    the specification o2 below will match it.
+                    Before a JSON instance can be validated, it is necessary to associate JSON object
+                    instance members with JCR member specifications. This is performed as follows:
+                </t>
+                <t>
+                    There are 3 types of member name specification: q-string specs, (non-empty) regex specs, and the (empty regex) wildcard spec. (e.g. "foo", /^foo/ and //.)
+                </t>
+                <t>
+                    All name specifications within an object specification are divided into these three groups (q-string spec, regex spec, and wildcard spec).
+                    (Note that the same name specification may appear multiple times within the object specification, typically in different groups.)
+                </t>
+                <t>
+                    Each instance member name is first tested for a match against the q-string spec name specifications.  If the instance name is matched,
+                    the instance name and its value is associated with every occurrence of that name specification and its type(s).
+                </t>
+                <t>
+                    If an instance name does not match a q-string spec name specifications, then it is tested for a match against the regex spec name
+                    specifications.  If the instance name matches a single regex spec, the instance name and its value is associated with every occurrence
+                    of that name specification and its type(s).  If the instance name matches more than one regex spec, the JSON instance is considered
+                    to be invalid.
+                </t>
+                <t>
+                    If an instance name does not match either a q-string spec or regex spec name specification and a wildcard spec name specification is
+                    present, then the instance name and its value is associated with every occurrence of the wildcard specification and its type(s).
+                </t>
+                <t>
+                    If an instance name does not match either a q-string spec or regex spec name specification and there is no wildcard spec name specification
+                    present, then the instance name and its value is ignored.
+                </t>
+                <t>
+                    The above rules mean that any instance name can only be associated with one name specification. As a result, both of the object specifications
+                    below are equivalent:
                 </t>
                 <figure anchor="object_order_eval.jcr">
                     <artwork align="center" xml:space="preserve">&object_order_eval.jcr;</artwork>
                 </figure>
+                <t>
+                    The following JSON instance is valid against both of the above object specifications:
+                </t>
                 <figure anchor="object_order_eval.json">
                     <artwork align="center" xml:space="preserve">&object_order_eval.json;</artwork>
                 </figure>
-                <t>
-                    This is because the first object specification, o1, specifies that an object can have zero or more members
-                    (that is the meaning of "*", see <xref target="repetition"></xref>) where the member
-                    name is the letter 'p' followed by a number (e.g. "p0", "p1", "p2"), and the second
-                    member specification specifies a member with the exact member name of "p1". Object specification o2
-                    has the exact same member specifications but in the opposite order. 
-                    <xref target="object_order_eval.json"></xref> does not match rule o1 because both of the
-                    member instances are associated with the first member specification, leaving none to be associated with the second member specification.
-                    However, rule o2 does match, because the first member instance does not associate with the first member specification but is associated
-                    with the second member specification,
-                    and the second instance is associated with the first specification, thus allowing both specifications to be satisfied.
-                </t>
             </section>
             <section title="Object Validation">
                 <t>

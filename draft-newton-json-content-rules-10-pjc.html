@@ -1501,24 +1501,27 @@ $iface_mappings = /^eth[0-9]$/ : ipv4
 <h1 id="rfc.section.6.13.1">
 <a href="#rfc.section.6.13.1">6.13.1.</a> <a href="#object_member_association" id="object_member_association">Object Member Association</a>
 </h1>
-<p id="rfc.section.6.13.1.p.1">Because JSON instance members are associated with member specifications in the order in which they are specified in the JCR object specification, the specification o1 below will not match against the JSON in <a href="#object_order_eval.json" class="xref">Figure 52</a>, but the specification o2 below will match it.  </p>
+<p id="rfc.section.6.13.1.p.1">Before a JSON instance can be validated, it is necessary to associate JSON object instance members with JCR member specifications. This is performed as follows: </p>
+<p id="rfc.section.6.13.1.p.2">There are 3 types of member name specification: q-string specs, (non-empty) regex specs, and the (empty regex) wildcard spec. (e.g. "foo", /^foo/ and //.) </p>
+<p id="rfc.section.6.13.1.p.3">All name specifications within an object specification are divided into these three groups (q-string spec, regex spec, and wildcard spec).  (Note that the same name specification may appear multiple times within the object specification, typically in different groups.) </p>
+<p id="rfc.section.6.13.1.p.4">Each instance member name is first tested for a match against the q-string spec name specifications.  If the instance name is matched, the instance name and its value is associated with every occurrence of that name specification and its type(s).  </p>
+<p id="rfc.section.6.13.1.p.5">If an instance name does not match a q-string spec name specifications, then it is tested for a match against the regex spec name specifications.  If the instance name matches a single regex spec, the instance name and its value is associated with every occurrence of that name specification and its type(s).  If the instance name matches more than one regex spec, the JSON instance is considered to be invalid.  </p>
+<p id="rfc.section.6.13.1.p.6">If an instance name does not match either a q-string spec or regex spec name specification and a wildcard spec name specification is present, then the instance name and its value is associated with every occurrence of the wildcard specification and its type(s).  </p>
+<p id="rfc.section.6.13.1.p.7">If an instance name does not match either a q-string spec or regex spec name specification and there is no wildcard spec name specification present, then the instance name and its value is ignored.  </p>
+<p id="rfc.section.6.13.1.p.8">The above rules mean that any instance name can only be associated with one name specification. As a result, both of the object specifications below are equivalent: </p>
 <div id="rfc.figure.51"></div>
 <div id="object_order_eval.jcr"></div>
-<pre>; zero or more members that match "p0", "p1", etc
-; and a member that matches "p1"
-$o1 = { /^p\d+$/ : integer *, "p1" : integer }
+<pre>$o1 = { /^p\d+$/ : integer *, "p1" : string }
 
-; a member that matches "p1" and
-; zero or more members that match "p0", "p1", etc
-$o2 = { "p1" : integer, /^p\d+$/ : integer * }
+$o2 = { "p1" : string, /^p\d+$/ : integer * }
 </pre>
 <p class="figure">Figure 51</p>
+<p id="rfc.section.6.13.1.p.9">The following JSON instance is valid against both of the above object specifications: </p>
 <div id="rfc.figure.52"></div>
 <div id="object_order_eval.json"></div>
-<pre>{ "p0" : 1, "p1" : 2 }
+<pre>{ "p0" : 1, "p1" : "a string" }
 </pre>
 <p class="figure">Figure 52</p>
-<p id="rfc.section.6.13.1.p.2">This is because the first object specification, o1, specifies that an object can have zero or more members (that is the meaning of "*", see <a href="#repetition" class="xref">Section 6.8</a>) where the member name is the letter 'p' followed by a number (e.g. "p0", "p1", "p2"), and the second member specification specifies a member with the exact member name of "p1". Object specification o2 has the exact same member specifications but in the opposite order.  <a href="#object_order_eval.json" class="xref">Figure 52</a> does not match rule o1 because both of the member instances are associated with the first member specification, leaving none to be associated with the second member specification.  However, rule o2 does match, because the first member instance does not associate with the first member specification but is associated with the second member specification, and the second instance is associated with the first specification, thus allowing both specifications to be satisfied.  </p>
 <h1 id="rfc.section.6.13.2">
 <a href="#rfc.section.6.13.2">6.13.2.</a> Object Validation</h1>
 <p id="rfc.section.6.13.2.p.1">It is important to be able to determine whether a JSON instance is valid against a JCR specification irrespective of whether it is a human or machine performing the assessment.  </p>

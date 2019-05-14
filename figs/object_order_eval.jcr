@@ -1,7 +1,3 @@
-; zero or more members that match "p0", "p1", etc
-; and a member that matches "p1"
-$o1 = { /^p\d+$/ : integer *, "p1" : integer }
+$o1 = { /^p\d+$/ : integer *, "p1" : string }
 
-; a member that matches "p1" and
-; zero or more members that match "p0", "p1", etc
-$o2 = { "p1" : integer, /^p\d+$/ : integer * }
+$o2 = { "p1" : string, /^p\d+$/ : integer * }
