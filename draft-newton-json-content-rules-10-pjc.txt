@@ -1889,15 +1889,15 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 6.13.2.  Object Validation
 
+   It is important to be able to determine whether a JSON instance is
+   valid against a JCR specification irrespective of whether it is a
+   human or machine performing the assessment.
+
    Validation of object instances against object specifications takes
    place as follows:
 
    o  Each optional grouping is treated as a choice between itself and
       the empty group.
-
-   o  Each branch in a choice is augmented so that it contains the union
-      of all member name specifications specified in the whole choice
-      (including member name specifications included in nested groups).
 
 
 
@@ -1906,21 +1906,16 @@ Newton & Cordell        Expires November 15, 2019              [Page 34]
 Internet-Draft             JSON Content Rules                   May 2019
 
 
-      If a member name specification is not explicitly specified in a
-      choice branch, then it is implicitly treated as being: @{not}
-      <member name specification> : any +.
+   o  Each branch in a choice is augmented so that it contains the union
+      of all member name specifications specified in the whole choice
+      (including member name specifications included in nested groups)
+      that have a maximum repetition greater than 0.  If a member name
+      specification is not explicitly specified in a choice branch, then
+      it is implicitly treated as being: "<member name specification> :
+      any *0".
 
    o  Instance member names are associated with member name
-      specifications in the order the member name specifications are
-      specified in the object specification.  (This process is called
-      "specification association".)
-
-   o  When an instance member name matches a member name specification,
-      the instance member is associated with each member specification
-      that has the same member name specification.
-
-   o  Any instance member names not matched against a member name
-      specification are ignored.
+      specifications as described in Section 6.13.1.
 
    o  Each sequence or choice grouping is validated independently,
       starting with the most nested groups, and working out to the
@@ -1954,6 +1949,11 @@ Internet-Draft             JSON Content Rules                   May 2019
       to be Inclusive OR ("IOR"), Exclusive OR ("XOR"), or "Augmented
       OR" ("AOR") (as described above).  Previously the choice ('|')
       operator was an Inclusive OR.  However, for objects that is not
+      ideal, nor is XOR.  We are in the process of defining an algorithm
+      to "rewrite" choices of rules for use with inclusive-OR which is
+      more suitable for the data model of JSON.  The above is a first
+      attempt, but subject to change.  Future versions may revert to
+      either pure inclusive OR or exclusive OR.
 
 
 
@@ -1961,12 +1961,6 @@ Newton & Cordell        Expires November 15, 2019              [Page 35]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
-
-      ideal, nor is XOR.  We are in the process of defining an algorithm
-      to "rewrite" choices of rules for use with inclusive-OR which is
-      more suitable for the data model of JSON.  The above is a first
-      attempt, but subject to change.  Future versions may revert to
-      either pure inclusive OR or exclusive OR.
 
 6.13.3.  Closing Objects to Extension
 
@@ -2009,6 +2003,12 @@ Internet-Draft             JSON Content Rules                   May 2019
    Object rule name references can be used to create object mixins, a
    pattern for writing data models similar in style to object derivation
    in some programming languages.  In the example in below, both obj1
+   and obj2 have members "foo" and "fob" with obj1 having the additional
+   member "bar" and obj2 having the additional member "baz".
+
+
+
+
 
 
 
@@ -2017,9 +2017,6 @@ Newton & Cordell        Expires November 15, 2019              [Page 36]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
-
-   and obj2 have members "foo" and "fob" with obj1 having the additional
-   member "bar" and obj2 having the additional member "baz".
 
              $mixin_object = { "foo" : integer, "fob" : uri }
 
@@ -2067,14 +2064,15 @@ Internet-Draft             JSON Content Rules                   May 2019
    o  If any items of the array are not matched, then the array instance
       does not match the array specification.
 
+   Take for example the following ruleset:
+
+
 
 
 Newton & Cordell        Expires November 15, 2019              [Page 37]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
-
-   Take for example the following ruleset:
 
            ; the first element of the array is to be a string
            ; the second element of the array is to be an integer
@@ -2122,6 +2120,8 @@ Internet-Draft             JSON Content Rules                   May 2019
    with matching a regular expression or an ABNF grammar.  A regular
    expression specifies a pattern of tokens that happen to be textual
    characters, whereas an ordered array specification specifies a
+   pattern of tokens that happen to be JSON values.  For example, the
+   following JCR specification:
 
 
 
@@ -2129,9 +2129,6 @@ Newton & Cordell        Expires November 15, 2019              [Page 38]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
-
-   pattern of tokens that happen to be JSON values.  For example, the
-   following JCR specification:
 
          [ $first_name, $middle_name ?, $last_name, $birth_year ]
          $first_name = string
@@ -2178,6 +2175,9 @@ Internet-Draft             JSON Content Rules                   May 2019
    In the ruleset below, a1 and a2 have the same subordinate components
    given in the same order. a2 is annotated with the @{unordered}
    annotation.
+
+
+
 
 
 

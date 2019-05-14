@@ -1365,7 +1365,7 @@
             <figure anchor="object_example2.json">
                 <artwork align="center" xml:space="preserve">&object_example2.json;</artwork>
             </figure>
-            <section title="Object Member Association">
+            <section title="Object Member Association" anchor="object_member_association">
                 <t>
                     Because JSON instance members are associated with member specifications in the order
                     in which they are specified in the JCR object specification, the specification o1 below
@@ -1393,7 +1393,12 @@
             </section>
             <section title="Object Validation">
                 <t>
+                    It is important to be able to determine whether a JSON instance is valid against a JCR specification irrespective of
+                    whether it is a human or machine performing the assessment.
+                </t>
+                <t>
                     Validation of object instances against object specifications takes place as follows:
+                    
                     <list style="symbols">
                         <t>
                             Each optional grouping is treated as a choice between itself and the empty group.
@@ -1401,22 +1406,14 @@
                         <t>
                             Each branch in a choice is augmented so that it contains the union of all
                             member name specifications specified in the whole choice (including member name
-                            specifications included in nested groups).  If a member name specification is
+                            specifications included in nested groups) that have a maximum repetition greater than 0.
+                            If a member name specification is
                             not explicitly specified in a choice branch, then it is implicitly treated as being:
-                            @{not} &lt;member name specification> : any +.
+                            "&lt;member name specification> : any *0".
                         </t>
                         <t>
-                            Instance member names are associated with member name specifications in
-                            the order the member name specifications are specified in the object specification.
-                            (This process is called "specification association".)
-                        </t>
-                        <t>
-                            When an instance member name matches a member name specification, the
-                            instance member is associated with each member specification that
-                            has the same member name specification.
-                        </t>
-                        <t>
-                            Any instance member names not matched against a member name specification are ignored.
+                            Instance member names are associated with member name specifications as described in
+                            <xref target="object_member_association"></xref>.
                         </t>
                         <t>
                             Each sequence or choice grouping is validated independently, starting with the most nested groups,
