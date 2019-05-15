@@ -968,6 +968,9 @@
                     The @{min-exclusive} and @{max-exclusive} annotations are described in <xref target="numbers"></xref>.
                 </t>
                 <t>
+                    The @{format} annotation is described in <xref target="strings_external"></xref>.
+                </t>
+                <t>
                     Other annotations may be defined for other purposes in future.
                 </t>
                 <section title="@{not} - Negating Evaluation" anchor="not_annotation">
@@ -1281,7 +1284,7 @@
                         standard(s) for the semantic type.
                     </t>
                 </section>
-                <section title="Strings with External Specifications">
+                <section title="Strings with External Specifications" anchor="strings_external">
                     <t>
                         New types will likely be added as a form of JSON string. Some such formats may
                         have structure that can't easily be represented using regular expressions and other such techniques.

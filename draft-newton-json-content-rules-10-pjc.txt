@@ -1178,6 +1178,8 @@ Newton & Cordell        Expires November 16, 2019              [Page 21]
 Internet-Draft             JSON Content Rules                   May 2019
 
 
+   The @{format} annotation is described in Section 6.11.6.
+
    Other annotations may be defined for other purposes in future.
 
 6.7.1.  @{not} - Negating Evaluation
@@ -1215,6 +1217,23 @@ Internet-Draft             JSON Content Rules                   May 2019
    which specifies one or more, and the asterisk character ('*') which
    specifies zero or more.
 
+
+
+
+
+
+
+
+
+
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 22]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
                   ; age is optional
                   { "name" : string, "age" : integer ? }
 
@@ -1225,14 +1244,6 @@ Internet-Draft             JSON Content Rules                   May 2019
                   [ integer + ]
 
                                  Figure 27
-
-
-
-
-Newton & Cordell        Expires November 16, 2019              [Page 22]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
 
    A minimum and maximum can be expressed by immediately following the
    '*' symbol by the minimum followed by two period characters ('..')
@@ -1272,23 +1283,19 @@ Internet-Draft             JSON Content Rules                   May 2019
       than or equal to zero, for total repetitions less than or equal to
       the maximum repetition).
 
-   o  When the repetition step follows a one or more Kleene operator
-      ('+'), the minimum repetition value is set equal to the repetition
-      step value and the total number of repetitions minus the step
-      value must be a multiple of the repetition step value (e.g. the
-      total repetitions is the step plus n times the step - where n is
-      an integer greater than or equal to zero).
-
-
-
-
-
 
 
 Newton & Cordell        Expires November 16, 2019              [Page 23]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
+
+   o  When the repetition step follows a one or more Kleene operator
+      ('+'), the minimum repetition value is set equal to the repetition
+      step value and the total number of repetitions minus the step
+      value must be a multiple of the repetition step value (e.g. the
+      total repetitions is the step plus n times the step - where n is
+      an integer greater than or equal to zero).
 
    The following is an example for repetition steps in repetition
    expressions:
@@ -1331,13 +1338,6 @@ Internet-Draft             JSON Content Rules                   May 2019
    comma character (',') followed by another subordinate component.  A
    choice is a subordinate component followed by a pipe character ('|')
    followed by another subordinate component.
-
-
-
-
-
-
-
 
 
 

@@ -1134,7 +1134,8 @@ $all_encodings = ( $rfcXXXX.encodings | $my_encodings )
 <p id="rfc.section.6.7.p.3">The @{root} annotation is described in <a href="#starting-points" class="xref">Section 6.18</a>.  </p>
 <p id="rfc.section.6.7.p.4">The @{unordered} annotation is described in <a href="#unordered_array_specifications" class="xref">Section 6.14.2</a>.  </p>
 <p id="rfc.section.6.7.p.5">The @{min-exclusive} and @{max-exclusive} annotations are described in <a href="#numbers" class="xref">Section 6.11.3</a>.  </p>
-<p id="rfc.section.6.7.p.6">Other annotations may be defined for other purposes in future.  </p>
+<p id="rfc.section.6.7.p.6">The @{format} annotation is described in <a href="#strings_external" class="xref">Section 6.11.6</a>.  </p>
+<p id="rfc.section.6.7.p.7">Other annotations may be defined for other purposes in future.  </p>
 <h1 id="rfc.section.6.7.1">
 <a href="#rfc.section.6.7.1">6.7.1.</a> <a href="#not_annotation" id="not_annotation">@{not} - Negating Evaluation</a>
 </h1>
@@ -1447,7 +1448,8 @@ base64url
 <p class="figure">Figure 45</p>
 <p id="rfc.section.6.11.5.p.7">A value specified to be a semantic string MUST be represented in a JSON instance as a JSON string value and MUST satisfy all the constraints specified by the relevant standard(s) for the semantic type.  </p>
 <h1 id="rfc.section.6.11.6">
-<a href="#rfc.section.6.11.6">6.11.6.</a> Strings with External Specifications</h1>
+<a href="#rfc.section.6.11.6">6.11.6.</a> <a href="#strings_external" id="strings_external">Strings with External Specifications</a>
+</h1>
 <p id="rfc.section.6.11.6.p.1">New types will likely be added as a form of JSON string. Some such formats may have structure that can't easily be represented using regular expressions and other such techniques.  </p>
 <p id="rfc.section.6.11.6.p.2">To address this a @{format} annotation is used. This annotation contains a uri identifying the format of the string being defined.  </p>
 <p id="rfc.section.6.11.6.p.3">For example, a fictional JCR ruleset specifying a DNA fingerprint type might be: </p>
