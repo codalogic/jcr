@@ -31,7 +31,7 @@
    'http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.cordell-jcr-co-constraints.xml'>
    
   <!ENTITY ABNF PUBLIC ''
-    'jcr-abnf.txt'>
+    'jcr-abnf-2019-05-15.txt'>
   <!ENTITY first_example.json PUBLIC ''
     'figs/first_example.json'>
   <!ENTITY first_example.jcr PUBLIC ''
@@ -84,8 +84,8 @@
     'figs/primitives_float_range.jcr'>
   <!ENTITY primitives_bit_integers.jcr PUBLIC ''
     'figs/primitives_bit_integers.jcr'>
-  <!ENTITY illegal_integers.jcr PUBLIC ''
-    'figs/illegal_integers.jcr'>
+  <!ENTITY integer_formats.jcr PUBLIC ''
+    'figs/integer_formats.jcr'>
   <!ENTITY annotations-range-exclusive.jcr PUBLIC ''
     'figs/annotations-range-exclusive.jcr'>
   <!ENTITY primitives_strings.jcr PUBLIC ''
@@ -1184,12 +1184,14 @@
                         specified range.
                     </t>
                     <t>
-                        A JSON instance value specified to be an integer MUST NOT include a fractional part
+                        It is preferred that a JSON instance value specified to be an integer does NOT include a fractional part
                         (as specified by the frac rule in the ABNF) or an exponential part (as specified by
-                        exp in the ABNF).  The following are invalid representations of integer instance values:
+                        exp in the ABNF).  This preferred behaviour can not be mandated because JCR defined messages are intended
+                        to be used with generic JSON generators.
+                        The following shows preferred, non-preferred and invalid representations of integer instance values:
                     </t>
-                    <figure anchor="illegal_integers.jcr">
-                        <artwork xml:space="preserve" align="center">&illegal_integers.jcr;</artwork>
+                    <figure anchor="integer_formats.jcr">
+                        <artwork xml:space="preserve" align="center">&integer_formats.jcr;</artwork>
                     </figure>
                 </section>
                 <section title="Plain Strings">

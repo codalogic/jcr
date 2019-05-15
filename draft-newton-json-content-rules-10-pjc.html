@@ -457,7 +457,7 @@
 
   <meta name="dct.creator" content="Newton, A. and P. Cordell" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-newton-json-content-rules-10" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-14" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-15" />
   <meta name="dct.abstract" content="This document describes a language for specifying and testing the expected content of JSON structures found in JSON-using protocols, software, and processes.  " />
   <meta name="description" content="This document describes a language for specifying and testing the expected content of JSON structures found in JSON-using protocols, software, and processes.  " />
 
@@ -481,12 +481,12 @@
 <td class="right">P. Cordell</td>
 </tr>
 <tr>
-<td class="left">Expires: November 15, 2019</td>
+<td class="left">Expires: November 16, 2019</td>
 <td class="right">Codalogic</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">May 14, 2019</td>
+<td class="right">May 15, 2019</td>
 </tr>
 
     	
@@ -502,7 +502,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 15, 2019.</p>
+<p>This Internet-Draft will expire on November 16, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -1356,12 +1356,13 @@ uint64
 <p id="rfc.section.6.11.3.p.10">When specifying numbers, ruleset authors are recommended to bear in mind the commentary on numbers in <a href="#RFC7493" class="xref">[RFC7493]</a>.  </p>
 <p id="rfc.section.6.11.3.p.11">A value specified to be a number MUST be represented in an instance as a JSON number.  Strings containing character sequences representing numbers MUST NOT be treated as numbers.  </p>
 <p id="rfc.section.6.11.3.p.12">If a range is specified for a number, the JSON instance value MUST satisfy the specified range.  </p>
-<p id="rfc.section.6.11.3.p.13">A JSON instance value specified to be an integer MUST NOT include a fractional part (as specified by the frac rule in the ABNF) or an exponential part (as specified by exp in the ABNF).  The following are invalid representations of integer instance values: </p>
+<p id="rfc.section.6.11.3.p.13">It is preferred that a JSON instance value specified to be an integer does NOT include a fractional part (as specified by the frac rule in the ABNF) or an exponential part (as specified by exp in the ABNF).  This preferred behaviour can not be mandated because JCR defined messages are intended to be used with generic JSON generators.  The following shows preferred, non-preferred and invalid representations of integer instance values: </p>
 <div id="rfc.figure.41"></div>
-<div id="illegal_integers.jcr"></div>
-<pre>50.0    ; not an integer
-5e1     ; not an integer
-"50"    ; not an integer
+<div id="integer_formats.jcr"></div>
+<pre>50      ; Preferred integer format
+50.0    ; Non-preferred integer format
+5e1     ; Non-preferred integer format
+"50"    ; Not an integer
 </pre>
 <p class="figure">Figure 41</p>
 <h1 id="rfc.section.6.11.4">
@@ -1934,10 +1935,10 @@ eol              = CR / LF
 multi-line-tbd-directive-d = directive-name
                    [ 1*sp-cmt multi-line-directive-parameters ]
 multi-line-directive-parameters = multi-line-parameters
-multi-line-parameters = *(comment / q-string /
+multi-line-parameters = *(comment / q-string / regex /
                    not-multi-line-special)
-not-multi-line-special = spaces / %x21 / %x23-3A /
-                   %x3C-7C / %x7E-10FFFF ; not ", ; or }
+not-multi-line-special = spaces / %x21 / %x23-2E / %x30-3A /
+                   %x3C-7C / %x7E-10FFFF ; not ", /, ; or }
 
 root-rule        = value-rule / group-rule
 
@@ -1966,10 +1967,19 @@ type-choice-items = *sp-cmt ( type-choice / type-rule ) *sp-cmt
 annotations      = *( "@{" *sp-cmt annotation-set *sp-cmt "}"
                    *sp-cmt )
 annotation-set   = not-annotation / unordered-annotation /
-                   root-annotation / tbd-annotation
+                   root-annotation /
+                   exclude-min-annotation / exclude-max-annotation /
+                   default-annotation / format-annotation /
+                   tbd-annotation
 not-annotation   = not-kw
 unordered-annotation = unordered-kw
 root-annotation  = root-kw
+exclude-min-annotation = exclude-min-kw
+exclude-max-annotation = exclude-max-kw
+default-annotation = default-kw spaces primitive-value
+primitive-value  = false-value / null-type / true-value /
+                   float-value / integer-value / string-value
+format-annotation = format-kw spaces id
 tbd-annotation   = annotation-name [ spaces annotation-parameters ]
 annotation-name  = name
 annotation-parameters = multi-line-parameters
@@ -2120,10 +2130,14 @@ base64url-kw     = %x62.61.73.65.36.34.75.72.6C    ; "base64url"
 boolean-kw       = %x62.6F.6F.6C.65.61.6E          ; "boolean"
 date-kw          = %x64.61.74.65                   ; "date"
 datetime-kw      = %x64.61.74.65.74.69.6D.65       ; "datetime"
+default-kw       = %x64.65.66.61.75.6C.74          ; "default"
 double-kw        = %x64.6F.75.62.6C.65             ; "double"
 email-kw         = %x65.6D.61.69.6C                ; "email"
+exclude-max-kw   = %x65.78.63.6C.75.64.65.2D.6D.61.78 ; "exclude-max"
+exclude-min-kw   = %x65.78.63.6C.75.64.65.2D.6D.69.6E ; "exclude-min"
 false-kw         = %x66.61.6C.73.65                ; "false"
 float-kw         = %x66.6C.6F.61.74                ; "float"
+format-kw        = %x66.6F.72.6D.61.74             ; "format"
 fqdn-kw          = %x66.71.64.6E                   ; "fqdn"
 hex-kw           = %x68.65.78                      ; "hex"
 idn-kw           = %x69.64.6E                      ; "idn"

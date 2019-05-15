@@ -5,8 +5,8 @@
 Network Working Group                                          A. Newton
 Internet-Draft                                                      ARIN
 Intended status: Standards Track                              P. Cordell
-Expires: November 15, 2019                                     Codalogic
-                                                            May 14, 2019
+Expires: November 16, 2019                                     Codalogic
+                                                            May 15, 2019
 
 
               A Language for Rules Describing JSON Content
@@ -33,7 +33,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 15, 2019.
+   This Internet-Draft will expire on November 16, 2019.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 1]
+Newton & Cordell        Expires November 16, 2019               [Page 1]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 2]
+Newton & Cordell        Expires November 16, 2019               [Page 2]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -129,20 +129,20 @@ Internet-Draft             JSON Content Rules                   May 2019
      9.3.  JCR Java  . . . . . . . . . . . . . . . . . . . . . . . .  47
    10. ABNF Syntax . . . . . . . . . . . . . . . . . . . . . . . . .  47
    11. Security Considerations . . . . . . . . . . . . . . . . . . .  53
-   12. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  53
-   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  53
-     13.1.  Normative References . . . . . . . . . . . . . . . . . .  53
+   12. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  54
+   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  54
+     13.1.  Normative References . . . . . . . . . . . . . . . . . .  54
      13.2.  Infomative References  . . . . . . . . . . . . . . . . .  55
      13.3.  Resource References  . . . . . . . . . . . . . . . . . .  55
-   Appendix A.  Experimental Features  . . . . . . . . . . . . . . .  55
-     A.1.  Augmented OR of Objects . . . . . . . . . . . . . . . . .  55
+   Appendix A.  Experimental Features  . . . . . . . . . . . . . . .  56
+     A.1.  Augmented OR of Objects . . . . . . . . . . . . . . . . .  56
      A.2.  New Data Types  . . . . . . . . . . . . . . . . . . . . .  56
-     A.3.  New Annotations . . . . . . . . . . . . . . . . . . . . .  56
+     A.3.  New Annotations . . . . . . . . . . . . . . . . . . . . .  57
    Appendix B.  Co-Constraints . . . . . . . . . . . . . . . . . . .  57
    Appendix C.  Testing Against JSON Content Rules . . . . . . . . .  57
-     C.1.  Locally Overriding Rules  . . . . . . . . . . . . . . . .  57
-     C.2.  Rule Callbacks  . . . . . . . . . . . . . . . . . . . . .  58
-   Appendix D.  Changes from -09 and -10 . . . . . . . . . . . . . .  58
+     C.1.  Locally Overriding Rules  . . . . . . . . . . . . . . . .  58
+     C.2.  Rule Callbacks  . . . . . . . . . . . . . . . . . . . . .  59
+   Appendix D.  Changes from -09 and -10 . . . . . . . . . . . . . .  59
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  59
 
 1.  Introduction
@@ -165,7 +165,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 3]
+Newton & Cordell        Expires November 16, 2019               [Page 3]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -221,7 +221,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 4]
+Newton & Cordell        Expires November 16, 2019               [Page 4]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -277,7 +277,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 5]
+Newton & Cordell        Expires November 16, 2019               [Page 5]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -333,7 +333,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 6]
+Newton & Cordell        Expires November 16, 2019               [Page 6]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -389,7 +389,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 7]
+Newton & Cordell        Expires November 16, 2019               [Page 7]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -445,7 +445,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 8]
+Newton & Cordell        Expires November 16, 2019               [Page 8]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -501,7 +501,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019               [Page 9]
+Newton & Cordell        Expires November 16, 2019               [Page 9]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -557,7 +557,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 10]
+Newton & Cordell        Expires November 16, 2019              [Page 10]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -613,7 +613,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 11]
+Newton & Cordell        Expires November 16, 2019              [Page 11]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -669,7 +669,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 12]
+Newton & Cordell        Expires November 16, 2019              [Page 12]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -725,7 +725,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 13]
+Newton & Cordell        Expires November 16, 2019              [Page 13]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -781,7 +781,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 14]
+Newton & Cordell        Expires November 16, 2019              [Page 14]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -837,7 +837,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 15]
+Newton & Cordell        Expires November 16, 2019              [Page 15]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -893,7 +893,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 16]
+Newton & Cordell        Expires November 16, 2019              [Page 16]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -949,7 +949,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 17]
+Newton & Cordell        Expires November 16, 2019              [Page 17]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1005,7 +1005,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 18]
+Newton & Cordell        Expires November 16, 2019              [Page 18]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1061,7 +1061,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 19]
+Newton & Cordell        Expires November 16, 2019              [Page 19]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1117,7 +1117,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 20]
+Newton & Cordell        Expires November 16, 2019              [Page 20]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1173,7 +1173,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 21]
+Newton & Cordell        Expires November 16, 2019              [Page 21]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1229,7 +1229,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 22]
+Newton & Cordell        Expires November 16, 2019              [Page 22]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1285,7 +1285,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 23]
+Newton & Cordell        Expires November 16, 2019              [Page 23]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1341,7 +1341,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 24]
+Newton & Cordell        Expires November 16, 2019              [Page 24]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1397,7 +1397,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 25]
+Newton & Cordell        Expires November 16, 2019              [Page 25]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1453,7 +1453,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 26]
+Newton & Cordell        Expires November 16, 2019              [Page 26]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1509,7 +1509,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 27]
+Newton & Cordell        Expires November 16, 2019              [Page 27]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1559,23 +1559,26 @@ Internet-Draft             JSON Content Rules                   May 2019
    If a range is specified for a number, the JSON instance value MUST
    satisfy the specified range.
 
-   A JSON instance value specified to be an integer MUST NOT include a
-   fractional part (as specified by the frac rule in the ABNF) or an
+   It is preferred that a JSON instance value specified to be an integer
+   does NOT include a fractional part (as specified by the frac rule in
+   the ABNF) or an exponential part (as specified by exp in the ABNF).
 
 
 
-
-Newton & Cordell        Expires November 15, 2019              [Page 28]
+Newton & Cordell        Expires November 16, 2019              [Page 28]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
 
-   exponential part (as specified by exp in the ABNF).  The following
-   are invalid representations of integer instance values:
+   This preferred behaviour can not be mandated because JCR defined
+   messages are intended to be used with generic JSON generators.  The
+   following shows preferred, non-preferred and invalid representations
+   of integer instance values:
 
-                         50.0    ; not an integer
-                         5e1     ; not an integer
-                         "50"    ; not an integer
+                  50      ; Preferred integer format
+                  50.0    ; Non-preferred integer format
+                  5e1     ; Non-preferred integer format
+                  "50"    ; Not an integer
 
                                  Figure 41
 
@@ -1615,17 +1618,17 @@ Internet-Draft             JSON Content Rules                   May 2019
    converted to UTF-8.  The two strings are then compared as opaque
    sequences of bytes and MUST be identical for the JSON instance value
    to be considered valid.  They are thus treated as case-sensitive.  No
-   whitespace processing or Unicode normalization is performed.  For the
-   literal string specification "JCR Rules", both JSON instance values
-   of "JCR Rules" and "\u004ACR Rules" are valid, while the JSON
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 29]
+Newton & Cordell        Expires November 16, 2019              [Page 29]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
 
+   whitespace processing or Unicode normalization is performed.  For the
+   literal string specification "JCR Rules", both JSON instance values
+   of "JCR Rules" and "\u004ACR Rules" are valid, while the JSON
    instance values "jcr rules", " JCR Rules ", or "JCR   Rules" are
    invalid.
 
@@ -1674,10 +1677,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 30]
+Newton & Cordell        Expires November 16, 2019              [Page 30]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1733,7 +1733,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 31]
+Newton & Cordell        Expires November 16, 2019              [Page 31]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1789,7 +1789,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 32]
+Newton & Cordell        Expires November 16, 2019              [Page 32]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1845,7 +1845,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 33]
+Newton & Cordell        Expires November 16, 2019              [Page 33]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1901,7 +1901,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 34]
+Newton & Cordell        Expires November 16, 2019              [Page 34]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -1957,7 +1957,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 35]
+Newton & Cordell        Expires November 16, 2019              [Page 35]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2013,7 +2013,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 36]
+Newton & Cordell        Expires November 16, 2019              [Page 36]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2069,7 +2069,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 37]
+Newton & Cordell        Expires November 16, 2019              [Page 37]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2125,7 +2125,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 38]
+Newton & Cordell        Expires November 16, 2019              [Page 38]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2181,7 +2181,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 39]
+Newton & Cordell        Expires November 16, 2019              [Page 39]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2237,7 +2237,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 40]
+Newton & Cordell        Expires November 16, 2019              [Page 40]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2293,7 +2293,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 41]
+Newton & Cordell        Expires November 16, 2019              [Page 41]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2349,7 +2349,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 42]
+Newton & Cordell        Expires November 16, 2019              [Page 42]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2405,7 +2405,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 43]
+Newton & Cordell        Expires November 16, 2019              [Page 43]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2461,7 +2461,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 44]
+Newton & Cordell        Expires November 16, 2019              [Page 44]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2517,7 +2517,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 45]
+Newton & Cordell        Expires November 16, 2019              [Page 45]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2573,7 +2573,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 46]
+Newton & Cordell        Expires November 16, 2019              [Page 46]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2629,7 +2629,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 47]
+Newton & Cordell        Expires November 16, 2019              [Page 47]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2672,10 +2672,10 @@ Internet-Draft             JSON Content Rules                   May 2019
  multi-line-tbd-directive-d = directive-name
                     [ 1*sp-cmt multi-line-directive-parameters ]
  multi-line-directive-parameters = multi-line-parameters
- multi-line-parameters = *(comment / q-string /
+ multi-line-parameters = *(comment / q-string / regex /
                     not-multi-line-special)
- not-multi-line-special = spaces / %x21 / %x23-3A /
-                    %x3C-7C / %x7E-10FFFF ; not ", ; or }
+ not-multi-line-special = spaces / %x21 / %x23-2E / %x30-3A /
+                    %x3C-7C / %x7E-10FFFF ; not ", /, ; or }
 
  root-rule        = value-rule / group-rule
 
@@ -2685,7 +2685,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 15, 2019              [Page 48]
+Newton & Cordell        Expires November 16, 2019              [Page 48]
 
 Internet-Draft             JSON Content Rules                   May 2019
 
@@ -2712,10 +2712,19 @@ Internet-Draft             JSON Content Rules                   May 2019
  annotations      = *( "@{" *sp-cmt annotation-set *sp-cmt "}"
                     *sp-cmt )
  annotation-set   = not-annotation / unordered-annotation /
-                    root-annotation / tbd-annotation
+                    root-annotation /
+                    exclude-min-annotation / exclude-max-annotation /
+                    default-annotation / format-annotation /
+                    tbd-annotation
  not-annotation   = not-kw
  unordered-annotation = unordered-kw
  root-annotation  = root-kw
+ exclude-min-annotation = exclude-min-kw
+ exclude-max-annotation = exclude-max-kw
+ default-annotation = default-kw spaces primitive-value
+ primitive-value  = false-value / null-type / true-value /
+                    float-value / integer-value / string-value
+ format-annotation = format-kw spaces id
  tbd-annotation   = annotation-name [ spaces annotation-parameters ]
  annotation-name  = name
  annotation-parameters = multi-line-parameters
@@ -2729,6 +2738,14 @@ Internet-Draft             JSON Content Rules                   May 2019
                     sized-int-type / sized-uint-type / ipv4-type /
                     ipv6-type / ipaddr-type / fqdn-type / idn-type /
                     uri-type / phone-type / email-type /
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 49]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
                     datetime-type / date-type / time-type /
                     hex-type / base32hex-type / base32-type /
                     base64url-type / base64-type / any
@@ -2738,14 +2755,6 @@ Internet-Draft             JSON Content Rules                   May 2019
  false-value      = false-kw
  string-type      = string-kw
  string-value     = q-string
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 49]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
  string-range     = regex
  double-type      = double-kw
  float-type       = float-kw
@@ -2785,6 +2794,14 @@ Internet-Draft             JSON Content Rules                   May 2019
                     1*( choice-combiner object-item ) ]
  object-item      = object-item-types *sp-cmt [ repetition *sp-cmt ]
  object-item-types = object-group / member-rule / target-rule-name
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 50]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
  object-group     = annotations "(" *sp-cmt [ object-items *sp-cmt ] ")"
 
  array-rule       = annotations "[" *sp-cmt [ array-items *sp-cmt ] "]"
@@ -2793,14 +2810,6 @@ Internet-Draft             JSON Content Rules                   May 2019
  array-item       = array-item-types *sp-cmt [ repetition *sp-cmt ]
  array-item-types = array-group / type-rule
  array-group      = annotations "(" *sp-cmt [ array-items *sp-cmt ] ")"
-
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 50]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
 
  group-rule       = annotations "(" *sp-cmt [ group-items *sp-cmt ] ")"
  group-items      = group-item [ 1*( sequence-combiner group-item ) /
@@ -2841,6 +2850,14 @@ Internet-Draft             JSON Content Rules                   May 2019
  int              = zero / ( digit1-9 *DIGIT )
  digit1-9         = %x31-39                       ; 1-9
  frac             = decimal-point 1*DIGIT
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 51]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
  decimal-point    = %x2E                          ; .
  exp              = e [ minus / plus ] 1*DIGIT
  e                = %x65 / %x45                   ; e E
@@ -2850,14 +2867,6 @@ Internet-Draft             JSON Content Rules                   May 2019
                     ; From RFC 7159
  char             = unescaped /
                     escape (
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 51]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
                     %x22 /          ; "    quotation mark  U+0022
                     %x5C /          ; \    reverse solidus U+005C
                     %x2F /          ; /    solidus         U+002F
@@ -2890,10 +2899,22 @@ Internet-Draft             JSON Content Rules                   May 2019
  boolean-kw       = %x62.6F.6F.6C.65.61.6E          ; "boolean"
  date-kw          = %x64.61.74.65                   ; "date"
  datetime-kw      = %x64.61.74.65.74.69.6D.65       ; "datetime"
+ default-kw       = %x64.65.66.61.75.6C.74          ; "default"
  double-kw        = %x64.6F.75.62.6C.65             ; "double"
  email-kw         = %x65.6D.61.69.6C                ; "email"
+ exclude-max-kw   = %x65.78.63.6C.75.64.65.2D.6D.61.78 ; "exclude-max"
+ exclude-min-kw   = %x65.78.63.6C.75.64.65.2D.6D.69.6E ; "exclude-min"
  false-kw         = %x66.61.6C.73.65                ; "false"
  float-kw         = %x66.6C.6F.61.74                ; "float"
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 52]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
+ format-kw        = %x66.6F.72.6D.61.74             ; "format"
  fqdn-kw          = %x66.71.64.6E                   ; "fqdn"
  hex-kw           = %x68.65.78                      ; "hex"
  idn-kw           = %x69.64.6E                      ; "idn"
@@ -2906,14 +2927,6 @@ Internet-Draft             JSON Content Rules                   May 2019
  jcr-version-kw   = %x6A.63.72.2D.76.65.72.73.69.6F.6E ; "jcr-version"
  not-kw           = %x6E.6F.74                      ; "not"
  null-kw          = %x6E.75.6C.6C                   ; "null"
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 52]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
  phone-kw         = %x70.68.6F.6E.65                ; "phone"
  root-kw          = %x72.6F.6F.74                   ; "root"
  ruleset-id-kw    = %x72.75.6C.65.73.65.74.2D.69.64 ; "ruleset-id"
@@ -2948,6 +2961,15 @@ Internet-Draft             JSON Content Rules                   May 2019
    offers an additional attack vector for hackers, which could allow
    invalid JSON to be accepted as valid.
 
+
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 53]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
 12.  Acknowledgements
 
    John Cowan, Andrew Biggs, Paul Kyzivat and Paul Jones provided
@@ -2960,15 +2982,6 @@ Internet-Draft             JSON Content Rules                   May 2019
    [IEEE754]  Institute of Electrical and Electronics Engineers,
               "Standard for Floating-Point Arithmetic", IEEE
               Standard 754, August 2008.
-
-
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 53]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
 
    [JCR_ABNF]
               Newton, A. and P. Cordell, "ABNF for JSON Content Rules",
@@ -3005,6 +3018,14 @@ Internet-Draft             JSON Content Rules                   May 2019
               Encodings", RFC 4648, DOI 10.17487/RFC4648, October 2006,
               <https://www.rfc-editor.org/info/rfc4648>.
 
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 54]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
    [RFC5322]  Resnick, P., Ed., "Internet Message Format", RFC 5322,
               DOI 10.17487/RFC5322, October 2008,
               <https://www.rfc-editor.org/info/rfc5322>.
@@ -3018,13 +3039,6 @@ Internet-Draft             JSON Content Rules                   May 2019
               Interchange Format", STD 90, RFC 8259,
               DOI 10.17487/RFC8259, December 2017,
               <https://www.rfc-editor.org/info/rfc8259>.
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 54]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
 
 13.2.  Infomative References
 
@@ -3056,6 +3070,18 @@ Internet-Draft             JSON Content Rules                   May 2019
               "JCR Validator",
               <https://github.com/arineng/jcrvalidator>.
 
+
+
+
+
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 55]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
 Appendix A.  Experimental Features
 
    The following features are in development and may appear in a future
@@ -3074,13 +3100,6 @@ A.1.  Augmented OR of Objects
                      { "foo":string | "bar":integer }
 
                                  Figure 86
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 55]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
 
    The interpretation of Figure 86 is that the object may either contain
    a member named "foo" that is a string or a member named "bar" that is
@@ -3112,6 +3131,13 @@ A.2.  New Data Types
 
    The following are a list of new data types under consideration:
 
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 56]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
       JCR currently has 'ipaddr', 'ipv4', and 'ipv6' data types, but
       often groups of IP addresses are specified using CIDR notation.
       'cidr', 'cidr4', 'cidr6' are under consideration to cover these
@@ -3130,13 +3156,6 @@ A.3.  New Annotations
    have a clear, less-wordy syntax.
 
    The following annotations are under consideration:
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 56]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
 
       A '@{default ...}' annotation has been proposed to help the reader
       understand there may be a default value if one is not given.  This
@@ -3164,6 +3183,17 @@ Appendix C.  Testing Against JSON Content Rules
    into unit tests, which are essential to producing quality protocol
    implementations.
 
+
+
+
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 57]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
 C.1.  Locally Overriding Rules
 
    As mentioned in the introduction, one tool for testing would be the
@@ -3183,16 +3213,6 @@ C.1.  Locally Overriding Rules
    the array must at least contain the status "accepted", the rules from
    the specification could be used and the statuses rule could be
    explicitly overridden locally as:
-
-
-
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 57]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
 
    This rule will evaluate positively with the JSON in Figure 90
 
@@ -3218,6 +3238,18 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                                  Figure 92
 
+
+
+
+
+
+
+
+Newton & Cordell        Expires November 16, 2019              [Page 58]
+
+Internet-Draft             JSON Content Rules                   May 2019
+
+
 C.2.  Rule Callbacks
 
    In many testing scenarios, the evaluation of rules may become more
@@ -3237,18 +3269,6 @@ Appendix D.  Changes from -09 and -10
    primitive types no longer requires the '=:' syntax.  The '=:' is
    still provided for backwards compatibility.  Other syntax changes
    have been made to accommodate the syntax of future annotations.
-
-
-
-
-
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 58]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
 
 Authors' Addresses
 
@@ -3281,24 +3301,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Newton & Cordell        Expires November 15, 2019              [Page 59]
+Newton & Cordell        Expires November 16, 2019              [Page 59]

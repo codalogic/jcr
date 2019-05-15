@@ -1,0 +1,4 @@
+50      ; Preferred integer format
+50.0    ; Non-preferred integer format
+5e1     ; Non-preferred integer format
+"50"    ; Not an integer
