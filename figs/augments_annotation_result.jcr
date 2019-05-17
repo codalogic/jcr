@@ -1,0 +1,3 @@
+$main = { "first" : integer, $extension }
+
+$extension = ( "extra" : string ? )

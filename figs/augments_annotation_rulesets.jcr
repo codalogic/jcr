@@ -1,0 +1,4 @@
+#ruleset-id org.example.extension
+#import org.example.core as core
+
+$extension = @{augments $core.main} ( "extra" : string ? )

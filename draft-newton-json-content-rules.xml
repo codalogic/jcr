@@ -31,7 +31,7 @@
    'http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.cordell-jcr-co-constraints.xml'>
    
   <!ENTITY ABNF PUBLIC ''
-    'jcr-abnf-2019-05-15.txt'>
+    'jcr-abnf-2019-05-17.txt'>
   <!ENTITY first_example.json PUBLIC ''
     'figs/first_example.json'>
   <!ENTITY first_example.jcr PUBLIC ''
@@ -142,6 +142,14 @@
     'figs/repetition_step.jcr'>
   <!ENTITY not_annotation.jcr PUBLIC ''
     'figs/not_annotation.jcr'>
+  <!ENTITY choice_annotation.jcr PUBLIC ''
+    'figs/choice_annotation.jcr'>
+  <!ENTITY augments_annotation.jcr PUBLIC ''
+    'figs/augments_annotation.jcr'>
+  <!ENTITY augments_annotation_result.jcr PUBLIC ''
+    'figs/augments_annotation_result.jcr'>
+  <!ENTITY augments_annotation_rulesets.jcr PUBLIC ''
+    'figs/augments_annotation_rulesets.jcr'>
   <!ENTITY single_line_directive_example.jcr PUBLIC ''
     'figs/single_line_directive_example.jcr'>
   <!ENTITY multi_line_directive_example.jcr PUBLIC ''
@@ -965,10 +973,16 @@
                     The @{unordered} annotation is described in <xref target="unordered_array_specifications"></xref>.
                 </t>
                 <t>
-                    The @{min-exclusive} and @{max-exclusive} annotations are described in <xref target="numbers"></xref>.
+                    The @{exclude-min} and @{exclude-max} annotations are described in <xref target="numbers"></xref>.
                 </t>
                 <t>
                     The @{format} annotation is described in <xref target="strings_external"></xref>.
+                </t>
+                <t>
+                    The @{choice} annotation is described in <xref target="choice_annotation"></xref>.
+                </t>
+                <t>
+                    The @{augments} annotation is described in <xref target="augments_annotation"></xref>.
                 </t>
                 <t>
                     Other annotations may be defined for other purposes in future.
@@ -1072,6 +1086,23 @@
                 <figure anchor="mixed_and_or_good.jcr">
                     <artwork xml:space="preserve" align="center">&mixed_and_or_good.jcr;</artwork>
                 </figure>
+                <section title="@{choice} Annotation" anchor="choice_annotation">
+                    <t>
+                        If an object, array or group has only zero or one items, it is ambiguous whether it
+                        is intended to be a sequence or a choice. This is an issue if the object, array or group
+                        is intended to be extended in a future version of the ruleset, especially if the
+                        mechanism for extension is the @{augments} annotation (<xref target="augments_annotation"/>).
+                    </t>
+                    <t>
+                        To resolve this ambiguity, an object, array or group containing only zero or one items
+                        is treated as a sequence
+                        unless it is annotated with the @{choice} annotation, in which case it is treated
+                        as a choice.
+                    </t>
+                    <figure anchor="choice_annotation.jcr">
+                        <artwork xml:space="preserve" align="center">&choice_annotation.jcr;</artwork>
+                    </figure>
+                </section>
             </section>
             <section title="Type Specifications">
                 <t>
@@ -1784,6 +1815,43 @@
                 </t>
                 <figure anchor="root_annotations.jcr">
                     <artwork xml:space="preserve" align="center">&root_annotations.jcr;</artwork>
+                </figure>
+            </section>
+            <section title="Reverse Linking via the @{augments} Annotation" anchor="augments_annotation">
+                <t>
+                    IETF protocols often specify a core protocol and then additional functionality is
+                    added over time by defining additional specifications that update the original core
+                    protocol. The @{augments} annotation supports this way of working.
+                </t>
+                <t>
+                    Typically objects, arrays and groups will include rule name references that reference
+                    child rules. The @{augments} annotation allows the direction of that referencing to
+                    be reversed. It effectively allows a child rule to specify that a parent rule should
+                    be augmented with a rule name reference to itself (the child).
+                </t>
+                <t>
+                    The parameters of the @{augments} annotation consist of one or more, space-separated
+                    rule name references to parent rules that should be augmented with the name of the rule
+                    that has the @{augments} annotation.
+                </t>
+                <t>
+                    For example, the following rules:
+                </t>
+                <figure anchor="augments_annotation.jcr">
+                    <artwork xml:space="preserve" align="center">&augments_annotation.jcr;</artwork>
+                </figure>
+                <t>
+                    is equivalent to the following:
+                </t>
+                <figure anchor="augments_annotation_result.jcr">
+                    <artwork xml:space="preserve" align="center">&augments_annotation_result.jcr;</artwork>
+                </figure>
+                <t>
+                    Note that the reverse linking can occur across multiple rulesets with different ruleset-ids.
+                    For example, an extension might be defined as:
+                </t>
+                <figure anchor="augments_annotation_rulesets.jcr">
+                    <artwork xml:space="preserve" align="center">&augments_annotation_rulesets.jcr;</artwork>
                 </figure>
             </section>
         </section>
