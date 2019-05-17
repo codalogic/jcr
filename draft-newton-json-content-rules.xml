@@ -96,8 +96,10 @@
     'figs/primitives_misc.jcr'>
   <!ENTITY primitives_binary.jcr PUBLIC ''
     'figs/primitives_binary.jcr'>
-  <!ENTITY spec_annotation.jcr PUBLIC ''
-    'figs/spec_annotation.jcr'>
+  <!ENTITY format_annotation.jcr PUBLIC ''
+    'figs/format_annotation.jcr'>
+  <!ENTITY format_annotation_usage.jcr PUBLIC ''
+    'figs/format_annotation_usage.jcr'>
   <!ENTITY type_choice.jcr PUBLIC ''
     'figs/type_choice.jcr'>
   <!ENTITY type_choice2.jcr PUBLIC ''
@@ -1327,8 +1329,14 @@
                     <t>
                         For example, a fictional JCR ruleset specifying a DNA fingerprint type might be:
                     </t>
-                    <figure anchor="spec_annotation.jcr">
-                        <artwork align="center" xml:space="preserve">&spec_annotation.jcr;</artwork>
+                    <figure anchor="format_annotation.jcr">
+                        <artwork align="center" xml:space="preserve">&format_annotation.jcr;</artwork>
+                    </figure>
+                    <t>
+                        The above specification could then be used as:
+                    </t>
+                    <figure anchor="format_annotation_usage.jcr">
+                        <artwork align="center" xml:space="preserve">&format_annotation_usage.jcr;</artwork>
                     </figure>
                     <t>
                         From a validators perspective, the above type could be considered to be a 'string with the format
@@ -1343,7 +1351,7 @@
                         or not is beyond the scope of this document.
                     </t>
                     <t>
-                        Whether validators give errors, warnings or act silently when they encounter a spec uri they don't
+                        Whether validators give errors, warnings or act silently when they encounter a format uri they don't
                         know is an implementation detail.
                     </t>
                 </section>
