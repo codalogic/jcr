@@ -1464,6 +1464,9 @@
                     
                     <list style="symbols">
                         <t>
+                            Groupings with max repetitions greater than one are not permitted is this version of JCR.
+                        </t>
+                        <t>
                             Each optional grouping is treated as a choice between itself and the empty group.
                         </t>
                         <t>
@@ -1486,26 +1489,34 @@
                             Each member specification yields a true or false validation result.
                         </t>
                         <t>
-                            Optionality refers to the member name, not the combination of member name and type
-                            specification.  Therefore, when evaluating an optional member specification, if the
-                            member name matches, but the type does not, the member specification yields a false
-                            validation result (rather than inferring that it was optional for the type to be valid).
+                            For a member specification to match an instance specification, both the member name
+                            specification and the member specification value type must match the instance. If the
+                            instance name matches, but the type does not, the member specification yields a false
+                            validation result, (irrespective of whether other instance members match the member specification).
                         </t>
                         <t>
-                            For a sequence to be valid, all of its member specifications must be valid.  For a choice to be valid,
-                            one or more of its member specifications must be valid.
+                            A count is maintained for each member specification, recording how many instance members have been
+                            matched against it. When all instance members have been matched against the member specification,
+                            the recorded counts are compared against the repetitions property of the member
+                            specification. If the count is outside the range of the specification's repetitions property the
+                            member specification yields a false validation result.
+                        </t>
+                        <t>
+                            For a sequence to be valid, all of its member specifications must yield a true validation result.
+                            For a choice to be valid, one or more of its member specifications must yield a true validation result.
                         </t>
                         <t>
                             A validated grouping yields a true or false result to its parent grouping, which are in-turn
                             evaluated as either a sequence or a choice.
                         </t>
+                        <!--{{{Do we need this clause? Time will tell}}}
                         <t>
-                            <!--{{{Do we need this clause? Time will tell}}}-->
                             If the outer-most group yields a true result, each instance member associated with a member
                             specification MUST be checked to confirm
                             it has been part of a grouping that has yielded a 'true' result that has led to the overall
                             'true' result.  If not, the object instance is deemed invalid.
                         </t>
+                        -->
                     </list>
                 </t>
             </section>
