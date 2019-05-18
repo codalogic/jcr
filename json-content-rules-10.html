@@ -1558,7 +1558,7 @@ $o2 = { "p1" : string, /^p\d+$/ : integer * }
 <p id="rfc.section.6.13.2.p.2">Validation of object instances against object specifications takes place as follows: </p>
 
 <ul>
-<li>Groupings with max repetitions greater than one are not permitted is this version of JCR.  </li>
+<li>Groupings with max repetitions greater than one are not permitted by this version of JCR.  </li>
 <li>Each optional grouping is treated as a choice between itself and the empty group.  </li>
 <li>Each branch in a choice is augmented so that it contains the union of all member name specifications specified in the whole choice (including member name specifications included in nested groups) that have a maximum repetition greater than 0.  If a member name specification is not explicitly specified in a choice branch, then it is implicitly treated as being: "&lt;member name specification&gt; : any *0".  </li>
 <li>Instance member names are associated with member name specifications as described in <a href="#object_member_association" class="xref">Section 6.13.1</a>.  </li>

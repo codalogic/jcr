@@ -1464,7 +1464,7 @@
                     
                     <list style="symbols">
                         <t>
-                            Groupings with max repetitions greater than one are not permitted is this version of JCR.
+                            Groupings with max repetitions greater than one are not permitted by this version of JCR.
                         </t>
                         <t>
                             Each optional grouping is treated as a choice between itself and the empty group.
