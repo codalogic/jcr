@@ -1,3 +1,8 @@
+Status
+======
+
+This fork is currently not being merged back into arineng/jcr (https://github.com/arineng/jcr).
+
 Background
 ==========
 
