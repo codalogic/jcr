@@ -459,7 +459,7 @@
 
   <meta name="dct.creator" content="Newton, A. and P. Cordell" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-newton-json-content-rules-10" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-18" />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-21" />
   <meta name="dct.abstract" content="This document describes a language for specifying and testing the expected content of JSON structures found in JSON-using protocols, software, and processes.  " />
   <meta name="description" content="This document describes a language for specifying and testing the expected content of JSON structures found in JSON-using protocols, software, and processes.  " />
 
@@ -483,12 +483,12 @@
 <td class="right">P. Cordell</td>
 </tr>
 <tr>
-<td class="left">Expires: November 19, 2019</td>
+<td class="left">Expires: November 22, 2019</td>
 <td class="right">Codalogic</td>
 </tr>
 <tr>
 <td class="left"></td>
-<td class="right">May 18, 2019</td>
+<td class="right">May 21, 2019</td>
 </tr>
 
     	
@@ -504,7 +504,7 @@
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on November 19, 2019.</p>
+<p>This Internet-Draft will expire on November 22, 2019.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -1993,10 +1993,10 @@ eol              = CR / LF
 multi-line-tbd-directive-d = directive-name
                    [ 1*sp-cmt multi-line-directive-parameters ]
 multi-line-directive-parameters = multi-line-parameters
-multi-line-parameters = *(comment / q-string / regex /
+multi-line-parameters = *(comment / q-string /
                    not-multi-line-special)
-not-multi-line-special = spaces / %x21 / %x23-2E / %x30-3A /
-                   %x3C-7C / %x7E-10FFFF ; not ", /, ; or }
+not-multi-line-special = spaces / %x21 / %x23-3A /
+                   %x3C-7C / %x7E-10FFFF ; not ", ; or }
 
 root-rule        = value-rule / group-rule
 
@@ -2128,11 +2128,10 @@ one-or-more      = "+" [ repetition-step ]
 zero-or-more     = "*" [ repetition-step ]
 repetition-range = "*" *sp-cmt (
                    min-max-repetition / min-repetition /
-                   max-repetition / specific-repetition )
+                   specific-repetition )
 min-max-repetition = min-repeat ".." max-repeat
                    [ repetition-step ]
 min-repetition   = min-repeat ".." [ repetition-step ]
-max-repetition   = ".."  max-repeat [ repetition-step ]
 min-repeat       = non-neg-integer
 max-repeat       = non-neg-integer
 specific-repetition = non-neg-integer

@@ -31,7 +31,7 @@
    'http://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.cordell-jcr-co-constraints.xml'>
    
   <!ENTITY ABNF PUBLIC ''
-    'jcr-abnf-2019-05-17.txt'>
+    'jcr-abnf.txt'>
   <!ENTITY first_example.json PUBLIC ''
     'figs/first_example.json'>
   <!ENTITY first_example.jcr PUBLIC ''
