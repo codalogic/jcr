@@ -5,8 +5,8 @@
 Network Working Group                                          A. Newton
 Internet-Draft                                                      ARIN
 Intended status: Standards Track                              P. Cordell
-Expires: November 22, 2019                                     Codalogic
-                                                            May 21, 2019
+Expires: December 19, 2019                                     Codalogic
+                                                           June 17, 2019
 
 
               A Language for Rules Describing JSON Content
@@ -33,7 +33,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 22, 2019.
+   This Internet-Draft will expire on December 19, 2019.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Newton & Cordell        Expires November 22, 2019               [Page 1]
+Newton & Cordell        Expires December 19, 2019               [Page 1]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 Table of Contents
@@ -80,72 +80,73 @@ Table of Contents
        6.4.1.  jcr-version . . . . . . . . . . . . . . . . . . . . .  17
        6.4.2.  ruleset-id  . . . . . . . . . . . . . . . . . . . . .  18
        6.4.3.  import  . . . . . . . . . . . . . . . . . . . . . . .  18
-     6.5.  Rules . . . . . . . . . . . . . . . . . . . . . . . . . .  19
-     6.6.  Rule Names, Assignments, and References . . . . . . . . .  20
-     6.7.  Annotations . . . . . . . . . . . . . . . . . . . . . . .  21
-       6.7.1.  @{not} - Negating Evaluation  . . . . . . . . . . . .  22
-     6.8.  Repetition  . . . . . . . . . . . . . . . . . . . . . . .  22
-     6.9.  Combining Subordinate Components - Sequences and Choices   24
-       6.9.1.  @{choice} Annotation  . . . . . . . . . . . . . . . .  25
-     6.10. Type Specifications . . . . . . . . . . . . . . . . . . .  26
-     6.11. Primitive Specifications  . . . . . . . . . . . . . . . .  26
-       6.11.1.  Null . . . . . . . . . . . . . . . . . . . . . . . .  26
-       6.11.2.  Booleans . . . . . . . . . . . . . . . . . . . . . .  26
-       6.11.3.  Numbers  . . . . . . . . . . . . . . . . . . . . . .  26
-       6.11.4.  Plain Strings  . . . . . . . . . . . . . . . . . . .  29
-       6.11.5.  Strings with Additional Semantics  . . . . . . . . .  30
-       6.11.6.  Strings with External Specifications . . . . . . . .  32
-     6.12. Member Specifications . . . . . . . . . . . . . . . . . .  33
-     6.13. Object Specifications . . . . . . . . . . . . . . . . . .  34
-       6.13.1.  Object Member Association  . . . . . . . . . . . . .  34
-       6.13.2.  Object Validation  . . . . . . . . . . . . . . . . .  35
-       6.13.3.  Closing Objects to Extension . . . . . . . . . . . .  37
-       6.13.4.  Object Mixins  . . . . . . . . . . . . . . . . . . .  37
-     6.14. Array Specifications  . . . . . . . . . . . . . . . . . .  38
-       6.14.1.  Ordered Array Specifications . . . . . . . . . . . .  38
-       6.14.2.  Unordered Array Specifications . . . . . . . . . . .  40
-     6.15. Type Choices  . . . . . . . . . . . . . . . . . . . . . .  41
-     6.16. Any Type  . . . . . . . . . . . . . . . . . . . . . . . .  42
+       6.4.4.  infer-types . . . . . . . . . . . . . . . . . . . . .  19
+     6.5.  Rules . . . . . . . . . . . . . . . . . . . . . . . . . .  20
+     6.6.  Rule Names, Assignments, and References . . . . . . . . .  21
+     6.7.  Annotations . . . . . . . . . . . . . . . . . . . . . . .  22
+       6.7.1.  @{not} - Negating Evaluation  . . . . . . . . . . . .  23
+     6.8.  Repetition  . . . . . . . . . . . . . . . . . . . . . . .  23
+     6.9.  Combining Subordinate Components - Sequences and Choices   25
+       6.9.1.  @{choice} Annotation  . . . . . . . . . . . . . . . .  26
+     6.10. Type Specifications . . . . . . . . . . . . . . . . . . .  27
+     6.11. Primitive Specifications  . . . . . . . . . . . . . . . .  27
+       6.11.1.  Null . . . . . . . . . . . . . . . . . . . . . . . .  27
+       6.11.2.  Booleans . . . . . . . . . . . . . . . . . . . . . .  27
+       6.11.3.  Numbers  . . . . . . . . . . . . . . . . . . . . . .  27
+       6.11.4.  Plain Strings  . . . . . . . . . . . . . . . . . . .  30
+       6.11.5.  Strings with Additional Semantics  . . . . . . . . .  31
+       6.11.6.  Strings with External Specifications . . . . . . . .  33
+     6.12. Member Specifications . . . . . . . . . . . . . . . . . .  34
+     6.13. Object Specifications . . . . . . . . . . . . . . . . . .  35
+       6.13.1.  Object Member Association  . . . . . . . . . . . . .  35
+       6.13.2.  Object Validation  . . . . . . . . . . . . . . . . .  36
+       6.13.3.  Closing Objects to Extension . . . . . . . . . . . .  38
+       6.13.4.  Object Mixins  . . . . . . . . . . . . . . . . . . .  38
+     6.14. Array Specifications  . . . . . . . . . . . . . . . . . .  39
+       6.14.1.  Ordered Array Specifications . . . . . . . . . . . .  39
+       6.14.2.  Unordered Array Specifications . . . . . . . . . . .  41
+     6.15. Type Choices  . . . . . . . . . . . . . . . . . . . . . .  42
 
 
 
-Newton & Cordell        Expires November 22, 2019               [Page 2]
+Newton & Cordell        Expires December 19, 2019               [Page 2]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
-     6.17. Group Specifications  . . . . . . . . . . . . . . . . . .  42
-       6.17.1.  Groups in Arrays . . . . . . . . . . . . . . . . . .  43
-       6.17.2.  Groups in Objects  . . . . . . . . . . . . . . . . .  43
-       6.17.3.  Group Rules as Macros  . . . . . . . . . . . . . . .  44
-     6.18. Starting Points and Root Rules  . . . . . . . . . . . . .  44
-     6.19. Reverse Linking via the @{augments} Annotation  . . . . .  45
-   7.  Tips and Tricks . . . . . . . . . . . . . . . . . . . . . . .  46
-     7.1.  Any Member with Any Value . . . . . . . . . . . . . . . .  46
-     7.2.  Lists of Values . . . . . . . . . . . . . . . . . . . . .  47
-     7.3.  Subordinate Dependencies  . . . . . . . . . . . . . . . .  47
-   8.  Legacy Features . . . . . . . . . . . . . . . . . . . . . . .  48
-   9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  48
-     9.1.  JCR Validator . . . . . . . . . . . . . . . . . . . . . .  48
-     9.2.  Codalogic JCR Parser  . . . . . . . . . . . . . . . . . .  49
-     9.3.  JCR Java  . . . . . . . . . . . . . . . . . . . . . . . .  49
-   10. ABNF Syntax . . . . . . . . . . . . . . . . . . . . . . . . .  49
-   11. Security Considerations . . . . . . . . . . . . . . . . . . .  55
-   12. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  56
-   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  56
-     13.1.  Normative References . . . . . . . . . . . . . . . . . .  56
-     13.2.  Infomative References  . . . . . . . . . . . . . . . . .  57
-     13.3.  Resource References  . . . . . . . . . . . . . . . . . .  57
-   Appendix A.  Experimental Features  . . . . . . . . . . . . . . .  58
-     A.1.  Augmented OR of Objects . . . . . . . . . . . . . . . . .  58
-     A.2.  New Data Types  . . . . . . . . . . . . . . . . . . . . .  58
-     A.3.  New Annotations . . . . . . . . . . . . . . . . . . . . .  59
-   Appendix B.  Co-Constraints . . . . . . . . . . . . . . . . . . .  59
-   Appendix C.  Testing Against JSON Content Rules . . . . . . . . .  59
-     C.1.  Locally Overriding Rules  . . . . . . . . . . . . . . . .  60
-     C.2.  Rule Callbacks  . . . . . . . . . . . . . . . . . . . . .  61
-   Appendix D.  Changes from -09 and -10 . . . . . . . . . . . . . .  61
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  61
+     6.16. Any Type  . . . . . . . . . . . . . . . . . . . . . . . .  43
+     6.17. Group Specifications  . . . . . . . . . . . . . . . . . .  43
+       6.17.1.  Groups in Arrays . . . . . . . . . . . . . . . . . .  44
+       6.17.2.  Groups in Objects  . . . . . . . . . . . . . . . . .  44
+       6.17.3.  Group Rules as Macros  . . . . . . . . . . . . . . .  45
+     6.18. Starting Points and Root Rules  . . . . . . . . . . . . .  45
+     6.19. Reverse Linking via the @{augments} Annotation  . . . . .  46
+   7.  Tips and Tricks . . . . . . . . . . . . . . . . . . . . . . .  47
+     7.1.  Any Member with Any Value . . . . . . . . . . . . . . . .  47
+     7.2.  Lists of Values . . . . . . . . . . . . . . . . . . . . .  48
+     7.3.  Subordinate Dependencies  . . . . . . . . . . . . . . . .  48
+   8.  Legacy Features . . . . . . . . . . . . . . . . . . . . . . .  49
+   9.  Implementation Status . . . . . . . . . . . . . . . . . . . .  49
+     9.1.  JCR Validator . . . . . . . . . . . . . . . . . . . . . .  49
+     9.2.  Codalogic JCR Parser  . . . . . . . . . . . . . . . . . .  50
+     9.3.  JCR Java  . . . . . . . . . . . . . . . . . . . . . . . .  50
+   10. ABNF Syntax . . . . . . . . . . . . . . . . . . . . . . . . .  50
+   11. Security Considerations . . . . . . . . . . . . . . . . . . .  56
+   12. Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .  57
+   13. References  . . . . . . . . . . . . . . . . . . . . . . . . .  57
+     13.1.  Normative References . . . . . . . . . . . . . . . . . .  57
+     13.2.  Infomative References  . . . . . . . . . . . . . . . . .  58
+     13.3.  Resource References  . . . . . . . . . . . . . . . . . .  58
+   Appendix A.  Experimental Features  . . . . . . . . . . . . . . .  59
+     A.1.  Augmented OR of Objects . . . . . . . . . . . . . . . . .  59
+     A.2.  New Data Types  . . . . . . . . . . . . . . . . . . . . .  59
+     A.3.  New Annotations . . . . . . . . . . . . . . . . . . . . .  60
+   Appendix B.  Co-Constraints . . . . . . . . . . . . . . . . . . .  60
+   Appendix C.  Testing Against JSON Content Rules . . . . . . . . .  60
+     C.1.  Locally Overriding Rules  . . . . . . . . . . . . . . . .  61
+     C.2.  Rule Callbacks  . . . . . . . . . . . . . . . . . . . . .  62
+   Appendix D.  Changes from -09 and -10 . . . . . . . . . . . . . .  62
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  62
 
 1.  Introduction
 
@@ -164,10 +165,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-
-Newton & Cordell        Expires November 22, 2019               [Page 3]
+Newton & Cordell        Expires December 19, 2019               [Page 3]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 2.  Motivation
@@ -221,9 +221,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019               [Page 4]
+Newton & Cordell        Expires December 19, 2019               [Page 4]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    format translators which algorithmically convert a specification from
@@ -277,9 +277,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019               [Page 5]
+Newton & Cordell        Expires December 19, 2019               [Page 5]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    benefit from being JSON-like, as is the case of JCR, or specified in
@@ -333,9 +333,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019               [Page 6]
+Newton & Cordell        Expires December 19, 2019               [Page 6]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    In this example, the catalog entry is defined in JSON Schema.
@@ -389,9 +389,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019               [Page 7]
+Newton & Cordell        Expires December 19, 2019               [Page 7]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    The above examples demonstrate that the JCR is more concise and
@@ -445,9 +445,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019               [Page 8]
+Newton & Cordell        Expires December 19, 2019               [Page 8]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    issues.  Appealing to a JCR opinion offers the potential for a quick
@@ -501,9 +501,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019               [Page 9]
+Newton & Cordell        Expires December 19, 2019               [Page 9]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 4.2.  A Second Example: Testing Content
@@ -557,9 +557,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 10]
+Newton & Cordell        Expires December 19, 2019              [Page 10]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                     $fn = "file-name"  : "rfc4627.txt"
@@ -613,9 +613,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 11]
+Newton & Cordell        Expires December 19, 2019              [Page 11]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                   #import com.example.common-types as ct
@@ -669,9 +669,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 12]
+Newton & Cordell        Expires December 19, 2019              [Page 12]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    Rules may be defined across line boundaries and there is no line
@@ -725,9 +725,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 13]
+Newton & Cordell        Expires December 19, 2019              [Page 13]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
       $mem3 = /^dev[0-9]$/ : 0..4096
@@ -781,9 +781,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 14]
+Newton & Cordell        Expires December 19, 2019              [Page 14]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
              ; the root of the JSON instance is an object
@@ -837,9 +837,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 15]
+Newton & Cordell        Expires December 19, 2019              [Page 15]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 6.1.  Character Encoding
@@ -893,9 +893,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 16]
+Newton & Cordell        Expires December 19, 2019              [Page 16]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    There are two forms of directive, the single line directive and the
@@ -922,7 +922,8 @@ Internet-Draft             JSON Content Rules                   May 2019
                                  Figure 16
 
    This specification defines the directives "jcr-version", "ruleset-
-   id", and "import", but other directives may be defined in future.
+   id", "import" and "infer-types", but other directives may be defined
+   in future.
 
 6.4.1.  jcr-version
 
@@ -945,15 +946,15 @@ Internet-Draft             JSON Content Rules                   May 2019
    This directive may have optional extension identifiers following the
    version number.  Each extension identifiers is preceded by the plus
    ('+') character and separated by white space.  An extension
-   identifier has the form of an identifier as described in Section 6.3.
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 17]
+Newton & Cordell        Expires December 19, 2019              [Page 17]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
+   identifier has the form of an identifier as described in Section 6.3.
    The structure of extension identifiers is specific to the extension,
    but it is recommended that they are terminated by a version number.
 
@@ -1004,10 +1005,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-
-Newton & Cordell        Expires November 22, 2019              [Page 18]
+Newton & Cordell        Expires December 19, 2019              [Page 18]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    The identifier after the "import" directive name is a ruleset
@@ -1034,6 +1034,57 @@ Internet-Draft             JSON Content Rules                   May 2019
    an alias is sought in the importing ruleset before being sought in
    each of the unaliased imported rulesets.
 
+6.4.4.  infer-types
+
+   The infer-types directive changes the way primitive definitions
+   corresponding to specific integer values, specific float values,
+   literal string values and the values 'true' and 'false' are
+   interpreted in a JCR ruleset.
+
+   After an infer-types directive in a ruleset (but not prior to), a
+   type defined as a specfic integer value is treated as if it were
+   defined as 'integer', a type defined as a specfic floating-point
+   value is treated as if it were defined as 'float', a type defined as
+   a literal string value is treated as if it were defined as 'string'
+   and types defined as 'true' or 'false' are treated as if they were
+   defined as 'boolean'.
+
+   For example:
+
+
+
+
+
+
+
+
+
+
+
+Newton & Cordell        Expires December 19, 2019              [Page 19]
+
+Internet-Draft             JSON Content Rules                  June 2019
+
+
+                         #infer-types
+                         { "number" : 10,
+                           "float" : 10.0,
+                           "string" : "A string",
+                           "bool1" : true,
+                           "bool2" : false }
+
+                                 Figure 22
+
+   is equivalent to:
+
+                           { "number" : integer,
+                             "float" : float,
+                             "string" : string,
+                             "bool1" : boolean,
+                             "bool2" : boolean }
+
+                                 Figure 23
+
 6.5.  Rules
 
    Rules have two main components, an optional rule name assignment and
@@ -1057,20 +1108,19 @@ Internet-Draft             JSON Content Rules                   May 2019
    Rule specifications may also contain annotations which may affect the
    meaning of all or part of the specification.
 
-
-
-
-
-Newton & Cordell        Expires November 22, 2019              [Page 19]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
    Type specifications, depending on their type, MAY contain zero or
    more other rule specifications.  For example, an object specification
    might contain multiple member specifications or rule name references
    that resolve to other member specifications, or a mixture of member
    specifications and rule name references.
+
+
+
+
+Newton & Cordell        Expires December 19, 2019              [Page 20]
+
+Internet-Draft             JSON Content Rules                  June 2019
+
 
    For the purposes of this document, rule specifications composing
    other specifications are called subordinate components.
@@ -1111,16 +1161,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                 ;rule name assignment for an array
                 $bar = [ integer, integer, integer ]
 
-                                 Figure 22
-
-
-
-
-
-Newton & Cordell        Expires November 22, 2019              [Page 20]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
+                                 Figure 24
 
    In the rule name reference context, a rule name, prefixed by the
    dollar character ('$'), is used in place of a rule specification.
@@ -1128,13 +1169,20 @@ Internet-Draft             JSON Content Rules                   May 2019
                     ;rule name references in an object
                     { "bar" : $bar, "foo" : $foo }
 
-                                 Figure 23
+                                 Figure 25
+
+
+
+Newton & Cordell        Expires December 19, 2019              [Page 21]
+
+Internet-Draft             JSON Content Rules                  June 2019
+
 
    Ruleset identifier aliases may be included in a rule name reference.
    They enable referencing rules from another ruleset.  Simple use cases
    of JCR will most likely not use ruleset identifiers.
 
-   In Figure 24 below, "http://ietf.org/rfcYYYY.JCR" and
+   In Figure 26 below, "http://ietf.org/rfcYYYY.JCR" and
    "http://ietf.org/rfcXXXX.JCR" are ruleset identifiers and "rfcXXXX"
    is a ruleset identifier alias.  See Section 6.4.3 for details on
    defining and using ruleset identifier aliases.
@@ -1144,7 +1192,7 @@ Internet-Draft             JSON Content Rules                   May 2019
           $my_encodings  = ( "mythic" | "magic" )
           $all_encodings = ( $rfcXXXX.encodings | $my_encodings )
 
-                                 Figure 24
+                                 Figure 26
 
    Rule name references within a ruleset can be used either before or
    after their referenced rule name assignment.
@@ -1159,7 +1207,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                      @{not} [ "fruits", "vegetables" ]
 
-                                 Figure 25
+                                 Figure 27
 
    The @{not} annotation is described in Section 6.7.1.
 
@@ -1170,14 +1218,6 @@ Internet-Draft             JSON Content Rules                   May 2019
    The @{exclude-min} and @{exclude-max} annotations are described in
    Section 6.11.3.
 
-
-
-
-Newton & Cordell        Expires November 22, 2019              [Page 21]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
    The @{format} annotation is described in Section 6.11.6.
 
    The @{choice} annotation is described in Section 6.9.1.
@@ -1185,6 +1225,14 @@ Internet-Draft             JSON Content Rules                   May 2019
    The @{augments} annotation is described in Section 6.19.
 
    Other annotations may be defined for other purposes in future.
+
+
+
+
+Newton & Cordell        Expires December 19, 2019              [Page 22]
+
+Internet-Draft             JSON Content Rules                  June 2019
+
 
 6.7.1.  @{not} - Negating Evaluation
 
@@ -1198,7 +1246,7 @@ Internet-Draft             JSON Content Rules                   May 2019
             ; error if one of the status values is "fail"
             $status = @{not} @{unordered} [ "fail", string * ]
 
-                                 Figure 26
+                                 Figure 28
 
 6.8.  Repetition
 
@@ -1221,19 +1269,6 @@ Internet-Draft             JSON Content Rules                   May 2019
    which specifies one or more, and the asterisk character ('*') which
    specifies zero or more.
 
-
-
-
-
-
-
-
-
-Newton & Cordell        Expires November 22, 2019              [Page 22]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
                   ; age is optional
                   { "name" : string, "age" : integer ? }
 
@@ -1243,10 +1278,18 @@ Internet-Draft             JSON Content Rules                   May 2019
                   ; 1 or more integer values
                   [ integer + ]
 
-                                 Figure 27
+                                 Figure 29
 
    A minimum and maximum can be expressed by immediately following the
    '*' symbol by the minimum followed by two period characters ('..')
+
+
+
+Newton & Cordell        Expires December 19, 2019              [Page 23]
+
+Internet-Draft             JSON Content Rules                  June 2019
+
+
    followed by the maximum, with either the minimum or maximum being
    optional.  When the minimum is not explicitly specified, it is
    assumed to be zero.  When the maximum is not explicitly specified, it
@@ -1268,7 +1311,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                       ; four or more bytes
                       [ $octet *4.. ]
 
-                                 Figure 28
+                                 Figure 30
 
    A repetition step expression may follow a minimum to maximum
    expression, the zero or more Kleene operator ('*'), or the one or
@@ -1283,19 +1326,25 @@ Internet-Draft             JSON Content Rules                   May 2019
       than or equal to zero, for total repetitions less than or equal to
       the maximum repetition).
 
-
-
-Newton & Cordell        Expires November 22, 2019              [Page 23]
-
-Internet-Draft             JSON Content Rules                   May 2019
-
-
    o  When the repetition step follows a one or more Kleene operator
       ('+'), the minimum repetition value is set equal to the repetition
       step value and the total number of repetitions minus the step
       value must be a multiple of the repetition step value (e.g. the
       total repetitions is the step plus n times the step - where n is
       an integer greater than or equal to zero).
+
+
+
+
+
+
+
+
+
+Newton & Cordell        Expires December 19, 2019              [Page 24]
+
+Internet-Draft             JSON Content Rules                  June 2019
+
 
    The following is an example for repetition steps in repetition
    expressions:
@@ -1328,7 +1377,7 @@ Internet-Draft             JSON Content Rules                   May 2019
              ; e.g. 2, 4, 6 etc
              $dice_throws = ( 1..6 +%2 )
 
-                                 Figure 29
+                                 Figure 31
 
 6.9.  Combining Subordinate Components - Sequences and Choices
 
@@ -1341,9 +1390,16 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 24]
+
+
+
+
+
+
+
+Newton & Cordell        Expires December 19, 2019              [Page 25]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                             ; sequence ("and")
@@ -1352,7 +1408,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                             ; choice ("or")
                             [ "this" | "that" ]
 
-                                 Figure 30
+                                 Figure 32
 
    The exact meaning of a sequence or choice depends on whether it is in
    an object, array or group, and they are further discussed in the
@@ -1364,13 +1420,13 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                      [ "this", "that" | "the_other" ]
 
-                                 Figure 31
+                                 Figure 33
 
    The example above should be expressed as:
 
                    [ "this", ( "that" | "the_other" ) ]
 
-                                 Figure 32
+                                 Figure 34
 
 6.9.1.  @{choice} Annotation
 
@@ -1389,7 +1445,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                  $a_choice_extension_point = @{choice} {}
 
-                                 Figure 33
+                                 Figure 35
 
 
 
@@ -1397,9 +1453,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 25]
+Newton & Cordell        Expires December 19, 2019              [Page 26]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 6.10.  Type Specifications
@@ -1420,7 +1476,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                                    null
 
-                                 Figure 34
+                                 Figure 36
 
    A value specified to be 'null' MUST be represented in a JSON instance
    by the JSON 'null' value.
@@ -1433,13 +1489,14 @@ Internet-Draft             JSON Content Rules                   May 2019
                                   false
                                   boolean
 
-                                 Figure 35
+                                 Figure 37
 
    A value specified to be 'true' MUST be represented in a JSON instance
    with the 'true' JSON value.  If specified to be 'false', it MUST be
    represented with the 'false' JSON value.  If specified to be
    'boolean', it MUST be represented with either the 'true' or 'false'
-   JSON values.
+   JSON values.  (However, see Section 6.4.4 regarding the effect of the
+   infer-types directive.)
 
    No casting or type coercion of non-Boolean types to Boolean types is
    permitted.
@@ -1452,10 +1509,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-
-Newton & Cordell        Expires November 22, 2019              [Page 26]
+Newton & Cordell        Expires December 19, 2019              [Page 27]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                                  integer
@@ -1467,7 +1523,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                                  0.0..10.0
                                  uint32
 
-                                 Figure 36
+                                 Figure 38
 
    The keyword 'integer' specifies a signed integer value of arbitrary
    size.
@@ -1481,14 +1537,15 @@ Internet-Draft             JSON Content Rules                   May 2019
    possible values, where a range may be specified using a minimum,
    maximum, or both.
 
-   To specify a specific value, the value itself is specified.  Note
-   that floating point types MUST include a fractional or exponent part,
-   even if the fractional part is zero.
+   To specify a specific value, the value itself is specified.
+   (However, see Section 6.4.4 regarding the effect of the infer-types
+   directive.)  Note that floating point types MUST include a fractional
+   or exponent part, even if the fractional part is zero.
 
             10   ; specifies the exact integer value 10
             10.0 ; specifies the exact floating point value 10
 
-                                 Figure 37
+                                 Figure 39
 
    To specify a range, the range token, consisting of two consecutive
    dot characters ('..'), is used.  The minimum in the range, if
@@ -1504,14 +1561,13 @@ Internet-Draft             JSON Content Rules                   May 2019
                                     ..100.5
                                 10.5..
 
-                                 Figure 38
+                                 Figure 40
 
 
 
-
-Newton & Cordell        Expires November 22, 2019              [Page 27]
+Newton & Cordell        Expires December 19, 2019              [Page 28]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    When specifying a minimum and a maximum, both must either be an
@@ -1521,7 +1577,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                                  0.0..10.0
 
-                                 Figure 39
+                                 Figure 41
 
    When a range is used to define a number, by default the minimum and
    maximum values are included in the range.  The @{min-exclusive}
@@ -1537,7 +1593,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
        $gt-10-lt-100 = @{min-exclusive} @{max-exclusive} 10.0..100.0
 
-                                 Figure 40
+                                 Figure 42
 
    The range of integers may also be specified using bit lengths.  The
    type specification is constructed with a prefix followed by a number.
@@ -1565,9 +1621,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 28]
+Newton & Cordell        Expires December 19, 2019              [Page 29]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                 ; 0..255
@@ -1585,7 +1641,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                 ; 0..18446744073709551615
                 uint64
 
-                                 Figure 41
+                                 Figure 43
 
    When specifying numbers, ruleset authors are recommended to bear in
    mind the commentary on numbers in [RFC7493].
@@ -1610,24 +1666,24 @@ Internet-Draft             JSON Content Rules                   May 2019
                   5e1     ; Non-preferred integer format
                   "50"    ; Not an integer
 
-                                 Figure 42
+                                 Figure 44
 
 6.11.4.  Plain Strings
 
    An unconstrained string may be specified using the keyword 'string'.
    String literals may be specified using a double quote character
    followed by the literal content followed by another double quote.
+   (However, see Section 6.4.4 regarding the effect of the infer-types
 
 
 
-
-Newton & Cordell        Expires November 22, 2019              [Page 29]
+Newton & Cordell        Expires December 19, 2019              [Page 30]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
-   Regular expressions can specify constrained strings by enclosing a
-   regular expression within forward slash ('/') characters.
+   directive.)  Regular expressions can specify constrained strings by
+   enclosing a regular expression within forward slash ('/') characters.
 
                           ; any string
                           string
@@ -1638,7 +1694,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                           ; a regular expression
                           /^she sells .*/
 
-                                 Figure 43
+                                 Figure 45
 
    Regular expressions are not implicitly anchored and therefore must be
    explicitly anchored if necessary.
@@ -1677,9 +1733,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 30]
+Newton & Cordell        Expires December 19, 2019              [Page 31]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    scheme.  Specific URI schemes are specified with the keyword 'uri'
@@ -1691,7 +1747,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                      ;a URI narrowed for an HTTPS uri
                      uri..https
 
-                                 Figure 44
+                                 Figure 46
 
    IP addresses may be specified with either the keyword 'ipv4' for IPv4
    addresses [RFC1166] or the keyword 'ipv6' for IPv6 addresses
@@ -1729,13 +1785,13 @@ Internet-Draft             JSON Content Rules                   May 2019
                          ; phone number
                          phone
 
-                                 Figure 45
+                                 Figure 47
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 31]
+Newton & Cordell        Expires December 19, 2019              [Page 32]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    Binary data can be specified in string form using the encodings
@@ -1758,7 +1814,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                            ; RFC 4648 base64url
                            base64url
 
-                                 Figure 46
+                                 Figure 48
 
    A value specified to be a semantic string MUST be represented in a
    JSON instance as a JSON string value and MUST satisfy all the
@@ -1782,23 +1838,23 @@ Internet-Draft             JSON Content Rules                   May 2019
      $fingerprint =
          @{format http://bio.example.org/specs/dna#fingerprint} string
 
-                                 Figure 47
+                                 Figure 49
 
    The above specification could then be used as:
 
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 32]
+Newton & Cordell        Expires December 19, 2019              [Page 33]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
               #import http://bio.example.org/specs/dna as dna
 
               { "fingerprint" : $dna.fingerprint }
 
-                                 Figure 48
+                                 Figure 50
 
    From a validators perspective, the above type could be considered to
    be a 'string with the format specified by
@@ -1837,7 +1893,7 @@ Internet-Draft             JSON Content Rules                   May 2019
             ;member name will match "eth0", "eth1", ... "eth9"
             $iface_mappings = /^eth[0-9]$/ : ipv4
 
-                                 Figure 49
+                                 Figure 51
 
    Member specification validation takes place as part of object
    validation, which is described in Section 6.13.
@@ -1845,9 +1901,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 33]
+Newton & Cordell        Expires December 19, 2019              [Page 34]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 6.13.  Object Specifications
@@ -1869,19 +1925,19 @@ Internet-Draft             JSON Content Rules                   May 2019
    The order of member specifications in a object specification does not
    dictate the order of member instances in a JSON object instance.  The
    following object specification will match the object instances in
-   both Figure 51 and Figure 52.
+   both Figure 53 and Figure 54.
 
               { "locationUri" : uri, "statusCode" : integer }
 
-                                 Figure 50
+                                 Figure 52
 
        { "locationUri" : "http://example.com", "statusCode" : 200 }
 
-                                 Figure 51
+                                 Figure 53
 
        { "statusCode" : 200, "locationUri" : "http://example.com" }
 
-                                 Figure 52
+                                 Figure 54
 
 6.13.1.  Object Member Association
 
@@ -1901,9 +1957,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 34]
+Newton & Cordell        Expires December 19, 2019              [Page 35]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    Each instance member name is first tested for a match against the
@@ -1938,14 +1994,14 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                $o2 = { "p1" : string, /^p\d+$/ : integer * }
 
-                                 Figure 53
+                                 Figure 55
 
    The following JSON instance is valid against both of the above object
    specifications:
 
                       { "p0" : 1, "p1" : "a string" }
 
-                                 Figure 54
+                                 Figure 56
 
 6.13.2.  Object Validation
 
@@ -1957,9 +2013,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 35]
+Newton & Cordell        Expires December 19, 2019              [Page 36]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    Validation of object instances against object specifications takes
@@ -2013,9 +2069,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 36]
+Newton & Cordell        Expires December 19, 2019              [Page 37]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    o  A validated grouping yields a true or false result to its parent
@@ -2037,20 +2093,20 @@ Internet-Draft             JSON Content Rules                   May 2019
    Section 6.7.1) may be used with a "match-all" regular expression as
    the last subordinate component of the object specification.
 
-   The following rule will match the JSON object in Figure 56 but will
-   not match the JSON object in Figure 57.
+   The following rule will match the JSON object in Figure 58 but will
+   not match the JSON object in Figure 59.
 
                    { "foo" : 1, "bar" : 2, // : any *0 }
 
-                                 Figure 55
+                                 Figure 57
 
                          { "foo" : 1, "bar" : 2 }
 
-                                 Figure 56
+                                 Figure 58
 
                     { "foo" : 1, "bar" : 2, "baz" : 3 }
 
-                                 Figure 57
+                                 Figure 59
 
    This works because the last specification is associated with any
    member instances that are not associated with a prior specification.
@@ -2069,9 +2125,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 37]
+Newton & Cordell        Expires December 19, 2019              [Page 38]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
              $mixin_object = { "foo" : integer, "fob" : uri }
@@ -2080,7 +2136,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
              $obj2 = { $mixin_object, "baz" : string }
 
-                                 Figure 58
+                                 Figure 60
 
    Group rules may also be used to create object mixins (See
    Section 6.17.2.)
@@ -2125,9 +2181,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 38]
+Newton & Cordell        Expires December 19, 2019              [Page 39]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
            ; the first element of the array is to be a string
@@ -2138,14 +2194,14 @@ Internet-Draft             JSON Content Rules                   May 2019
            ; the second element of the array is to be a string
            $a2 = [ integer, string ]
 
-                                 Figure 59
+                                 Figure 61
 
    It defines two rules, a1 and a2.  The array in the following JSON
    will not match a1, but will match a2.
 
                             [ 24, "Bob Smurd" ]
 
-                                 Figure 60
+                                 Figure 62
 
    If an array instance has more elements than can be matched from the
    array specification, the array instance does not validate against the
@@ -2156,7 +2212,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
             [ 24, "Bob Smurd", "http://example.com/bob_smurd" ]
 
-                                 Figure 61
+                                 Figure 63
 
    To allow an array to contain any value after guaranteeing that it
    contains the necessary items, the last subordinate component of the
@@ -2167,10 +2223,10 @@ Internet-Draft             JSON Content Rules                   May 2019
            ; anything else can follow
            $a3 = [ integer, string, any * ]
 
-   The JSON array in Figure 61 will validate against the a3 rule in this
+   The JSON array in Figure 63 will validate against the a3 rule in this
    example.
 
-                                 Figure 62
+                                 Figure 64
 
    Validating an ordered array, in the general case, has similarities
    with matching a regular expression or an ABNF grammar.  A regular
@@ -2181,9 +2237,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 39]
+Newton & Cordell        Expires December 19, 2019              [Page 40]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
          [ $first_name, $middle_name ?, $last_name, $birth_year ]
@@ -2192,13 +2248,13 @@ Internet-Draft             JSON Content Rules                   May 2019
          $last_name = string
          $birth_year = integer
 
-                                 Figure 63
+                                 Figure 65
 
    should accept the JSON instance:
 
                      [ "George", "Washington", 1732 ]
 
-                                 Figure 64
+                                 Figure 66
 
    When validating the above instance, a validator may initially
    associate "George" with $first_name and "Washington" with
@@ -2212,7 +2268,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                 [ string, ( string | integer ) ?, string ]
 
-                                 Figure 65
+                                 Figure 67
 
    permits each of the following JSON instances:
 
@@ -2220,7 +2276,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                              [ "A", 1, "C" ]
                              [ "A", "C" ]
 
-                                 Figure 66
+                                 Figure 68
 
 6.14.2.  Unordered Array Specifications
 
@@ -2237,21 +2293,21 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 40]
+Newton & Cordell        Expires December 19, 2019              [Page 41]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                   $a1 =              [ string, integer ]
                   $a2 = @{unordered} [ string, integer ]
 
-                                 Figure 67
+                                 Figure 69
 
    The JSON array below does not match a1 but does match a2.
 
                             [ 24, "Bob Smurd" ]
 
-                                 Figure 68
+                                 Figure 70
 
    The @{unordered} annotation can only be applied to an array as a
    whole.  It can not be applied to groups within an array.
@@ -2276,14 +2332,14 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                        { "age" : (0.. | "unknown") }
 
-                                 Figure 69
+                                 Figure 71
 
    Type choices can also be used for enumerations.
 
           { "status" : ("open" | "closed" | "unknown" | string) }
           ; string included to allow for future extension
 
-                                 Figure 70
+                                 Figure 72
 
    To validate against a type choice, an instance value MUST validate
    against one (or more) of the subordinate component type
@@ -2293,9 +2349,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 41]
+Newton & Cordell        Expires December 19, 2019              [Page 42]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 6.16.  Any Type
@@ -2336,12 +2392,12 @@ Internet-Draft             JSON Content Rules                   May 2019
 
              $the_bradys = [ $parents, $children ]
 
-                                 Figure 71
+                                 Figure 73
 
    Group specifications are not validated against JSON instances by
    themselves.  During validation of objects, arrays or type choices,
    references to group specifications are replaced with their referenced
-   content.  For example, the the_bradys rule in Figure 71 is validated
+   content.  For example, the the_bradys rule in Figure 73 is validated
    as if it were:
 
 
@@ -2349,14 +2405,14 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 42]
+Newton & Cordell        Expires December 19, 2019              [Page 43]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
     $the_bradys = [ "Mike", "Carol", "Greg", "Marsha", "Bobby", "Jan" ]
 
-                                 Figure 72
+                                 Figure 74
 
 6.17.1.  Groups in Arrays
 
@@ -2364,7 +2420,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                        [ ( ipv4 | ipv6 ), integer ]
 
-                                 Figure 73
+                                 Figure 75
 
    Unlike primitive specifications, subordinate group specifications in
    array specifications may have sequence combinations and contain any
@@ -2382,7 +2438,7 @@ Internet-Draft             JSON Content Rules                   May 2019
            $last_name = string
            $age = 0..
 
-                                 Figure 74
+                                 Figure 76
 
 6.17.2.  Groups in Objects
 
@@ -2405,9 +2461,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 43]
+Newton & Cordell        Expires December 19, 2019              [Page 44]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                ; a group in an object
@@ -2422,7 +2478,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                $author = "author" : [ string * ]
                $paragraph = /^p[0-9]*$/ : string
 
-                                 Figure 75
+                                 Figure 77
 
 6.17.3.  Group Rules as Macros
 
@@ -2433,7 +2489,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                  $paragraphs = ( /^p[0-9]*$/ : string + )
 
-                                 Figure 76
+                                 Figure 78
 
    This differs from a member specification because it includes a
    repetition specification.
@@ -2461,9 +2517,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 44]
+Newton & Cordell        Expires December 19, 2019              [Page 45]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                  @{root} $request = { "cmd" : string }
@@ -2471,7 +2527,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                  @{root} { "status" : string }
                  { "error" : string }   ; An implicit root
 
-                                 Figure 77
+                                 Figure 79
 
 6.19.  Reverse Linking via the @{augments} Annotation
 
@@ -2497,7 +2553,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
            $extension = @{augments $main} ( "extra" : string ? )
 
-                                 Figure 78
+                                 Figure 80
 
    is equivalent to the following:
 
@@ -2505,7 +2561,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                  $extension = ( "extra" : string ? )
 
-                                 Figure 79
+                                 Figure 81
 
    Note that the reverse linking can occur across multiple rulesets with
    different ruleset-ids.  For example, an extension might be defined
@@ -2517,9 +2573,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 45]
+Newton & Cordell        Expires December 19, 2019              [Page 46]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
         #ruleset-id org.example.extension
@@ -2527,7 +2583,7 @@ Internet-Draft             JSON Content Rules                   May 2019
 
         $extension = @{augments $core.main} ( "extra" : string ? )
 
-                                 Figure 80
+                                 Figure 82
 
 7.  Tips and Tricks
 
@@ -2540,42 +2596,42 @@ Internet-Draft             JSON Content Rules                   May 2019
 
                               { // : string }
 
-                                 Figure 81
+                                 Figure 83
 
    The JSON below matches the above rule.
 
                              { "foo" : "bar" }
 
-                                 Figure 82
+                                 Figure 84
 
    Likewise, the JSON below also matches the same rule.
 
                             { "fuzz" : "bazz" }
 
-                                 Figure 83
+                                 Figure 85
 
    Constructing an object with a member of any name with any type would
    therefore take the form:
 
                                { // : any }
 
-                                 Figure 84
+                                 Figure 86
 
    The above rule matches not only the two JSON objects above, but the
    JSON object below.
 
                              { "fuzz" : 1234 }
 
-                                 Figure 85
+                                 Figure 87
 
 
 
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 46]
+Newton & Cordell        Expires December 19, 2019              [Page 47]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 7.2.  Lists of Values
@@ -2595,7 +2651,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                  ; allowable fruits
                  $fruits = ( "apple" | "banana" | "pear" )
 
-                                 Figure 86
+                                 Figure 88
 
 7.3.  Subordinate Dependencies
 
@@ -2617,21 +2673,21 @@ Internet-Draft             JSON Content Rules                   May 2019
                   $location_uri = "locationURI" : uri
                   $referrer_uri = "referrerURI" : uri
 
-                                 Figure 87
+                                 Figure 89
 
    For validation, the above optional group is equivalent to:
 
                 { ( $location_uri, $referrer_uri? ) | () }
 
-                                 Figure 88
+                                 Figure 90
 
 
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 47]
+Newton & Cordell        Expires December 19, 2019              [Page 48]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 8.  Legacy Features
@@ -2652,7 +2708,7 @@ Internet-Draft             JSON Content Rules                   May 2019
                 $foo          =: "foo"
                 $other_string = type string
 
-                                 Figure 89
+                                 Figure 91
 
 9.  Implementation Status
 
@@ -2685,9 +2741,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 48]
+Newton & Cordell        Expires December 19, 2019              [Page 49]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    This software is primarily produced by the American Registry for
@@ -2741,9 +2797,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 49]
+Newton & Cordell        Expires December 19, 2019              [Page 50]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
  directive        = "#" (one-line-directive / multi-line-directive)
@@ -2797,9 +2853,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 50]
+Newton & Cordell        Expires December 19, 2019              [Page 51]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                     value-rule / group-rule / target-rule-name
@@ -2853,9 +2909,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 51]
+Newton & Cordell        Expires December 19, 2019              [Page 52]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
  boolean-type     = boolean-kw
@@ -2909,9 +2965,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 52]
+Newton & Cordell        Expires December 19, 2019              [Page 53]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
                     1*( choice-combiner array-item ) ]
@@ -2965,9 +3021,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 53]
+Newton & Cordell        Expires December 19, 2019              [Page 54]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
  q-string         = quotation-mark *char quotation-mark
@@ -3021,9 +3077,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 54]
+Newton & Cordell        Expires December 19, 2019              [Page 55]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
  idn-kw           = %x69.64.6E                      ; "idn"
@@ -3057,7 +3113,7 @@ Internet-Draft             JSON Content Rules                   May 2019
  SP               = %x20         ; space
  WSP              = SP / HTAB    ; white space
 
-                  Figure 90: ABNF for JSON Content Rules
+                  Figure 92: ABNF for JSON Content Rules
 
 11.  Security Considerations
 
@@ -3077,9 +3133,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 55]
+Newton & Cordell        Expires December 19, 2019              [Page 56]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 12.  Acknowledgements
@@ -3133,9 +3189,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 56]
+Newton & Cordell        Expires December 19, 2019              [Page 57]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
    [RFC5322]  Resnick, P., Ed., "Internet Message Format", RFC 5322,
@@ -3189,9 +3245,9 @@ Internet-Draft             JSON Content Rules                   May 2019
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 57]
+Newton & Cordell        Expires December 19, 2019              [Page 58]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 Appendix A.  Experimental Features
@@ -3211,9 +3267,9 @@ A.1.  Augmented OR of Objects
 
                      { "foo":string | "bar":integer }
 
-                                 Figure 91
+                                 Figure 93
 
-   The interpretation of Figure 91 is that the object may either contain
+   The interpretation of Figure 93 is that the object may either contain
    a member named "foo" that is a string or a member named "bar" that is
    an integer.  To some, that raises a number of questions:
 
@@ -3231,10 +3287,10 @@ A.1.  Augmented OR of Objects
                     ( "bar":integer, @{not} "foo":any )
                   }
 
-                                 Figure 92
+                                 Figure 94
 
-   The augmented OR algorithm for objects would allow Figure 91 to mean
-   the equivalent as the Figure 92 using inclusive OR.
+   The augmented OR algorithm for objects would allow Figure 93 to mean
+   the equivalent as the Figure 94 using inclusive OR.
 
 A.2.  New Data Types
 
@@ -3245,9 +3301,9 @@ A.2.  New Data Types
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 58]
+Newton & Cordell        Expires December 19, 2019              [Page 59]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
       JCR currently has 'ipaddr', 'ipv4', and 'ipv6' data types, but
@@ -3301,9 +3357,9 @@ Appendix C.  Testing Against JSON Content Rules
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 59]
+Newton & Cordell        Expires December 19, 2019              [Page 60]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 C.1.  Locally Overriding Rules
@@ -3314,7 +3370,7 @@ C.1.  Locally Overriding Rules
 
                          $statuses = [ string * ]
 
-                                 Figure 93
+                                 Figure 95
 
    Consider the specification where this rule is found does not define
    the values but references an extensible list of possible values
@@ -3326,29 +3382,29 @@ C.1.  Locally Overriding Rules
    the specification could be used and the statuses rule could be
    explicitly overridden locally as:
 
-   This rule will evaluate positively with the JSON in Figure 95
+   This rule will evaluate positively with the JSON in Figure 97
 
              $statuses = @{unordered} [ "accepted", string * ]
 
-                                 Figure 94
+                                 Figure 96
 
                  [ "submitted", "validated", "accepted" ]
 
-                                 Figure 95
+                                 Figure 97
 
    Alternatively, the developer may need to ensure that the status
    "denied" should not be present in the array:
 
-   This rule will fail to evaluate the JSON in Figure 97 thus signaling
+   This rule will fail to evaluate the JSON in Figure 99 thus signaling
    a problem.
 
          $statuses = @{unordered} @{not} [ "denied" + , string * ]
 
-                                 Figure 96
+                                 Figure 98
 
                   [ "submitted", "validated", "denied" ]
 
-                                 Figure 97
+                                 Figure 99
 
 
 
@@ -3357,9 +3413,9 @@ C.1.  Locally Overriding Rules
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 60]
+Newton & Cordell        Expires December 19, 2019              [Page 61]
 
-Internet-Draft             JSON Content Rules                   May 2019
+Internet-Draft             JSON Content Rules                  June 2019
 
 
 C.2.  Rule Callbacks
@@ -3413,4 +3469,4 @@ Authors' Addresses
 
 
 
-Newton & Cordell        Expires November 22, 2019              [Page 61]
+Newton & Cordell        Expires December 19, 2019              [Page 62]

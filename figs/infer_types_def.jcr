@@ -1,0 +1,6 @@
+#infer-types
+{ "number" : 10,
+  "float" : 10.0,
+  "string" : "A string",
+  "bool1" : true,
+  "bool2" : false }

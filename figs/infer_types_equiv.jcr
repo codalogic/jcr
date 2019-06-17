@@ -1,0 +1,5 @@
+{ "number" : integer,
+  "float" : float,
+  "string" : string,
+  "bool1" : boolean,
+  "bool2" : boolean }
