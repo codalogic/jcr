@@ -1444,6 +1444,10 @@
             <figure anchor="object_example2.json">
                 <artwork align="center" xml:space="preserve">&object_example2.json;</artwork>
             </figure>
+            <t>
+                Object specifications may contain subordinate group specifications, either directly
+                or via rule name references.  See <xref target="groups_in_objects"></xref> for details.
+            </t>
             <section title="Object Member Association" anchor="object_member_association">
                 <t>
                     Before a JSON instance can be validated, it is necessary to associate JSON object
@@ -1617,6 +1621,10 @@
                 As with object specifications, array subordinate components MAY have repetitions as
                 described in <xref target="repetition"/> and MAY be combined into sequences and/or
                 choices as described in <xref target="combiners"/>.
+            </t>
+            <t>
+                Array specifications may contain subordinate group specifications, either directly
+                or via rule name references.  See <xref target="groups_in_arrays"></xref> for details.
             </t>
             <t>
                 Arrays can be specified as either ordered or unordered.  Arrays are ordered by default.
@@ -1812,7 +1820,7 @@
             <figure anchor="group_example_for_validation.jcr">
                 <artwork xml:space="preserve" align="center">&group_example_for_validation.jcr;</artwork>
             </figure>
-            <section title="Groups in Arrays"> 
+            <section title="Groups in Arrays" anchor="groups_in_arrays"> 
                 <t>
                     Groups may be a subordinate component of array specifications:
                 </t>
@@ -1829,9 +1837,15 @@
             </section>
             <section title="Groups in Objects" anchor="groups_in_objects">
                 <t>
-                    Groups may be a subordinate component of object specifications:
+                    Groups may be a subordinate component of object specifications.
+                    Such groups may only contain member specifications.
                     Subordinate group specifications in object specifications may have sequence
-                    combinations but must only contain member specifications.
+                    or choice combinations. 
+                </t>
+                <t>
+                    The maximum permitted repetition value for a group within an object specification is 1.
+                    The minimum permitted repetition value is 0.
+                    Thus groups within objects may be optional or mandatory.
                 </t>
                 <figure anchor="groups_in_objects.jcr">
                     <artwork xml:space="preserve" align="center">&groups_in_objects.jcr;</artwork>
